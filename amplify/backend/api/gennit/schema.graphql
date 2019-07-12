@@ -1,0 +1,286 @@
+type Event
+  @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Organizers"]
+        queries: null
+        mutations: [create, update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  description: String
+  picture: String
+  start_time: String!
+  end_time: String!
+  place: String
+}
+
+type ModerationCase
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["Moderators"]
+        queries: [get, list]
+        mutations: [delete]
+      }
+    ]
+  ) {
+  id: ID!
+  community: Community
+  commentInQuestion: Comment
+  privateMessageInQuestion: PrivateMessage
+  complaint: String!
+  breaksCommunityRules: Boolean
+  author: ID!
+  date: String!
+}
+
+type ModerationQueue
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Moderators"], queries: [get] }]) {
+  id: ID!
+  cases: [ModerationCase]
+}
+
+type PrivateMessage
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Recipients"], queries: [get, list] }
+    ]
+  ) {
+  id: ID!
+  author: ID!
+  recipient: ID!
+  content: String!
+  date: String!
+}
+
+type Comment
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  author: ID!
+  replies: [Comment]
+  upvotes: Int!
+  downvotes: Int!
+}
+
+type Discussion
+  @model
+  @auth(
+    rules: [
+      { allow: owner, queries: [get, list], mutations: [create, update] }
+      {
+        allow: groups
+        groups: ["Moderators"]
+        queries: [get, list]
+        mutations: [delete]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  community: Community!
+  author: ID!
+  replies: [Comment]
+  upvotes: Int!
+  downvotes: Int!
+  locked: Boolean!
+}
+
+type Community
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Moderators"]
+        queries: [get, list]
+        mutations: [update]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  creator: ID!
+  rules: String
+  locations: [String]
+  achievements: [Achievement]
+  keywords: [String]
+  bannedMembers: [ID]
+  hidden: Boolean!
+}
+
+type Achievement
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Moderators"]
+        queries: [get, list]
+        mutations: [update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  community: Community!
+  description: String
+  creator: ID!
+  pictures: [String]
+  keywords: [String]
+  hidden: Boolean!
+  date: String!
+}
+
+type UserProfile
+  @model
+  @auth(
+    rules: [
+      { allow: owner, queries: [get], mutations: [create, update] }
+      { allow: groups, groups: ["Moderators"], queries: [get, list] }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  name: String
+  bio: String
+  location: String
+  memberOfCommunities: [Community]
+  creatorOfCommunities: [Community]
+  organizerOfCommunities: [Community]
+  picture: [String]
+  accountCreatedDate: String!
+  reputationScore: Int!
+  achievements: [Achievement]
+  isSiteWideBanned: Boolean
+  hasInteractedWithUsersByPM: [ID]
+  hasInteractedWithUsresByComment: [ID]
+  deletedAccount: Boolean
+}

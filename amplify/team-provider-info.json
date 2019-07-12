@@ -1,0 +1,14 @@
+{
+    "NONE": {
+        "awscloudformation": {
+            "AuthRoleName": "gennit-20190620210045-authRole",
+            "UnauthRoleArn": "arn:aws:iam::356832492094:role/gennit-20190620210045-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::356832492094:role/gennit-20190620210045-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "gennit-20190620210045-deployment",
+            "UnauthRoleName": "gennit-20190620210045-unauthRole",
+            "StackName": "gennit-20190620210045",
+            "StackId": "arn:aws:cloudformation:us-west-2:356832492094:stack/gennit-20190620210045/255ba4a0-93d9-11e9-9ec6-0293ffedadac"
+        }
+    }
+}
