@@ -1,0 +1,45 @@
+type Community
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: groups
+        groups: ["Moderators"]
+        queries: [get, list]
+        mutations: [update]
+      }
+      {
+        allow: groups
+        groups: ["Community_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Sitewide_Members"]
+        queries: [get, list]
+        mutations: null
+      }
+      {
+        allow: groups
+        groups: ["Public"]
+        queries: [get, list]
+        mutations: null
+      }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  creator: ID!
+  rules: String
+  locations: [String]
+  # achievements: [Achievement]
+  keywords: [String]
+  bannedMembers: [ID]
+  hidden: Boolean!
+}

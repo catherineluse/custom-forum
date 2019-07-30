@@ -1,0 +1,13 @@
+type Comment @model @searchable {
+  id: ID!
+  content: String!
+  author: ID!
+  thread_id: ID!
+  created_date: Date
+  hidden: Boolean
+  hidden_date: Date
+  upvotes: Integer
+  downvotes: Integer
+  date_last_modified: Date
+  parent_comment_id: ID!
+}

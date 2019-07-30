@@ -1,28 +1,93 @@
 import React, { Component } from "react";
+import { API, graphqlOperation } from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
+import { thisExpression } from "@babel/types";
+import { createCommunity, deleteCommunity } from "./graphql/mutations";
+import { listCommunitys } from "./graphql/queries";
 
 class App extends Component {
   state = {
-    communities: [
-      {
-        id: 1,
-        name: "Test community",
-      },
-    ],
+    communityId: "",
+    communityName: "",
+    communityCreator: "test creator",
+    communities: [],
   };
 
-  render() {
+  async componentDidMount() {
+    const result = await API.graphql(graphqlOperation(listCommunitys));
+    this.setState({ notes: result.data.listCommunitys.items });
+  }
+
+  handleChangeCommunity = event => {
+    this.setState({ community: event.target.value });
+  };
+
+  hasExistingCommunity = () => {
+    const { communities, communityId } = this.state
+    if (communityId) {
+      return communities.findIndex(community => community.id == communityId) > -1
+    }
+    return false
+  }
+
+  handleAddCommunity = async event => {
+    event.preventDefault();
+    // Check if we have an existing community. If so, update it
+    if (this.hasExistingCommunity()) {
+      console.log('community updated!')
+    } else {
+      const { communityName, communityCreator, communities } = this.state;
+      const input = {
+        name: communityName,
+        creator: communityCreator,
+      };
+      const result = await API.graphql(
+        graphqlOperation(createCommunity, { input })
+      );
+      const newCommunity = result.data.createCommunity;
+      const updatedCommunities = [newCommunity, ...communities];
+      this.setState({ communities: updatedCommunities, communityName: "" });
+    }
+  };
+
+  handleDeleteCommunity = async communityId => {
     const { communities } = this.state;
+    const input = {
+      id: communityId,
+    };
+    const result = await API.graphql(
+      graphqlOperation(deleteCommunity, { input })
+    );
+    const deletedCommunityId = result.data.deleteCommunity.id;
+    const updatedCommunities = communities.filter(
+      community => community.id !== deletedCommunityId
+    );
+    this.setState({ communities: updatedCommunities });
+  };
+
+  handleSetCommunity = { communityName, communityId } => this.setState({ communityName, communityId })
+
+  render() {
+    const { communities, communityName, creatorName } = this.state;
 
     return (
       <div className="flex flex-column items-center justify-center pa3 bg-washed-red">
-        <h1 className="code f2-1">Forums</h1>
+        <h1 className="code f2-1">Communities</h1>
         {/* Community form */}
         <form className="mb3">
           <input
             type="text"
             className="pa2 f4"
             placeholder="Write your community name"
+            onChange={this.handleChangeCommunity}
+            value={communityName}
+          />
+          <input
+            type="text"
+            className="pa2 f4"
+            placeholder="Write your name"
+            onChange={this.handleChangeCommunity}
+            value={creatorName}
           />
           <button className="pa2 f4" type="submit">
             New Community
@@ -32,9 +97,18 @@ class App extends Component {
         {/* Community List */}
         <div>
           {communities.map(item => (
-            <div key={item.id} className="flex items-center">
-              <li className="list pa1 f3">{item.name}</li>
-              <button className="bg-transparent bn f4">
+            <div
+              onSubmit={this.handleAddCommunity}
+              key={item.id}
+              className="flex items-center"
+            >
+              <li onClick={() => this.handleSetCommunity(item)} className="list pa1 f3">
+                {item.name}
+              </li>
+              <button
+                onClick={() => this.handleDeleteCommunity(item.id)}
+                className="bg-transparent bn f4"
+              >
                 <span>&times;</span>
               </button>
             </div>

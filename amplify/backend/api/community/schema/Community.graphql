@@ -1,0 +1,15 @@
+type Community @model @searchable {
+  id: ID!
+  name: String!
+  description: String!
+  creator: ID!
+  created_date: Date
+  rules: [Rule]!
+  locations: [String]!
+  hidden: Boolean
+  hidden_date: Date
+  # achievements: [Achievement]
+  keywords: [String]
+  # flagged_comments: [FlaggedComment]
+  # flagged_discussions: [FlaggedDiscussion]
+}
