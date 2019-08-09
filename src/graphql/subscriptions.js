@@ -4,39 +4,2472 @@
 export const onCreateCommunity = `subscription OnCreateCommunity {
   onCreateCommunity {
     id
+    url
     name
+    description
     creator
+    created_date
     rules
     locations
-    keywords
-    bannedMembers
     hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    keywords
+    flagged_comments {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    flagged_discussions {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
   }
 }
 `;
 export const onUpdateCommunity = `subscription OnUpdateCommunity {
   onUpdateCommunity {
     id
+    url
     name
+    description
     creator
+    created_date
     rules
     locations
-    keywords
-    bannedMembers
     hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    keywords
+    flagged_comments {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    flagged_discussions {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
   }
 }
 `;
 export const onDeleteCommunity = `subscription OnDeleteCommunity {
   onDeleteCommunity {
     id
+    url
     name
+    description
     creator
+    created_date
     rules
     locations
-    keywords
-    bannedMembers
     hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    keywords
+    flagged_comments {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    flagged_discussions {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
+  }
+}
+`;
+export const onCreateBan = `subscription OnCreateBan {
+  onCreateBan {
+    id
+    user {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    is_sitewide_ban
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    createdDate
+    expirationDate
+  }
+}
+`;
+export const onUpdateBan = `subscription OnUpdateBan {
+  onUpdateBan {
+    id
+    user {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    is_sitewide_ban
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    createdDate
+    expirationDate
+  }
+}
+`;
+export const onDeleteBan = `subscription OnDeleteBan {
+  onDeleteBan {
+    id
+    user {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    is_sitewide_ban
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    createdDate
+    expirationDate
+  }
+}
+`;
+export const onCreateComment = `subscription OnCreateComment {
+  onCreateComment {
+    id
+    content
+    author
+    thread_id
+    created_date
+    hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    contributed_to_discussion
+    did_not_contribute_to_discussion
+    agree
+    disagree
+    funny
+    date_last_modified
+    parent_comment_id
+  }
+}
+`;
+export const onUpdateComment = `subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    content
+    author
+    thread_id
+    created_date
+    hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    contributed_to_discussion
+    did_not_contribute_to_discussion
+    agree
+    disagree
+    funny
+    date_last_modified
+    parent_comment_id
+  }
+}
+`;
+export const onDeleteComment = `subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    content
+    author
+    thread_id
+    created_date
+    hidden
+    hidden_date
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    contributed_to_discussion
+    did_not_contribute_to_discussion
+    agree
+    disagree
+    funny
+    date_last_modified
+    parent_comment_id
+  }
+}
+`;
+export const onCreateDiscussion = `subscription OnCreateDiscussion {
+  onCreateDiscussion {
+    id
+    headline
+    creator {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    date_last_edited
+    description
+    locked
+    hidden
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    hidden_date
+    upvotes
+    downvotes
+    keywords
+  }
+}
+`;
+export const onUpdateDiscussion = `subscription OnUpdateDiscussion {
+  onUpdateDiscussion {
+    id
+    headline
+    creator {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    date_last_edited
+    description
+    locked
+    hidden
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    hidden_date
+    upvotes
+    downvotes
+    keywords
+  }
+}
+`;
+export const onDeleteDiscussion = `subscription OnDeleteDiscussion {
+  onDeleteDiscussion {
+    id
+    headline
+    creator {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    date_last_edited
+    description
+    locked
+    hidden
+    sitewide_reasons_for_being_hidden
+    community_reasons_for_being_hidden
+    hidden_date
+    upvotes
+    downvotes
+    keywords
+  }
+}
+`;
+export const onCreateEvent = `subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    title
+    description
+    picture
+    start_time
+    end_time
+    place {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    organizer {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+  }
+}
+`;
+export const onUpdateEvent = `subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    title
+    description
+    picture
+    start_time
+    end_time
+    place {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    organizer {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+  }
+}
+`;
+export const onDeleteEvent = `subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    title
+    description
+    picture
+    start_time
+    end_time
+    place {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    organizer {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+  }
+}
+`;
+export const onCreatePrivateMessage = `subscription OnCreatePrivateMessage {
+  onCreatePrivateMessage {
+    id
+    title
+    content
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    sentDate
+  }
+}
+`;
+export const onUpdatePrivateMessage = `subscription OnUpdatePrivateMessage {
+  onUpdatePrivateMessage {
+    id
+    title
+    content
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    sentDate
+  }
+}
+`;
+export const onDeletePrivateMessage = `subscription OnDeletePrivateMessage {
+  onDeletePrivateMessage {
+    id
+    title
+    content
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    sentDate
+  }
+}
+`;
+export const onCreateReport = `subscription OnCreateReport {
+  onCreateReport {
+    id
+    creator
+    comment {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    discussion {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
+    message {
+      id
+      title
+      content
+      author {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      sentDate
+    }
+    complaint
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    broken_sitewide_rules
+    broken_community_rules
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    resolved
+  }
+}
+`;
+export const onUpdateReport = `subscription OnUpdateReport {
+  onUpdateReport {
+    id
+    creator
+    comment {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    discussion {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
+    message {
+      id
+      title
+      content
+      author {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      sentDate
+    }
+    complaint
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    broken_sitewide_rules
+    broken_community_rules
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    resolved
+  }
+}
+`;
+export const onDeleteReport = `subscription OnDeleteReport {
+  onDeleteReport {
+    id
+    creator
+    comment {
+      id
+      content
+      author
+      thread_id
+      created_date
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      contributed_to_discussion
+      did_not_contribute_to_discussion
+      agree
+      disagree
+      funny
+      date_last_modified
+      parent_comment_id
+    }
+    discussion {
+      id
+      headline
+      creator {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      created_date
+      date_last_edited
+      description
+      locked
+      hidden
+      sitewide_reasons_for_being_hidden
+      community_reasons_for_being_hidden
+      hidden_date
+      upvotes
+      downvotes
+      keywords
+    }
+    message {
+      id
+      title
+      content
+      author {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      sentDate
+    }
+    complaint
+    community {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    broken_sitewide_rules
+    broken_community_rules
+    author {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+    created_date
+    resolved
+  }
+}
+`;
+export const onCreateUser = `subscription OnCreateUser {
+  onCreateUser {
+    id
+    username
+    real_sounding_name
+    bio
+    location
+    picture
+    reputation
+    account_created_date
+    birth_date
+    bans {
+      id
+      user {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      is_sitewide_ban
+      community {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      createdDate
+      expirationDate
+    }
+    member_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    moderator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    creator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+  }
+}
+`;
+export const onUpdateUser = `subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    username
+    real_sounding_name
+    bio
+    location
+    picture
+    reputation
+    account_created_date
+    birth_date
+    bans {
+      id
+      user {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      is_sitewide_ban
+      community {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      createdDate
+      expirationDate
+    }
+    member_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    moderator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    creator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+  }
+}
+`;
+export const onDeleteUser = `subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    username
+    real_sounding_name
+    bio
+    location
+    picture
+    reputation
+    account_created_date
+    birth_date
+    bans {
+      id
+      user {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+      is_sitewide_ban
+      community {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      createdDate
+      expirationDate
+    }
+    member_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    moderator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
+    creator_of {
+      id
+      url
+      name
+      description
+      creator
+      created_date
+      rules
+      locations
+      hidden
+      hidden_date
+      sitewide_reasons_for_being_hidden
+      keywords
+      flagged_comments {
+        id
+        content
+        author
+        thread_id
+        created_date
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        contributed_to_discussion
+        did_not_contribute_to_discussion
+        agree
+        disagree
+        funny
+        date_last_modified
+        parent_comment_id
+      }
+      flagged_discussions {
+        id
+        headline
+        created_date
+        date_last_edited
+        description
+        locked
+        hidden
+        sitewide_reasons_for_being_hidden
+        community_reasons_for_being_hidden
+        hidden_date
+        upvotes
+        downvotes
+        keywords
+      }
+    }
   }
 }
 `;
