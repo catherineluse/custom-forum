@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
-import { thisExpression } from '@babel/types'
 import {
   createCommunity,
   deleteCommunity,
@@ -22,8 +21,12 @@ class App extends Component {
     this.setState({ notes: result.data.listCommunitys.items })
   }
 
-  handleChangeCommunity = event => {
-    this.setState({ community: event.target.value })
+  handleChangeCommunityName = event => {
+    this.setState({ communityName: event.target.value })
+  }
+
+  handleChangeCommunityCreatorName = event => {
+    this.setState({ communityCreator: event.target.value })
   }
 
   hasExistingCommunity = () => {
@@ -104,14 +107,14 @@ class App extends Component {
             type='text'
             className='pa2 f4'
             placeholder='Write your community name'
-            onChange={this.handleChangeCommunity}
+            onChange={this.handleChangeCommunityName}
             value={communityName}
           />
           <input
             type='text'
             className='pa2 f4'
             placeholder='Write your name'
-            onChange={this.handleChangeCommunity}
+            onChange={this.handleChangeCommunityCreatorName}
             value={creatorName}
           />
           <button className='pa2 f4' type='submit'>
