@@ -1,3 +1,11 @@
+# 15 Design Flaws of Reddit and 15 Ways to Fix Them
+
+I've been using Reddit for over ten years, so I've had a lot of time to think about what I like and what I hate about Reddit.
+
+I made this repository because I've been thinking about the design issues for so long that I felt motivated to build a proof of concept that would illustrate my ideas to fix them.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

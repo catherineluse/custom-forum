@@ -1,113 +1,118 @@
 scalar AWSDate
 
 type Community @model @searchable {
-  id: ID!
-  url: String!
+  id: ID
+  url: String
   name: String!
-  description: String!
-  creator: ID!
+  description: String
+  creator: ID
   created_date: AWSDate
-  rules: [String]!
-  locations: [String]!
+  rules: [String]
+  locations: [String]
   hidden: Boolean
   hidden_date: AWSDate
-  sitewide_reasons_for_being_hidden: [String]!
+  sitewide_reasons_for_being_hidden: [String]
   keywords: [String]
   flagged_comments: [Comment]
   flagged_discussions: [Discussion]
 }
 
 type Ban @model @searchable {
-  id: ID!
-  user: User!
-  is_sitewide_ban: Boolean!
+  id: ID
+  user: User
+  is_sitewide_ban: Boolean
   community: Community
-  createdDate: AWSDate!
-  expirationDate: AWSDate!
+  createdDate: AWSDate
+  expirationDate: AWSDate
 }
 
 type Comment @model @searchable {
-  id: ID!
-  content: String!
-  author: ID!
-  thread_id: ID!
+  id: ID
+  content: String
+  author: ID
+  thread_id: ID
   created_date: AWSDate
   hidden: Boolean
   hidden_date: AWSDate
-  sitewide_reasons_for_being_hidden: [String]!
-  community_reasons_for_being_hidden: [String]!
+  sitewide_reasons_for_being_hidden: [String]
+  community_reasons_for_being_hidden: [String]
   contributed_to_discussion: Int
   did_not_contribute_to_discussion: Int
   agree: Int
   disagree: Int
   funny: Int
   date_last_modified: AWSDate
-  parent_comment_id: ID!
+  parent_comment_id: ID
 }
 
 type Discussion @model @searchable {
-  id: ID!
-  headline: String!
-  creator: User!
-  created_date: AWSDate!
+  id: ID
+  headline: String
+  creator: User
+  created_date: AWSDate
   date_last_edited: AWSDate
   description: String
-  locked: Boolean!
-  hidden: Boolean!
-  sitewide_reasons_for_being_hidden: [String]!
-  community_reasons_for_being_hidden: [String]!
+  locked: Boolean
+  hidden: Boolean
+  sitewide_reasons_for_being_hidden: [String]
+  community_reasons_for_being_hidden: [String]
   hidden_date: AWSDate
   upvotes: Int
   downvotes: Int
-  keywords: [String]!
+  keywords: [String]
 }
 
 type Event @model @searchable {
-  id: ID!
-  title: String!
-  description: String!
-  picture: String!
-  start_time: AWSDate!
+  id: ID
+  title: String
+  description: String
+  picture: String
+  start_time: AWSDate
   end_time: AWSDate
-  place: [Community]!
-  organizer: User!
+  place: [Community]
+  organizer: User
 }
 
 type PrivateMessage @model @searchable {
-  id: ID!
-  title: String!
-  content: String!
-  author: User!
-  sentDate: AWSDate!
+  id: ID
+  title: String
+  content: String
+  author: User
+  sentDate: AWSDate
 }
 
 type Report @model @searchable {
-  id: ID!
-  creator: ID!
+  id: ID
+  creator: ID
   comment: Comment
   discussion: Discussion
   message: PrivateMessage
   complaint: String!
   community: Community
-  broken_sitewide_rules: [String]!
-  broken_community_rules: [String]!
-  author: User!
-  created_date: AWSDate!
-  resolved: Boolean!
+  broken_sitewide_rules: [String]
+  broken_community_rules: [String]
+  author: User
+  created_date: AWSDate
+  resolved: Boolean
 }
 
 type User @model @searchable {
-  id: ID!
+  id: ID
+  profiles: [Profile]
+}
+
+type Profile @model @searchable {
+  id: ID
   username: String!
-  real_sounding_name: String!
+  real_sounding_name: String
   bio: String
   location: String
   picture: String
-  reputation: Int!
-  account_created_date: AWSDate!
-  birth_date: AWSDate!
-  bans: [Ban]!
-  member_of: [Community]!
-  moderator_of: [Community]!
-  creator_of: [Community]!
+  reputation: Int
+  account_created_date: AWSDate
+  birth_date: AWSDate
+  bans: [Ban]
+  member_of: [Community]
+  moderator_of: [Community]
+  creator_of: [Community]
 }

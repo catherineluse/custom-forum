@@ -45,15 +45,21 @@ class App extends Component {
     if (this.hasExistingCommunity()) {
       console.log('community updated!')
     } else {
+      
       const { communityName, communityCreator, communities } = this.state
       const input = {
         name: communityName,
         creator: communityCreator
       }
+
+      
       const result = await API.graphql(
         graphqlOperation(createCommunity, { input })
       )
+
+      console.log('the api result is ' + JSON.stringify(result.data.createCommunity))
       const newCommunity = result.data.createCommunity
+
       const updatedCommunities = [newCommunity, ...communities]
       this.setState({ communities: updatedCommunities, communityName: '' })
     }
@@ -102,7 +108,7 @@ class App extends Component {
       <div className='flex flex-column items-center justify-center pa3 bg-washed-red'>
         <h1 className='code f2-1'>Communities</h1>
         {/* Community form */}
-        <form className='mb3'>
+        <form onSubmit={this.handleAddCommunity} className='mb3'>
           <input
             type='text'
             className='pa2 f4'

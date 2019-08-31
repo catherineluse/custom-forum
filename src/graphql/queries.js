@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const getCommunity = `query GetCommunity($id: ID!) {
@@ -38,14 +38,6 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       headline
       creator {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       date_last_edited
@@ -124,61 +116,16 @@ export const getBan = `query GetBan($id: ID!) {
     id
     user {
       id
-      username
-      real_sounding_name
-      bio
-      location
-      picture
-      reputation
-      account_created_date
-      birth_date
-      bans {
+      profiles {
         id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
       }
     }
     is_sitewide_ban
@@ -240,14 +187,6 @@ export const listBans = `query ListBans($filter: ModelBanFilterInput, $limit: In
       id
       user {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       is_sitewide_ban
       community {
@@ -326,61 +265,16 @@ export const getDiscussion = `query GetDiscussion($id: ID!) {
     headline
     creator {
       id
-      username
-      real_sounding_name
-      bio
-      location
-      picture
-      reputation
-      account_created_date
-      birth_date
-      bans {
+      profiles {
         id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
       }
     }
     created_date
@@ -408,14 +302,6 @@ export const listDiscussions = `query ListDiscussions(
       headline
       creator {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       date_last_edited
@@ -490,61 +376,16 @@ export const getEvent = `query GetEvent($id: ID!) {
     }
     organizer {
       id
-      username
-      real_sounding_name
-      bio
-      location
-      picture
-      reputation
-      account_created_date
-      birth_date
-      bans {
+      profiles {
         id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
       }
     }
   }
@@ -579,14 +420,6 @@ export const listEvents = `query ListEvents(
       }
       organizer {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
     }
     nextToken
@@ -600,61 +433,16 @@ export const getPrivateMessage = `query GetPrivateMessage($id: ID!) {
     content
     author {
       id
-      username
-      real_sounding_name
-      bio
-      location
-      picture
-      reputation
-      account_created_date
-      birth_date
-      bans {
+      profiles {
         id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
       }
     }
     sentDate
@@ -673,14 +461,6 @@ export const listPrivateMessages = `query ListPrivateMessages(
       content
       author {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       sentDate
     }
@@ -715,14 +495,6 @@ export const getReport = `query GetReport($id: ID!) {
       headline
       creator {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       date_last_edited
@@ -742,14 +514,6 @@ export const getReport = `query GetReport($id: ID!) {
       content
       author {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       sentDate
     }
@@ -805,61 +569,16 @@ export const getReport = `query GetReport($id: ID!) {
     broken_community_rules
     author {
       id
-      username
-      real_sounding_name
-      bio
-      location
-      picture
-      reputation
-      account_created_date
-      birth_date
-      bans {
+      profiles {
         id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        rules
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
       }
     }
     created_date
@@ -934,14 +653,6 @@ export const listReports = `query ListReports(
       broken_community_rules
       author {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       resolved
@@ -952,6 +663,95 @@ export const listReports = `query ListReports(
 `;
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
+    id
+    profiles {
+      id
+      username
+      real_sounding_name
+      bio
+      location
+      picture
+      reputation
+      account_created_date
+      birth_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+      }
+    }
+  }
+}
+`;
+export const listUsers = `query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      profiles {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getProfile = `query GetProfile($id: ID!) {
+  getProfile(id: $id) {
     id
     username
     real_sounding_name
@@ -965,14 +765,6 @@ export const getUser = `query GetUser($id: ID!) {
       id
       user {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       is_sitewide_ban
       community {
@@ -1136,12 +928,12 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
-export const listUsers = `query ListUsers(
-  $filter: ModelUserFilterInput
+export const listProfiles = `query ListProfiles(
+  $filter: ModelProfileFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       username
@@ -1209,7 +1001,7 @@ export const searchCommunitys = `query SearchCommunitys(
   $filter: SearchableCommunityFilterInput
   $sort: SearchableCommunitySortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchCommunitys(
     filter: $filter
@@ -1272,7 +1064,7 @@ export const searchBans = `query SearchBans(
   $filter: SearchableBanFilterInput
   $sort: SearchableBanSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchBans(
     filter: $filter
@@ -1284,14 +1076,6 @@ export const searchBans = `query SearchBans(
       id
       user {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       is_sitewide_ban
       community {
@@ -1319,7 +1103,7 @@ export const searchComments = `query SearchComments(
   $filter: SearchableCommentFilterInput
   $sort: SearchableCommentSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchComments(
     filter: $filter
@@ -1353,7 +1137,7 @@ export const searchDiscussions = `query SearchDiscussions(
   $filter: SearchableDiscussionFilterInput
   $sort: SearchableDiscussionSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchDiscussions(
     filter: $filter
@@ -1366,14 +1150,6 @@ export const searchDiscussions = `query SearchDiscussions(
       headline
       creator {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       date_last_edited
@@ -1395,7 +1171,7 @@ export const searchEvents = `query SearchEvents(
   $filter: SearchableEventFilterInput
   $sort: SearchableEventSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchEvents(
     filter: $filter
@@ -1426,14 +1202,6 @@ export const searchEvents = `query SearchEvents(
       }
       organizer {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
     }
     nextToken
@@ -1444,7 +1212,7 @@ export const searchPrivateMessages = `query SearchPrivateMessages(
   $filter: SearchablePrivateMessageFilterInput
   $sort: SearchablePrivateMessageSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchPrivateMessages(
     filter: $filter
@@ -1458,14 +1226,6 @@ export const searchPrivateMessages = `query SearchPrivateMessages(
       content
       author {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       sentDate
     }
@@ -1477,7 +1237,7 @@ export const searchReports = `query SearchReports(
   $filter: SearchableReportFilterInput
   $sort: SearchableReportSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchReports(
     filter: $filter
@@ -1546,14 +1306,6 @@ export const searchReports = `query SearchReports(
       broken_community_rules
       author {
         id
-        username
-        real_sounding_name
-        bio
-        location
-        picture
-        reputation
-        account_created_date
-        birth_date
       }
       created_date
       resolved
@@ -1566,9 +1318,39 @@ export const searchUsers = `query SearchUsers(
   $filter: SearchableUserFilterInput
   $sort: SearchableUserSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchUsers(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      profiles {
+        id
+        username
+        real_sounding_name
+        bio
+        location
+        picture
+        reputation
+        account_created_date
+        birth_date
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const searchProfiles = `query SearchProfiles(
+  $filter: SearchableProfileFilterInput
+  $sort: SearchableProfileSortInput
+  $limit: Int
+  $nextToken: String
+) {
+  searchProfiles(
     filter: $filter
     sort: $sort
     limit: $limit
