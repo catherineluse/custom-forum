@@ -7,6 +7,7 @@ import {
   updateCommunity
 } from './graphql/mutations'
 import { listCommunitys } from './graphql/queries'
+import CommunityForm from './forms/CommunityForm/create_edit_community'
 
 class App extends Component {
   state = {
@@ -45,19 +46,19 @@ class App extends Component {
     if (this.hasExistingCommunity()) {
       console.log('community updated!')
     } else {
-      
       const { communityName, communityCreator, communities } = this.state
       const input = {
         name: communityName,
         creator: communityCreator
       }
 
-      
       const result = await API.graphql(
         graphqlOperation(createCommunity, { input })
       )
 
-      console.log('the api result is ' + JSON.stringify(result.data.createCommunity))
+      console.log(
+        'the api result is ' + JSON.stringify(result.data.createCommunity)
+      )
       const newCommunity = result.data.createCommunity
 
       const updatedCommunities = [newCommunity, ...communities]
@@ -102,31 +103,11 @@ class App extends Component {
     this.setState({ communityName, communityId })
 
   render () {
-    const { id, communities, communityName, creatorName } = this.state
+    const { id, communities, communityName } = this.state
 
     return (
-      <div className='flex flex-column items-center justify-center pa3 bg-washed-red'>
-        <h1 className='code f2-1'>Communities</h1>
-        {/* Community form */}
-        <form onSubmit={this.handleAddCommunity} className='mb3'>
-          <input
-            type='text'
-            className='pa2 f4'
-            placeholder='Write your community name'
-            onChange={this.handleChangeCommunityName}
-            value={communityName}
-          />
-          <input
-            type='text'
-            className='pa2 f4'
-            placeholder='Write your name'
-            onChange={this.handleChangeCommunityCreatorName}
-            value={creatorName}
-          />
-          <button className='pa2 f4' type='submit'>
-            {id ? 'Update Community' : 'Add Community'}
-          </button>
-        </form>
+      <div className='container'>
+        <CommunityForm />
 
         {/* Community List */}
         <div>

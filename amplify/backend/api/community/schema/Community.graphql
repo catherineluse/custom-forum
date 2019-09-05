@@ -99,6 +99,8 @@ type Report @model @searchable {
 type User @model @searchable {
   id: ID
   profiles: [Profile]
+  default_profile: Profile
+  community_profile_mappings: [CommunityProfileMapping]
 }
 
 type Profile @model @searchable {
@@ -115,4 +117,10 @@ type Profile @model @searchable {
   member_of: [Community]
   moderator_of: [Community]
   creator_of: [Community]
+}
+
+type CommunityProfileMapping @model @searchable {
+  id: ID
+  community: Community
+  profile: Profile
 }
