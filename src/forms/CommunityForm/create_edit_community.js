@@ -27,25 +27,25 @@ import {
 // Rules, locations, keywords
 
 class CommunityForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            id: '',
-            communityName: '',
-            description: ''
-          }
-        
+  constructor (props) {
+    super(props)
+    this.state = {
+      id: '',
+      communityName: '',
+      description: ''
     }
+  }
 
   handleAddCommunity = async event => {
     event.preventDefault()
 
     const { communityName, description } = this.state
-    const input = {
-      name: communityName,
-      description: description
+    const input = {}
+
+    for (let key in this.state) {
+      input[key] = this.state[key]
     }
-    console.log("the input is " + JSON.stringify(input))
+    console.log('the input is ' + JSON.stringify(input))
 
     const result = await API.graphql(
       graphqlOperation(createCommunity, { input })
@@ -69,7 +69,7 @@ class CommunityForm extends React.Component {
   render () {
     return (
       <form onSubmit={this.handleAddCommunity}>
-        <h1>Create Community</h1>
+        <h1>Community</h1>
         <div className='form-group'>
           <label name='communityName'>Community Name</label>
           <input

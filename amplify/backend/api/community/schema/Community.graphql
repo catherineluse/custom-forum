@@ -28,7 +28,7 @@ type Ban @model @searchable {
 
 type Comment @model @searchable {
   id: ID
-  content: String
+  content: String!
   author: ID
   thread_id: ID
   created_date: AWSDate
