@@ -8,7 +8,6 @@ import {
 } from './graphql/mutations'
 import { listCommunitys } from './graphql/queries'
 import CommunityForm from './forms/CommunityForm/create_edit_community'
-import PageContainer from './forms/create_comment'
 
 class App extends Component {
   state = {
@@ -109,8 +108,6 @@ class App extends Component {
     return (
       <div className='container'>
         <CommunityForm />
-
-        <PageContainer />
 
         {/* Community List */}
         <div>

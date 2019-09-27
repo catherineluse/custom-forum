@@ -1,10 +1,10 @@
-import React from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
+import React from "react";
+import { API, graphqlOperation } from "aws-amplify";
 import {
   createCommunity,
   deleteCommunity,
-  updateCommunity
-} from '../../graphql/mutations'
+  updateCommunity,
+} from "../../graphql/mutations";
 
 // Community graphql schema:
 // type Community @model @searchable {
@@ -24,79 +24,77 @@ import {
 //     flagged_discussions: [Discussion]
 //   }
 
-// Rules, locations, keywords
-
 class CommunityForm extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      id: '',
-      communityName: '',
-      description: ''
-    }
+      id: "",
+      communityName: "",
+      description: "",
+    };
   }
 
   handleAddCommunity = async event => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const { communityName, description } = this.state
-    const input = {}
+    const { communityName, description } = this.state;
+    const input = {};
 
     for (let key in this.state) {
-      input[key] = this.state[key]
+      input[key] = this.state[key];
     }
-    console.log('the input is ' + JSON.stringify(input))
+    console.log("the input is " + JSON.stringify(input));
 
     const result = await API.graphql(
       graphqlOperation(createCommunity, { input })
-    )
+    );
 
     console.log(
-      'the api result is ' + JSON.stringify(result.data.createCommunity)
-    )
-    this.setState({ communityName: '', description: '' })
-  }
+      "the api result is " + JSON.stringify(result.data.createCommunity)
+    );
+    this.setState({ communityName: "", description: "" });
+  };
 
   handleChangeCommunityName = event => {
-    console.log('changed community name instate')
-    this.setState({ communityName: event.target.value })
-  }
+    console.log("changed community name instate");
+    this.setState({ communityName: event.target.value });
+  };
 
   handleChangeDescription = event => {
-    this.setState({ description: event.target.value })
-  }
+    this.setState({ description: event.target.value });
+  };
 
-  render () {
+  render() {
     return (
       <form onSubmit={this.handleAddCommunity}>
         <h1>Community</h1>
-        <div className='form-group'>
-          <label name='communityName'>Community Name</label>
+        <div className="form-group">
+          <label name="communityName">Community Name</label>
           <input
-            name='communityName'
-            type='text'
+            name="communityName"
+            type="text"
             onChange={this.handleChangeCommunityName}
           />
         </div>
-        <div className='form-group'>
-          <label name='communityDescription'>Description</label>
+        <div className="form-group">
+          <label name="communityDescription">Description</label>
           <input
-            name='description'
-            type='text'
+            name="description"
+            type="text"
             onChange={this.handleChangeDescription}
           />
         </div>
-        <div className='form-group'>
-          <button type='submit' className='btn btn-primary mr-2'>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary mr-2">
             Register
           </button>
-          <button type='reset' className='btn btn-secondary'>
+          <button type="reset" className="btn btn-secondary">
             Reset
           </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
-export default CommunityForm
+export default CommunityForm;
