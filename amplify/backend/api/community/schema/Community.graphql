@@ -13,8 +13,11 @@ type Community @model @searchable {
   hidden_date: AWSDate
   sitewide_reasons_for_being_hidden: [String]
   keywords: [String]
+  topics: [String]
   flagged_comments: [Comment]
   flagged_discussions: [Discussion]
+  moderation_level: Integer
+  number_of_users: Integer
 }
 
 type Ban @model @searchable {

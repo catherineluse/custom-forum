@@ -29,70 +29,114 @@ class CommunityForm extends React.Component {
     super(props);
     this.state = {
       id: "",
-      communityName: "",
+      name: "",
       description: "",
     };
   }
 
+  removeEmptyStringsFromDTO = () => {
+    let input = {};
+    for (let key in this.state) {
+      if (this.state[key] !== "") {
+        input[key] = this.state[key];
+      }
+    }
+    return input;
+  };
+  // DynamoDB throws an error if you submit empty strings
   handleAddCommunity = async event => {
     event.preventDefault();
 
-    const { communityName, description } = this.state;
-    const input = {};
-
-    for (let key in this.state) {
-      input[key] = this.state[key];
-    }
-    console.log("the input is " + JSON.stringify(input));
-
+    let input = this.removeEmptyStringsFromDTO(this.state);
     const result = await API.graphql(
       graphqlOperation(createCommunity, { input })
-    );
+    )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(e => {
+        console.log(e);
+      });
 
-    console.log(
-      "the api result is " + JSON.stringify(result.data.createCommunity)
-    );
-    this.setState({ communityName: "", description: "" });
+    // console.log(
+    //   "the api result is " + JSON.stringify(result.data.createCommunity)
+    // );
+    this.setState({ name: "", description: "" });
   };
 
-  handleChangeCommunityName = event => {
+  handleChangename = event => {
     console.log("changed community name instate");
-    this.setState({ communityName: event.target.value });
+    this.setState({ name: event.target.value });
   };
 
   handleChangeDescription = event => {
     this.setState({ description: event.target.value });
   };
 
+  handleUpdateCommunity = async () => {
+    const { communities, id, note } = this.state;
+    const input = { id, note };
+    const result = await API.graphql(
+      graphqlOperation(updateCommunity, { input })
+    );
+    const updatedCommunity = result.data.updateCommunity;
+    const index = communities.findIndex(
+      community => note.id === updatedCommunity.id
+    );
+    const updatedCommunities = [
+      ...communities.slice(0, index),
+      updatedCommunity,
+      ...communities.slice(index + 1),
+    ];
+    this.setState({ notes: updatedCommunities, note: "", id: "" });
+  };
+
+  hasExistingCommunity = () => {
+    const { communities, communityId } = this.state;
+    if (communityId) {
+      const isCommunity =
+        communities.findIndex(community => community.id === communityId) > -1;
+      return isCommunity;
+    }
+    return false;
+  };
+
   render() {
     return (
-      <form onSubmit={this.handleAddCommunity}>
-        <h1>Community</h1>
-        <div className="form-group">
-          <label name="communityName">Community Name</label>
-          <input
-            name="communityName"
-            type="text"
-            onChange={this.handleChangeCommunityName}
-          />
+      <div className="card">
+        <div className="card-body">
+          <form onSubmit={this.handleAddCommunity}>
+            <h1>Community Form</h1>
+            <div className="form-group">
+              <label for="name">Community Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCommunityName"
+                onChange={this.handleChangename}
+                placeholder="A descriptive name"
+              />
+            </div>
+            <div className="form-group">
+              <label for="communityDescription">Description</label>
+              <textarea
+                class="form-control"
+                id="newCommunityDescription"
+                rows="3"
+                onChange={this.handleChangeDescription}
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary mr-2">
+                Register
+              </button>
+              <button type="reset" className="btn btn-secondary">
+                Reset
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <label name="communityDescription">Description</label>
-          <input
-            name="description"
-            type="text"
-            onChange={this.handleChangeDescription}
-          />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary mr-2">
-            Register
-          </button>
-          <button type="reset" className="btn btn-secondary">
-            Reset
-          </button>
-        </div>
-      </form>
+      </div>
     );
   }
 }

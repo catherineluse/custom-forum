@@ -1,140 +1,97 @@
-import React, { Component } from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
-import { withAuthenticator } from 'aws-amplify-react'
+import React, { Component } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { withAuthenticator } from "aws-amplify-react";
 import {
   createCommunity,
   deleteCommunity,
-  updateCommunity
-} from './graphql/mutations'
-import { listCommunitys } from './graphql/queries'
-import CommunityForm from './forms/CommunityForm/create_edit_community'
+  updateCommunity,
+} from "./graphql/mutations";
+import { listCommunitys } from "./graphql/queries";
+import CommunityForm from "./forms/CommunityForm/create_edit_community";
 
 class App extends Component {
   state = {
-    communityId: '',
-    communityName: '',
-    communityCreator: 'test creator',
-    communities: []
-  }
+    communityId: "",
+    communityName: "",
+    communityCreator: "test creator",
+    communities: [],
+  };
 
-  async componentDidMount () {
-    const result = await API.graphql(graphqlOperation(listCommunitys))
-    this.setState({ notes: result.data.listCommunitys.items })
-  }
-
-  handleChangeCommunityName = event => {
-    this.setState({ communityName: event.target.value })
-  }
-
-  handleChangeCommunityCreatorName = event => {
-    this.setState({ communityCreator: event.target.value })
-  }
-
-  hasExistingCommunity = () => {
-    const { communities, communityId } = this.state
-    if (communityId) {
-      const isCommunity =
-        communities.findIndex(community => community.id === communityId) > -1
-      return isCommunity
-    }
-    return false
-  }
-
-  handleAddCommunity = async event => {
-    event.preventDefault()
-    // Check if we have an existing community. If so, update it
-    if (this.hasExistingCommunity()) {
-      console.log('community updated!')
-    } else {
-      const { communityName, communityCreator, communities } = this.state
-      const input = {
-        name: communityName,
-        creator: communityCreator
-      }
-
-      const result = await API.graphql(
-        graphqlOperation(createCommunity, { input })
-      )
-
-      console.log(
-        'the api result is ' + JSON.stringify(result.data.createCommunity)
-      )
-      const newCommunity = result.data.createCommunity
-
-      const updatedCommunities = [newCommunity, ...communities]
-      this.setState({ communities: updatedCommunities, communityName: '' })
-    }
-  }
-
-  handleUpdateCommunity = async () => {
-    const { communities, id, note } = this.state
-    const input = { id, note }
-    const result = await API.graphql(
-      graphqlOperation(updateCommunity, { input })
-    )
-    const updatedCommunity = result.data.updateCommunity
-    const index = communities.findIndex(
-      community => note.id === updatedCommunity.id
-    )
-    const updatedCommunities = [
-      ...communities.slice(0, index),
-      updatedCommunity,
-      ...communities.slice(index + 1)
-    ]
-    this.setState({ notes: updatedCommunities, note: '', id: '' })
-  }
+  componentDidMount = async () => {
+    const result = await API.graphql(graphqlOperation(listCommunitys));
+    console.log("result", result);
+    this.setState({ communities: result.data.listCommunitys.items });
+  };
 
   handleDeleteCommunity = async communityId => {
-    const { communities } = this.state
+    const { communities } = this.state;
     const input = {
-      id: communityId
-    }
+      id: communityId,
+    };
     const result = await API.graphql(
       graphqlOperation(deleteCommunity, { input })
-    )
-    const deletedCommunityId = result.data.deleteCommunity.id
+    );
+    const deletedCommunityId = result.data.deleteCommunity.id;
     const updatedCommunities = communities.filter(
       community => community.id !== deletedCommunityId
-    )
-    this.setState({ communities: updatedCommunities })
-  }
+    );
+    this.setState({ communities: updatedCommunities });
+  };
 
-  handleSetCommunity = ({ communityName, communityId }) =>
-    this.setState({ communityName, communityId })
+  handleSetCommunity = ({ name, communityId }) => {
+    this.setState({ name, communityId });
+  };
 
-  render () {
-    const { id, communities, communityName } = this.state
+  render() {
+    const { communityId, communities, communityName } = this.state;
+    console.log(communities);
 
     return (
-      <div className='container'>
-        <CommunityForm />
+      <div>
+        <nav className="navbar">
+          <div className="container">
+            <span className="navbar-brand mb-0 h1">Navbar</span>
+          </div>
+        </nav>
 
-        {/* Community List */}
-        <div>
-          {communities.map(item => (
-            <div
-              onSubmit={this.handleAddCommunity}
-              key={item.id}
-              className='flex items-center'
-            >
-              <li
-                onClick={() => this.handleSetCommunity(item)}
-                className='list pa1 f3'
-              >
-                {item.name}
-              </li>
-              <button
-                onClick={() => this.handleDeleteCommunity(item.id)}
-                className='bg-transparent bn f4'
-              >
-                <span>&times;</span>
-              </button>
+        <div className="container">
+          <CommunityForm />
+
+          <div className="card">
+            <div className="card-body">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Community Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {communities.map(item => (
+                    <tr key={item.id} className="flex items-center">
+                      <td onClick={() => this.handleSetCommunity(item)}>
+                        {item.name}
+                      </td>
+                      <td>{item.description}</td>
+                      <td>
+                        <button
+                          onClick={() => this.handleDeleteCommunity(item.id)}
+                          className="bg-transparent bn f4"
+                        >
+                          <span>&times;</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default withAuthenticator(App)
+export default withAuthenticator(App);
