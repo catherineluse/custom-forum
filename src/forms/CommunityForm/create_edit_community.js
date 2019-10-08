@@ -103,7 +103,7 @@ class CommunityForm extends React.Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="card shadow">
         <div className="card-body">
           <form onSubmit={this.handleAddCommunity}>
             <h1>Community Form</h1>
