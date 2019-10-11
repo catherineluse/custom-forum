@@ -1,10 +1,9 @@
 import React from "react";
+import { render } from "react-dom";
 import { API, graphqlOperation } from "aws-amplify";
-import {
-  createCommunity,
-  deleteCommunity,
-  updateCommunity,
-} from "../../graphql/mutations";
+import { createCommunity, updateCommunity } from "../../graphql/mutations";
+import { Formik, FormikProps, Form, Field } from "formik";
+import * as Yup from "yup";
 
 // Community graphql schema:
 // type Community @model @searchable {
@@ -25,15 +24,6 @@ import {
 //   }
 
 class CommunityForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: "",
-      name: "",
-      description: "",
-    };
-  }
-
   removeEmptyStringsFromDTO = () => {
     let input = {};
     for (let key in this.state) {
@@ -48,9 +38,8 @@ class CommunityForm extends React.Component {
     event.preventDefault();
 
     let input = this.removeEmptyStringsFromDTO(this.state);
-    const result = await API.graphql(
-      graphqlOperation(createCommunity, { input })
-    )
+
+    await API.graphql(graphqlOperation(createCommunity, { input }))
       .then(response => {
         console.log(response);
       })
@@ -80,9 +69,7 @@ class CommunityForm extends React.Component {
       graphqlOperation(updateCommunity, { input })
     );
     const updatedCommunity = result.data.updateCommunity;
-    const index = communities.findIndex(
-      community => note.id === updatedCommunity.id
-    );
+    const index = communities.findIndex(() => note.id === updatedCommunity.id);
     const updatedCommunities = [
       ...communities.slice(0, index),
       updatedCommunity,
@@ -105,40 +92,77 @@ class CommunityForm extends React.Component {
     return (
       <div className="card shadow">
         <div className="card-body">
-          <form onSubmit={this.handleAddCommunity}>
-            <h1>Community Form</h1>
-            <div className="form-group">
-              <label for="name">Community Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="newCommunityName"
-                onChange={this.handleChangename}
-                placeholder="A descriptive name"
-              />
-            </div>
-            <div className="form-group">
-              <label for="communityDescription">Description</label>
-              <textarea
-                class="form-control"
-                id="newCommunityDescription"
-                rows="3"
-                onChange={this.handleChangeDescription}
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary mr-2">
-                Register
-              </button>
-              <button type="reset" className="btn btn-secondary">
-                Reset
-              </button>
-            </div>
-          </form>
+          <Formik
+            initialValues={{ name: "", description: "" }}
+            validate={values => {
+              console.log("the values are ", values);
+              let errors = {};
+              if (!values.name) {
+                errors.name = "Required";
+              } else if (!/^[A-Za-z]/i.test(values.name)) {
+                errors.name = "The name has to start with a letter.";
+              }
+              return errors;
+            }}
+            onSubmit={this.handleAddCommunity}
+            render={
+              ({
+                handleSubmit,
+                handleChange,
+                handleBlur,
+                values,
+                errors,
+                touched,
+                isSubmitting,
+              }) => {
+                return (
+                  <form onSubmit={this.handleAddCommunity}>
+                    <h1>Community Form</h1>
+                    <div className="form-group">
+                      <label htmlFor="name">Community Name</label>
+                      <Field
+                        type="name"
+                        name="name"
+                        component="input"
+                        onBlur={handleBlur}
+                        value={values.name}
+                      ></Field>
+                      {errors.name && touched.name && errors.name}
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="communityDescription">Description</label>
+                      <Field
+                        className="form-control"
+                        component="textarea"
+                        id="newCommunityDescription"
+                        rows="3"
+                        type="description"
+                        name="description"
+                        onBlur={handleBlur}
+                        value={values.description}
+                      ></Field>
+                      {errors.description &&
+                        touched.description &&
+                        errors.description}
+                    </div>
+                    <div className="form-group">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn btn-primary mr-2"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                ); //return
+              } //end of code block for function in JS snippet
+            } //end of render method JS
+          />
         </div>
       </div>
-    );
-  }
-}
+    ); // end of class return
+  } // end of render method
+} // end of class
 
 export default CommunityForm;
