@@ -20,6 +20,7 @@ import Error from "../Error";
 //     hidden_date: AWSDate
 //     sitewide_reasons_for_being_hidden: [String]
 //     keywords: [String]
+//     topics: [String]
 //     flagged_comments: [Comment]
 //     flagged_discussions: [Discussion]
 //   }
