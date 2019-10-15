@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
-import {
-  createCommunity,
-  deleteCommunity,
-  updateCommunity,
-} from "./graphql/mutations";
+import { deleteCommunity } from "./graphql/mutations";
 import { listCommunitys } from "./graphql/queries";
-import CommunityForm from "./forms/CommunityForm/create_edit_community";
+import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
 
 class App extends Component {
   state = {
-    communityId: "",
-    communityName: "",
-    communityCreator: "test creator",
     communities: [],
   };
 
@@ -43,7 +36,7 @@ class App extends Component {
   };
 
   render() {
-    const { communityId, communities, communityName } = this.state;
+    const { communities } = this.state;
     console.log(communities);
 
     return (
@@ -55,7 +48,7 @@ class App extends Component {
         </nav>
 
         <div className="container">
-          <CommunityForm />
+          <CommunityFormWrapped />
 
           <div className="card">
             <div className="card-body">

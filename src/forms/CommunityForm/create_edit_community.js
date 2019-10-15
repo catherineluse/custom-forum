@@ -1,9 +1,10 @@
 import React from "react";
-import { render } from "react-dom";
+// import ModerationLevelDropdown from "./moderation-level";
 import { API, graphqlOperation } from "aws-amplify";
 import { createCommunity, updateCommunity } from "../../graphql/mutations";
-import { Formik, FormikProps, Form, Field } from "formik";
+import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
+import Error from "../Error";
 
 // Community graphql schema:
 // type Community @model @searchable {
@@ -23,146 +24,120 @@ import * as Yup from "yup";
 //     flagged_discussions: [Discussion]
 //   }
 
-class CommunityForm extends React.Component {
-  removeEmptyStringsFromDTO = () => {
-    let input = {};
-    for (let key in this.state) {
-      if (this.state[key] !== "") {
-        input[key] = this.state[key];
-      }
-    }
-    return input;
-  };
+const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
-  handleAddCommunity = async event => {
-    event.preventDefault();
+  let input = {};
+  for (let key in payload) {
+    if (payload[key] !== "") {
+      input[key] = payload[key];
+    }
+  }
+  return input;
+};
 
-    let input = this.removeEmptyStringsFromDTO(this.state);
+// const levels = [
+//   { value: "Low", label: "Low - Only the sitewise rules apply" },
+//   { value: "Medium", label: "Medium - This community is moderated" },
+//   { value: "High", label: "High - This community has strict rules" },
+// ];
+
+const formikWrapper = withFormik({
+  mapPropsToValues: () => ({
+    name: "",
+    description: "",
+    moderationLevel: "",
+  }),
+  handleSubmit: async (values, { setSubmitting }) => {
+    const payload = {
+      ...values,
+    };
+    let input = removeEmptyStringsFromDTO(payload);
 
     await API.graphql(graphqlOperation(createCommunity, { input }))
       .then(response => {
-        console.log(response);
+        console.log("API call succeeded");
+        console.log("Response is ", response);
       })
       .catch(e => {
+        console.log("API call failed");
         console.log(e);
       });
-
-    // console.log(
-    //   "the api result is " + JSON.stringify(result.data.createCommunity)
-    // );
-    this.setState({ name: "", description: "" });
-  };
-
-  handleChangename = event => {
-    console.log("changed community name instate");
-    this.setState({ name: event.target.value });
-  };
-
-  handleChangeDescription = event => {
-    this.setState({ description: event.target.value });
-  };
-
-  handleUpdateCommunity = async () => {
-    const { communities, id, note } = this.state;
-    const input = { id, note };
-    const result = await API.graphql(
-      graphqlOperation(updateCommunity, { input })
-    );
-    const updatedCommunity = result.data.updateCommunity;
-    const index = communities.findIndex(() => note.id === updatedCommunity.id);
-    const updatedCommunities = [
-      ...communities.slice(0, index),
-      updatedCommunity,
-      ...communities.slice(index + 1),
-    ];
-    this.setState({ notes: updatedCommunities, note: "", id: "" });
-  };
-
-  hasExistingCommunity = () => {
-    const { communities, communityId } = this.state;
-    if (communityId) {
-      const isCommunity =
-        communities.findIndex(community => community.id === communityId) > -1;
-      return isCommunity;
-    }
-    return false;
-  };
-
-  render() {
-    return (
-      <div className="card shadow">
-        <div className="card-body">
-          <Formik
-            initialValues={{ name: "", description: "" }}
-            validate={values => {
-              console.log("the values are ", values);
-              let errors = {};
-              if (!values.name) {
-                errors.name = "Required";
-              } else if (!/^[A-Za-z]/i.test(values.name)) {
-                errors.name = "The name has to start with a letter.";
-              }
-              return errors;
-            }}
-            onSubmit={this.handleAddCommunity}
-            render={
-              ({
-                handleSubmit,
-                handleChange,
-                handleBlur,
-                values,
-                errors,
-                touched,
-                isSubmitting,
-              }) => {
-                return (
-                  <form onSubmit={this.handleAddCommunity}>
-                    <h1>Community Form</h1>
-                    <div className="form-group">
-                      <label htmlFor="name">Community Name</label>
-                      <Field
-                        type="name"
-                        name="name"
-                        component="input"
-                        onBlur={handleBlur}
-                        value={values.name}
-                      ></Field>
-                      {errors.name && touched.name && errors.name}
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="communityDescription">Description</label>
-                      <Field
-                        className="form-control"
-                        component="textarea"
-                        id="newCommunityDescription"
-                        rows="3"
-                        type="description"
-                        name="description"
-                        onBlur={handleBlur}
-                        value={values.description}
-                      ></Field>
-                      {errors.description &&
-                        touched.description &&
-                        errors.description}
-                    </div>
-                    <div className="form-group">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="btn btn-primary mr-2"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                ); //return
-              } //end of code block for function in JS snippet
-            } //end of render method JS
-          />
-        </div>
+    setSubmitting(false);
+  },
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required("Please enter a community name."),
+    description: Yup.string(),
+    moderationLevel: Yup.string(),
+  }),
+});
+const CommunityForm = props => {
+  // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
+  const { values, setFieldValue, setFieldTouched, isSubmitting } = props;
+  return (
+    <div className="card shadow">
+      <div className="card-body">
+        <Form>
+          <h1>Community Form</h1>
+          <div className="form-group">
+            <label htmlFor="name">Community Name</label>
+            <Field
+              name="name"
+              type="text"
+              placeholder="Enter community name"
+              className="form-control"
+            />
+            <ErrorMessage component={Error} name="communityNameError" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="communityDescription">Description</label>
+            <Field
+              type="description"
+              name="description"
+              placeholder="Describe this community"
+              className="form-control"
+            ></Field>
+            <ErrorMessage component={Error} name="communityNameError" />
+          </div>
+          <span>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isSubmitting}
+            >
+              Submit
+            </button>
+          </span>
+        </Form>
       </div>
-    ); // end of class return
-  } // end of render method
-} // end of class
+    </div>
+  );
+};
 
-export default CommunityForm;
+const handleUpdateCommunity = async () => {
+  const { communities, id, note } = this.state;
+  const input = { id, note };
+  const result = await API.graphql(
+    graphqlOperation(updateCommunity, { input })
+  );
+  const updatedCommunity = result.data.updateCommunity;
+  const index = communities.findIndex(() => note.id === updatedCommunity.id);
+  const updatedCommunities = [
+    ...communities.slice(0, index),
+    updatedCommunity,
+    ...communities.slice(index + 1),
+  ];
+  this.setState({ notes: updatedCommunities, note: "", id: "" });
+};
+
+const hasExistingCommunity = () => {
+  const { communities, communityId } = this.state;
+  if (communityId) {
+    const isCommunity =
+      communities.findIndex(community => community.id === communityId) > -1;
+    return isCommunity;
+  }
+  return false;
+};
+
+const CommunityFormWrapped = formikWrapper(CommunityForm);
+export default CommunityFormWrapped;
