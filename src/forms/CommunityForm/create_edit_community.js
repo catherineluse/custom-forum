@@ -1,5 +1,5 @@
 import React from "react";
-// import ModerationLevelDropdown from "./moderation-level";
+import ModerationLevelDropdown from "./moderation-level";
 import { API, graphqlOperation } from "aws-amplify";
 import { createCommunity, updateCommunity } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
@@ -36,17 +36,17 @@ const removeEmptyStringsFromDTO = payload => {
   return input;
 };
 
-// const levels = [
-//   { value: "Low", label: "Low - Only the sitewise rules apply" },
-//   { value: "Medium", label: "Medium - This community is moderated" },
-//   { value: "High", label: "High - This community has strict rules" },
-// ];
+const levels = [
+  { value: "Low", label: "Low - Only the sitewide rules apply" },
+  { value: "Medium", label: "Medium - This community is moderated" },
+  { value: "High", label: "High - This community has strict rules" },
+];
 
 const formikWrapper = withFormik({
   mapPropsToValues: () => ({
     name: "",
     description: "",
-    moderationLevel: "",
+    moderation_level: "",
   }),
   handleSubmit: async (values, { setSubmitting }) => {
     const payload = {
@@ -68,7 +68,7 @@ const formikWrapper = withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string().required("Please enter a community name."),
     description: Yup.string(),
-    moderationLevel: Yup.string(),
+    moderation_level: Yup.string(),
   }),
 });
 const CommunityForm = props => {
@@ -98,6 +98,16 @@ const CommunityForm = props => {
               className="form-control"
             ></Field>
             <ErrorMessage component={Error} name="communityNameError" />
+          </div>
+          <div className="form-group">
+            <label>Moderation Level</label>
+            <ModerationLevelDropdown
+              value={values.moderation_level}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+              options={levels}
+            />
+            <ErrorMessage component={Error} name="moderation_level" />
           </div>
           <span>
             <button

@@ -16,8 +16,8 @@ type Community @model @searchable {
   topics: [String]
   flagged_comments: [Comment]
   flagged_discussions: [Discussion]
-  moderation_level: Integer
-  number_of_users: Integer
+  moderation_level: Int
+  number_of_users: Int
 }
 
 type Ban @model @searchable {
@@ -101,9 +101,9 @@ type Report @model @searchable {
 
 type User @model @searchable {
   id: ID
+  email: String
   profiles: [Profile]
   default_profile: Profile
-  community_profile_mappings: [CommunityProfileMapping]
 }
 
 type Profile @model @searchable {
@@ -111,6 +111,7 @@ type Profile @model @searchable {
   username: String!
   real_sounding_name: String
   bio: String
+  pronouns: String
   location: String
   picture: String
   reputation: Int
@@ -120,10 +121,4 @@ type Profile @model @searchable {
   member_of: [Community]
   moderator_of: [Community]
   creator_of: [Community]
-}
-
-type CommunityProfileMapping @model @searchable {
-  id: ID
-  community: Community
-  profile: Profile
 }
