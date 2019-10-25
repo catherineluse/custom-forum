@@ -1,6 +1,6 @@
 scalar AWSDate
 
-type Community @model @searchable {
+type Community @model {
   id: ID
   url: String
   name: String!
@@ -20,7 +20,7 @@ type Community @model @searchable {
   number_of_users: Int
 }
 
-type Ban @model @searchable {
+type Ban @model {
   id: ID
   user: User
   is_sitewide_ban: Boolean
@@ -29,7 +29,7 @@ type Ban @model @searchable {
   expirationDate: AWSDate
 }
 
-type Comment @model @searchable {
+type Comment @model {
   id: ID
   content: String!
   author: ID
@@ -48,7 +48,7 @@ type Comment @model @searchable {
   parent_comment_id: ID
 }
 
-type Discussion @model @searchable {
+type Discussion @model {
   id: ID
   headline: String
   creator: User
@@ -65,7 +65,7 @@ type Discussion @model @searchable {
   keywords: [String]
 }
 
-type Event @model @searchable {
+type Event @model {
   id: ID
   title: String
   description: String
@@ -76,7 +76,7 @@ type Event @model @searchable {
   organizer: User
 }
 
-type PrivateMessage @model @searchable {
+type PrivateMessage @model {
   id: ID
   title: String
   content: String
@@ -84,7 +84,7 @@ type PrivateMessage @model @searchable {
   sentDate: AWSDate
 }
 
-type Report @model @searchable {
+type Report @model {
   id: ID
   creator: ID
   comment: Comment
@@ -99,14 +99,14 @@ type Report @model @searchable {
   resolved: Boolean
 }
 
-type User @model @searchable {
+type User @model {
   id: ID
   email: String
   profiles: [Profile]
   default_profile: Profile
 }
 
-type Profile @model @searchable {
+type Profile @model {
   id: ID
   username: String!
   real_sounding_name: String
@@ -116,7 +116,6 @@ type Profile @model @searchable {
   picture: String
   reputation: Int
   account_created_date: AWSDate
-  birth_date: AWSDate
   bans: [Ban]
   member_of: [Community]
   moderator_of: [Community]

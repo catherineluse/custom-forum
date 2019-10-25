@@ -15,6 +15,7 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -38,6 +39,7 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -51,6 +53,8 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -68,6 +72,7 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -91,6 +96,7 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -104,6 +110,8 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -121,6 +129,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -144,6 +153,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -157,6 +167,8 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -165,16 +177,28 @@ export const createBan = `mutation CreateBan($input: CreateBanInput!) {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -191,6 +215,7 @@ export const createBan = `mutation CreateBan($input: CreateBanInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -224,6 +249,8 @@ export const createBan = `mutation CreateBan($input: CreateBanInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -235,16 +262,28 @@ export const updateBan = `mutation UpdateBan($input: UpdateBanInput!) {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -261,6 +300,7 @@ export const updateBan = `mutation UpdateBan($input: UpdateBanInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -294,6 +334,8 @@ export const updateBan = `mutation UpdateBan($input: UpdateBanInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -305,16 +347,28 @@ export const deleteBan = `mutation DeleteBan($input: DeleteBanInput!) {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -331,6 +385,7 @@ export const deleteBan = `mutation DeleteBan($input: DeleteBanInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -364,6 +419,8 @@ export const deleteBan = `mutation DeleteBan($input: DeleteBanInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -439,16 +496,28 @@ export const createDiscussion = `mutation CreateDiscussion($input: CreateDiscuss
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -471,16 +540,28 @@ export const updateDiscussion = `mutation UpdateDiscussion($input: UpdateDiscuss
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -503,16 +584,28 @@ export const deleteDiscussion = `mutation DeleteDiscussion($input: DeleteDiscuss
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -550,6 +643,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -583,19 +677,33 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -622,6 +730,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -655,19 +764,33 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -694,6 +817,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -727,19 +851,33 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -752,16 +890,28 @@ export const createPrivateMessage = `mutation CreatePrivateMessage($input: Creat
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -775,16 +925,28 @@ export const updatePrivateMessage = `mutation UpdatePrivateMessage($input: Updat
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -798,16 +960,28 @@ export const deletePrivateMessage = `mutation DeletePrivateMessage($input: Delet
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -841,6 +1015,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -860,6 +1035,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -877,6 +1053,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -910,21 +1087,35 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -959,6 +1150,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -978,6 +1170,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -995,6 +1188,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1028,21 +1222,35 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -1077,6 +1285,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -1096,6 +1305,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -1113,6 +1323,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1146,21 +1357,35 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -1171,16 +1396,17 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1200,6 +1426,9 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1214,6 +1443,9 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1228,6 +1460,77 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1236,16 +1539,17 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1265,6 +1569,9 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1279,6 +1586,9 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1293,6 +1603,77 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1301,16 +1682,17 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1330,6 +1712,9 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1344,6 +1729,9 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1358,6 +1746,77 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1369,15 +1828,16 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1393,6 +1853,9 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1410,6 +1873,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1443,6 +1907,8 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1457,6 +1923,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1490,6 +1957,8 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1504,6 +1973,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1537,6 +2007,8 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }
@@ -1547,15 +2019,16 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1571,6 +2044,9 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1588,6 +2064,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1621,6 +2098,8 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1635,6 +2114,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1668,6 +2148,8 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1682,6 +2164,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1715,6 +2198,8 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }
@@ -1725,15 +2210,16 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1749,6 +2235,9 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1766,6 +2255,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1799,6 +2289,8 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1813,6 +2305,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1846,6 +2339,8 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1860,6 +2355,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1893,6 +2389,8 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }

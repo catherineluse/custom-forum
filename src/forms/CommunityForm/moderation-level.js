@@ -3,7 +3,7 @@ import Select from "react-select";
 
 class ModerationLevelDropdown extends React.Component {
   handleChange = value => {
-    this.props.onChange("moderation_level", value);
+    this.props.onChange("moderation_level", value, false);
   };
   handleBlur = () => {
     this.props.onBlur("moderation_level", true);

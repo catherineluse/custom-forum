@@ -7,23 +7,25 @@ import {
 } from "../../graphql/mutations";
 import { Formik } from "formik";
 
-// Community graphql schema:
-// type Community @model @searchable {
-//     id: ID
-//     url: String
-//     name: String!
-//     description: String
-//     creator: ID
-//     created_date: AWSDate
-//     rules: [String]
-//     locations: [String]
-//     hidden: Boolean
-//     hidden_date: AWSDate
-//     sitewide_reasons_for_being_hidden: [String]
-//     keywords: [String]
-//     flagged_comments: [Comment]
-//     flagged_discussions: [Discussion]
-//   }
+// type Community {
+//   id: ID
+//   url: String
+//   name: String!
+//   description: String
+//   creator: ID
+//   created_date: AWSDate
+//   rules: [String]
+//   locations: [String]
+//   hidden: Boolean
+//   hidden_date: AWSDate
+//   sitewide_reasons_for_being_hidden: [String]
+//   keywords: [String]
+//   topics: [String]
+//   flagged_comments: [Comment]
+//   flagged_discussions: [Discussion]
+//   moderation_level: Int
+//   number_of_users: Int
+// }
 
 function FormikValidation({
   handleAddCommunity,

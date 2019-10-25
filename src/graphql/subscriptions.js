@@ -15,6 +15,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -38,6 +39,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -51,6 +53,8 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -68,6 +72,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -91,6 +96,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -104,6 +110,8 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -121,6 +129,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
+    topics
     flagged_comments {
       id
       content
@@ -144,6 +153,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -157,6 +167,8 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       downvotes
       keywords
     }
+    moderation_level
+    number_of_users
   }
 }
 `;
@@ -165,16 +177,28 @@ export const onCreateBan = `subscription OnCreateBan {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -191,6 +215,7 @@ export const onCreateBan = `subscription OnCreateBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -224,6 +249,8 @@ export const onCreateBan = `subscription OnCreateBan {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -235,16 +262,28 @@ export const onUpdateBan = `subscription OnUpdateBan {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -261,6 +300,7 @@ export const onUpdateBan = `subscription OnUpdateBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -294,6 +334,8 @@ export const onUpdateBan = `subscription OnUpdateBan {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -305,16 +347,28 @@ export const onDeleteBan = `subscription OnDeleteBan {
     id
     user {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     is_sitewide_ban
@@ -331,6 +385,7 @@ export const onDeleteBan = `subscription OnDeleteBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -364,6 +419,8 @@ export const onDeleteBan = `subscription OnDeleteBan {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     createdDate
     expirationDate
@@ -439,16 +496,28 @@ export const onCreateDiscussion = `subscription OnCreateDiscussion {
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -471,16 +540,28 @@ export const onUpdateDiscussion = `subscription OnUpdateDiscussion {
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -503,16 +584,28 @@ export const onDeleteDiscussion = `subscription OnDeleteDiscussion {
     headline
     creator {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -550,6 +643,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -583,19 +677,33 @@ export const onCreateEvent = `subscription OnCreateEvent {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -622,6 +730,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -655,19 +764,33 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -694,6 +817,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -727,19 +851,33 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     organizer {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
   }
@@ -752,16 +890,28 @@ export const onCreatePrivateMessage = `subscription OnCreatePrivateMessage {
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -775,16 +925,28 @@ export const onUpdatePrivateMessage = `subscription OnUpdatePrivateMessage {
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -798,16 +960,28 @@ export const onDeletePrivateMessage = `subscription OnDeletePrivateMessage {
     content
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     sentDate
@@ -841,6 +1015,7 @@ export const onCreateReport = `subscription OnCreateReport {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -860,6 +1035,7 @@ export const onCreateReport = `subscription OnCreateReport {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -877,6 +1053,7 @@ export const onCreateReport = `subscription OnCreateReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -910,21 +1087,35 @@ export const onCreateReport = `subscription OnCreateReport {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -959,6 +1150,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -978,6 +1170,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -995,6 +1188,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1028,21 +1222,35 @@ export const onUpdateReport = `subscription OnUpdateReport {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -1077,6 +1285,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       headline
       creator {
         id
+        email
       }
       created_date
       date_last_edited
@@ -1096,6 +1305,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       content
       author {
         id
+        email
       }
       sentDate
     }
@@ -1113,6 +1323,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1146,21 +1357,35 @@ export const onDeleteReport = `subscription OnDeleteReport {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     broken_sitewide_rules
     broken_community_rules
     author {
       id
+      email
       profiles {
         id
         username
         real_sounding_name
         bio
+        pronouns
         location
         picture
         reputation
         account_created_date
-        birth_date
+      }
+      default_profile {
+        id
+        username
+        real_sounding_name
+        bio
+        pronouns
+        location
+        picture
+        reputation
+        account_created_date
       }
     }
     created_date
@@ -1171,16 +1396,17 @@ export const onDeleteReport = `subscription OnDeleteReport {
 export const onCreateUser = `subscription OnCreateUser {
   onCreateUser {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1200,6 +1426,9 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1214,6 +1443,9 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1228,6 +1460,77 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1236,16 +1539,17 @@ export const onCreateUser = `subscription OnCreateUser {
 export const onUpdateUser = `subscription OnUpdateUser {
   onUpdateUser {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1265,6 +1569,9 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1279,6 +1586,9 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1293,6 +1603,77 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1301,16 +1682,17 @@ export const onUpdateUser = `subscription OnUpdateUser {
 export const onDeleteUser = `subscription OnDeleteUser {
   onDeleteUser {
     id
+    email
     profiles {
       id
       username
       real_sounding_name
       bio
+      pronouns
       location
       picture
       reputation
       account_created_date
-      birth_date
       bans {
         id
         is_sitewide_ban
@@ -1330,6 +1712,9 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       moderator_of {
         id
@@ -1344,6 +1729,9 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       creator_of {
         id
@@ -1358,6 +1746,77 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+    }
+    default_profile {
+      id
+      username
+      real_sounding_name
+      bio
+      pronouns
+      location
+      picture
+      reputation
+      account_created_date
+      bans {
+        id
+        is_sitewide_ban
+        createdDate
+        expirationDate
+      }
+      member_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      moderator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
+      }
+      creator_of {
+        id
+        url
+        name
+        description
+        creator
+        created_date
+        rules
+        locations
+        hidden
+        hidden_date
+        sitewide_reasons_for_being_hidden
+        keywords
+        topics
+        moderation_level
+        number_of_users
       }
     }
   }
@@ -1369,15 +1828,16 @@ export const onCreateProfile = `subscription OnCreateProfile {
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1393,6 +1853,9 @@ export const onCreateProfile = `subscription OnCreateProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1410,6 +1873,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1443,6 +1907,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1457,6 +1923,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1490,6 +1957,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1504,6 +1973,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1537,6 +2007,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }
@@ -1547,15 +2019,16 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1571,6 +2044,9 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1588,6 +2064,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1621,6 +2098,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1635,6 +2114,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1668,6 +2148,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1682,6 +2164,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1715,6 +2198,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }
@@ -1725,15 +2210,16 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
     username
     real_sounding_name
     bio
+    pronouns
     location
     picture
     reputation
     account_created_date
-    birth_date
     bans {
       id
       user {
         id
+        email
       }
       is_sitewide_ban
       community {
@@ -1749,6 +2235,9 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
+        topics
+        moderation_level
+        number_of_users
       }
       createdDate
       expirationDate
@@ -1766,6 +2255,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1799,6 +2289,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     moderator_of {
       id
@@ -1813,6 +2305,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1846,6 +2339,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
     creator_of {
       id
@@ -1860,6 +2355,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
+      topics
       flagged_comments {
         id
         content
@@ -1893,6 +2389,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         downvotes
         keywords
       }
+      moderation_level
+      number_of_users
     }
   }
 }

@@ -6,24 +6,25 @@ import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../Error";
 
-// Community graphql schema:
-// type Community @model @searchable {
-//     id: ID
-//     url: String
-//     name: String!
-//     description: String
-//     creator: ID
-//     created_date: AWSDate
-//     rules: [String]
-//     locations: [String]
-//     hidden: Boolean
-//     hidden_date: AWSDate
-//     sitewide_reasons_for_being_hidden: [String]
-//     keywords: [String]
-//     topics: [String]
-//     flagged_comments: [Comment]
-//     flagged_discussions: [Discussion]
-//   }
+// type Community {
+//   id: ID
+//   url: String
+//   name: String!
+//   description: String
+//   creator: ID
+//   created_date: AWSDate
+//   rules: [String]
+//   locations: [String]
+//   hidden: Boolean
+//   hidden_date: AWSDate
+//   sitewide_reasons_for_being_hidden: [String]
+//   keywords: [String]
+//   topics: [String]
+//   flagged_comments: [Comment]
+//   flagged_discussions: [Discussion]
+//   moderation_level: Int
+//   number_of_users: Int
+// }
 
 const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
@@ -35,24 +36,30 @@ const removeEmptyStringsFromDTO = payload => {
   }
   return input;
 };
+const turnModerationLevelIntoNumber = formData => {
+  const payload = formData;
+  payload.moderation_level = payload.moderation_level.value;
+  return payload;
+};
 
 const levels = [
-  { value: "Low", label: "Low - Only the sitewide rules apply" },
-  { value: "Medium", label: "Medium - This community is moderated" },
-  { value: "High", label: "High - This community has strict rules" },
+  { value: 1, label: "Low - Only the sitewide rules apply" },
+  { value: 2, label: "Medium - This community is moderated" },
+  { value: 3, label: "High - This community has strict rules" },
 ];
 
 const formikWrapper = withFormik({
   mapPropsToValues: () => ({
     name: "",
     description: "",
-    moderation_level: "",
+    moderation_level: 1,
   }),
   handleSubmit: async (values, { setSubmitting }) => {
-    const payload = {
+    const formData = {
       ...values,
     };
-    let input = removeEmptyStringsFromDTO(payload);
+    let input = removeEmptyStringsFromDTO(formData);
+    input = turnModerationLevelIntoNumber(input);
 
     await API.graphql(graphqlOperation(createCommunity, { input }))
       .then(response => {
@@ -74,6 +81,7 @@ const formikWrapper = withFormik({
 const CommunityForm = props => {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   const { values, setFieldValue, setFieldTouched, isSubmitting } = props;
+
   return (
     <div className="card shadow">
       <div className="card-body">
@@ -96,12 +104,13 @@ const CommunityForm = props => {
               name="description"
               placeholder="Describe this community"
               className="form-control"
-            ></Field>
+            />
             <ErrorMessage component={Error} name="communityNameError" />
           </div>
           <div className="form-group">
             <label>Moderation Level</label>
             <ModerationLevelDropdown
+              id="moderationLevelDropdown"
               value={values.moderation_level}
               onChange={setFieldValue}
               onBlur={setFieldTouched}

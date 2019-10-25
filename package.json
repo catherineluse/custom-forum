@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.0",
     "@material-ui/styles": "^4.3.3",
+    "@playlyfe/gql": "^2.6.2",
     "aws-amplify": "^1.1.30",
     "aws-amplify-react": "^2.3.10",
     "babel-preset-react-app": "^9.0.2",
