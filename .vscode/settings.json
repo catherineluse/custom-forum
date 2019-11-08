@@ -1,3 +1,7 @@
 {
-    "editor.fontFamily": "'Roboto Mono', monospace"
+    "editor.fontFamily": "'Roboto Mono', monospace",
+    "editor.minimap.enabled": false,
+    "editor.fontWeight": "bold",
+    "workbench.colorTheme": "Monokai Polished",
+    "editor.lineHeight": 22
 }

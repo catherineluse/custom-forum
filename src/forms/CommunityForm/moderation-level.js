@@ -9,16 +9,17 @@ class ModerationLevelDropdown extends React.Component {
     this.props.onBlur("moderation_level", true);
   };
   render() {
-    console.log(
-      "the props passed to ModerationLevelDropdown are " +
-        JSON.stringify(this.props)
-    );
+    // console.log(
+    //   "the props passed to ModerationLevelDropdown are " +
+    //     JSON.stringify(this.props)
+    // );
     return (
       <Select
         value={this.props.value}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
         options={this.props.options}
+        placeholder={this.props.options[0].label}
       />
     );
   }

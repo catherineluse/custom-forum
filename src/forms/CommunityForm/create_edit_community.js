@@ -1,5 +1,7 @@
 import React from "react";
 import ModerationLevelDropdown from "./moderation-level";
+import DiscussionTags from "./discussion-tags";
+import CommunityKeywords from "./community-keywords";
 import { API, graphqlOperation } from "aws-amplify";
 import { createCommunity, updateCommunity } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
@@ -53,6 +55,8 @@ const formikWrapper = withFormik({
     name: "",
     description: "",
     moderation_level: 1,
+    tags: [],
+    keywords: [],
   }),
   handleSubmit: async (values, { setSubmitting }) => {
     const formData = {
@@ -68,6 +72,7 @@ const formikWrapper = withFormik({
       })
       .catch(e => {
         console.log("API call failed");
+        console.log("input was ", input);
         console.log(e);
       });
     setSubmitting(false);
@@ -86,7 +91,7 @@ const CommunityForm = props => {
     <div className="card shadow">
       <div className="card-body">
         <Form>
-          <h1>Community Form</h1>
+          <h1 className="gradient-text">Create a Community</h1>
           <div className="form-group">
             <label htmlFor="name">Community Name</label>
             <Field
@@ -100,9 +105,11 @@ const CommunityForm = props => {
           <div className="form-group">
             <label htmlFor="communityDescription">Description</label>
             <Field
+              component="textarea"
+              rows="3"
               type="description"
               name="description"
-              placeholder="Describe this community"
+              placeholder="Why should people join this community?"
               className="form-control"
             />
             <ErrorMessage component={Error} name="communityNameError" />
@@ -118,6 +125,17 @@ const CommunityForm = props => {
             />
             <ErrorMessage component={Error} name="moderation_level" />
           </div>
+          <CommunityKeywords
+            id="communityKeywordInput"
+            value={values.keywords}
+            onChange={setFieldValue}
+          />
+          <DiscussionTags
+            id="discussionTagsInput"
+            value={values.tags}
+            onChange={setFieldValue}
+          />
+
           <span>
             <button
               type="submit"

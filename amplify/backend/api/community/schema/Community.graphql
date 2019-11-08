@@ -13,7 +13,7 @@ type Community @model {
   hidden_date: AWSDate
   sitewide_reasons_for_being_hidden: [String]
   keywords: [String]
-  topics: [String]
+  tags: [String]
   flagged_comments: [Comment]
   flagged_discussions: [Discussion]
   moderation_level: Int

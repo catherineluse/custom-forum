@@ -43,20 +43,24 @@ class App extends Component {
       <div>
         <nav className="navbar">
           <div className="container">
-            <span className="navbar-brand mb-0 h1">Navbar</span>
+            <span className="navbar-brand mb-0 h1">
+              <i className="fas fa-seedling"></i> Gennit
+              <small>a site for meetups and discussions</small>
+            </span>
           </div>
         </nav>
 
         <div className="container">
           <CommunityFormWrapped />
-
           <div className="card">
             <div className="card-body">
+              <h1>Find a Community</h1>
               <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Community Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Moderation Level</th>
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
@@ -67,6 +71,7 @@ class App extends Component {
                         {item.name}
                       </td>
                       <td>{item.description}</td>
+                      <td>{item.moderation_level}</td>
                       <td>
                         <button
                           onClick={() => this.handleDeleteCommunity(item.id)}
