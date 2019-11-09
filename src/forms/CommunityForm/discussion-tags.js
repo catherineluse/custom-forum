@@ -13,6 +13,10 @@ class DiscussionTags extends React.Component {
     this.props.onChange("tags", this.state.tags, false);
   };
 
+  handleBlur = () => {
+    this.props.onBlur("tags", true);
+  };
+
   tagExists = val => {
     // Check if tag already exists
     if (this.state.tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
@@ -68,7 +72,6 @@ class DiscussionTags extends React.Component {
     } else if (e.key === "Backspace" && !val) {
       this.removeLastTag();
     }
-    console.log(this.state.tags);
   };
 
   render() {

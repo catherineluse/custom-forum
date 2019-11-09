@@ -2,7 +2,7 @@ scalar AWSDate
 
 type Community @model {
   id: ID
-  url: String
+  url: String!
   name: String!
   description: String
   creator: ID

@@ -15,7 +15,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
-    topics
+    tags
     flagged_comments {
       id
       content
@@ -72,7 +72,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
-    topics
+    tags
     flagged_comments {
       id
       content
@@ -129,7 +129,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
-    topics
+    tags
     flagged_comments {
       id
       content
@@ -215,7 +215,7 @@ export const onCreateBan = `subscription OnCreateBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -300,7 +300,7 @@ export const onUpdateBan = `subscription OnUpdateBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -385,7 +385,7 @@ export const onDeleteBan = `subscription OnDeleteBan {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -643,7 +643,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -730,7 +730,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -817,7 +817,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1053,7 +1053,7 @@ export const onCreateReport = `subscription OnCreateReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1188,7 +1188,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1323,7 +1323,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1426,7 +1426,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1443,7 +1443,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1460,7 +1460,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1494,7 +1494,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1511,7 +1511,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1528,7 +1528,7 @@ export const onCreateUser = `subscription OnCreateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1569,7 +1569,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1586,7 +1586,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1603,7 +1603,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1637,7 +1637,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1654,7 +1654,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1671,7 +1671,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1712,7 +1712,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1729,7 +1729,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1746,7 +1746,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1780,7 +1780,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1797,7 +1797,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1814,7 +1814,7 @@ export const onDeleteUser = `subscription OnDeleteUser {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1853,7 +1853,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1873,7 +1873,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1923,7 +1923,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1973,7 +1973,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2044,7 +2044,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -2064,7 +2064,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2114,7 +2114,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2164,7 +2164,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2235,7 +2235,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -2255,7 +2255,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2305,7 +2305,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -2355,7 +2355,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content

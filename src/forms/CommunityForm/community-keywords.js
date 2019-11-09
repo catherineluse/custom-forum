@@ -72,7 +72,6 @@ class CommunityKeywords extends React.Component {
     } else if (e.key === "Backspace" && !val) {
       this.removeLastKeyword();
     }
-    console.log(this.state.keywords);
   };
 
   render() {

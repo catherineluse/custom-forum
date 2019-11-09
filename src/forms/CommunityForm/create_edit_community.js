@@ -129,11 +129,13 @@ const CommunityForm = props => {
             id="communityKeywordInput"
             value={values.keywords}
             onChange={setFieldValue}
+            onBlur={setFieldTouched}
           />
           <DiscussionTags
             id="discussionTagsInput"
             value={values.tags}
             onChange={setFieldValue}
+            onBlur={setFieldTouched}
           />
 
           <span>

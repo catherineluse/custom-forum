@@ -15,7 +15,7 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     hidden_date
     sitewide_reasons_for_being_hidden
     keywords
-    topics
+    tags
     flagged_comments {
       id
       content
@@ -77,7 +77,7 @@ export const listCommunitys = `query ListCommunitys(
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -161,7 +161,7 @@ export const getBan = `query GetBan($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -225,7 +225,7 @@ export const listBans = `query ListBans($filter: ModelBanFilterInput, $limit: In
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -379,7 +379,7 @@ export const getEvent = `query GetEvent($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -471,7 +471,7 @@ export const listEvents = `query ListEvents(
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -604,7 +604,7 @@ export const getReport = `query GetReport($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -736,7 +736,7 @@ export const listReports = `query ListReports(
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -786,7 +786,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -803,7 +803,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -820,7 +820,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -854,7 +854,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -871,7 +871,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -888,7 +888,7 @@ export const getUser = `query GetUser($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -963,7 +963,7 @@ export const getProfile = `query GetProfile($id: ID!) {
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -983,7 +983,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1033,7 +1033,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1083,7 +1083,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       hidden_date
       sitewide_reasons_for_being_hidden
       keywords
-      topics
+      tags
       flagged_comments {
         id
         content
@@ -1158,7 +1158,7 @@ export const listProfiles = `query ListProfiles(
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1175,7 +1175,7 @@ export const listProfiles = `query ListProfiles(
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
@@ -1192,7 +1192,7 @@ export const listProfiles = `query ListProfiles(
         hidden_date
         sitewide_reasons_for_being_hidden
         keywords
-        topics
+        tags
         moderation_level
         number_of_users
       }
