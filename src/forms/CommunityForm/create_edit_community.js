@@ -98,7 +98,7 @@ const formikWrapper = withFormik({
       10000,
       "Can have a maximum of 70 characters."
     ),
-    moderation_level: Yup.string(),
+    moderation_level: Yup.string().required("A moderation level is required."),
     tags: Yup.array().of(Yup.string()),
     keywords: Yup.array().of(Yup.string()),
   }),
