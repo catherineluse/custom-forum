@@ -53,6 +53,7 @@ const levels = [
 const formikWrapper = withFormik({
   mapPropsToValues: () => ({
     name: "",
+    url: "",
     description: "",
     moderation_level: 1,
     tags: [],
@@ -78,14 +79,34 @@ const formikWrapper = withFormik({
     setSubmitting(false);
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("Please enter a community name."),
-    description: Yup.string(),
+    name: Yup.string()
+      .min(2, "Must have at least two characters.")
+      .max(140, "Can have a maximum of 140 characters.")
+      .required("Please enter a community name."),
+    url: Yup.string()
+      .matches(/^[0-9a-z]+$/, "Must contain only letters and numbers.")
+      .min(2, "Must have at least two characters.")
+      .max(70, "Can have a maximum of 70 characters.")
+      .required("Please enter a unique name with no spaces."),
+    description: Yup.string().max(
+      10000,
+      "Can have a maximum of 70 characters."
+    ),
     moderation_level: Yup.string(),
+    tags: Yup.array().of(Yup.string()),
+    keywords: Yup.array().of(Yup.string()),
   }),
 });
 const CommunityForm = props => {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
-  const { values, setFieldValue, setFieldTouched, isSubmitting } = props;
+  const {
+    values,
+    setFieldValue,
+    setFieldTouched,
+    isSubmitting,
+    errors,
+    touched,
+  } = props;
 
   return (
     <div className="card shadow">
@@ -100,7 +121,19 @@ const CommunityForm = props => {
               placeholder="Enter community name"
               className="form-control"
             />
+            {errors.name && touched.name ? <div>{errors.name}</div> : null}
             <ErrorMessage component={Error} name="communityNameError" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="url">Name in URL</label>
+            <Field
+              name="url"
+              type="text"
+              placeholder="Enter a unique name with no spaces"
+              className="form-control"
+            />
+            {errors.url && touched.url ? <div>{errors.url}</div> : null}
+            <ErrorMessage component={Error} name="communityUrlError" />
           </div>
           <div className="form-group">
             <label htmlFor="communityDescription">Description</label>
@@ -112,7 +145,7 @@ const CommunityForm = props => {
               placeholder="Why should people join this community?"
               className="form-control"
             />
-            <ErrorMessage component={Error} name="communityNameError" />
+            <ErrorMessage component={Error} name="communityDescriptionError" />
           </div>
           <div className="form-group">
             <label>Moderation Level</label>
@@ -123,7 +156,10 @@ const CommunityForm = props => {
               onBlur={setFieldTouched}
               options={levels}
             />
-            <ErrorMessage component={Error} name="moderation_level" />
+            <ErrorMessage
+              component={Error}
+              name="communityModerationLevelError"
+            />
           </div>
           <CommunityKeywords
             id="communityKeywordInput"
