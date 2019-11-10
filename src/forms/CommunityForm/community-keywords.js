@@ -36,7 +36,7 @@ class CommunityKeywords extends React.Component {
       <li key={keyword}>
         {keyword}
         <button
-          className="tag-button"
+          className="delete-button"
           type="button"
           onClick={() => {
             this.removeKeyword(i);

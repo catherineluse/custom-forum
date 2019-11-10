@@ -40,7 +40,10 @@ const removeEmptyStringsFromDTO = payload => {
 };
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
-  payload.moderation_level = payload.moderation_level.value;
+  payload.moderation_level = payload.moderation_level.value | 1;
+  console.log(
+    "The moderation level is " + JSON.stringify(payload.moderation_level)
+  );
   return payload;
 };
 
@@ -84,7 +87,10 @@ const formikWrapper = withFormik({
       .max(140, "Can have a maximum of 140 characters.")
       .required("Please enter a community name."),
     url: Yup.string()
-      .matches(/^[0-9a-z]+$/, "Must contain only letters and numbers.")
+      .matches(
+        /^[0-9a-z-_]+$/,
+        "Must contain only letters, numbers, hyphens, or underscores."
+      )
       .min(2, "Must have at least two characters.")
       .max(70, "Can have a maximum of 70 characters.")
       .required("Please enter a unique name with no spaces."),

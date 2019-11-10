@@ -39,6 +39,86 @@ th {
     background-color: #d0ebca;
 }
 
+tr:hover {
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+}
+
+tr:hover .community-description {
+    color: palegreen;
+}
+
+tr:hover .delete-button {
+    background-color: forestgreen;
+    color: white;
+}
+
+.btn {
+    position: relative;
+
+    display: block;
+    margin: 30px auto;
+    padding: 0;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+
+    background-color: #2ecc71;
+    color: #ecf0f1;
+
+    transition: background-color .3s;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #27ae60;
+}
+
+.btn>* {
+    position: relative;
+}
+
+.btn span {
+    display: block;
+    padding: 12px 24px;
+}
+
+.btn:before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+    width: 0;
+    padding-top: 0;
+
+    border-radius: 100%;
+
+    background-color: rgba(236, 240, 241, .3);
+
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+
+
 
 .btn-primary {
     background-color: forestgreen;
@@ -49,7 +129,26 @@ th {
     background-color: black;
 }
 
+.community-description {
+    color: gray;
+}
 
+.community-keywords {
+    color: forestgreen;
+    margin-top: 10px;
+}
+
+.keyword {
+    font-size: 11pt;
+    background-color: #d0ebca;
+    padding: 5px;
+    margin-right: 3px;
+}
+
+.community-name-in-table {
+    font-size: 20px;
+    font-weight: bold;
+}
 
 .card {
     margin-top: 20px;
@@ -90,14 +189,14 @@ th {
     padding: 5px 10px;
 }
 
-.tag-button {
+.delete-button {
     background-color: white;
     color: black;
     border: none;
     margin-left: 5px;
 }
 
-.tag-button:hover {
+.delete-button:hover {
     background-color: black;
     color: white;
 }

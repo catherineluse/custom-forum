@@ -36,7 +36,7 @@ class DiscussionTags extends React.Component {
       <li key={tag}>
         {tag}
         <button
-          className="tag-button"
+          className="delete-button"
           type="button"
           onClick={() => {
             this.removeTag(i);
