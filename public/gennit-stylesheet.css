@@ -205,3 +205,12 @@ tr:hover .delete-button {
     flex-grow: 1;
     padding: 0;
 }
+
+.rule-summary {
+    font-weight: 500;
+}
+
+.rule-explanation {
+    color: gray;
+    font-weight: 300;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
 import { listCommunitys } from "./graphql/queries";
+import TopNavbar from "./components/top_nav_bar";
 import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
 import AdminCommunityList from "./components/admin_community_list";
 class App extends Component {
@@ -21,14 +22,7 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar">
-          <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">
-              <i className="fas fa-seedling"></i> Gennit
-              <small>a site for meetups and discussions</small>
-            </span>
-          </div>
-        </nav>
+        <TopNavbar />
 
         <div className="container">
           <CommunityFormWrapped />

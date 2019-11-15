@@ -7,7 +7,7 @@ type Community @model {
   description: String
   creator: ID
   created_date: AWSDate
-  rules: [String]
+  rules: [Rule]
   locations: [String]
   hidden: Boolean
   hidden_date: AWSDate
@@ -18,6 +18,12 @@ type Community @model {
   flagged_discussions: [Discussion]
   moderation_level: Int
   number_of_users: Int
+}
+
+type Rule @model {
+  id: ID
+  summary: String!
+  explanation: String
 }
 
 type Ban @model {

@@ -7,6 +7,7 @@ import { createCommunity, updateCommunity } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../Error";
+import CommunityRules from "./rules";
 
 // type Community {
 //   id: ID
@@ -176,6 +177,12 @@ const CommunityForm = props => {
           <DiscussionTags
             id="discussionTagsInput"
             value={values.tags}
+            onChange={setFieldValue}
+            onBlur={setFieldTouched}
+          />
+          <CommunityRules
+            id="communityRules"
+            value={values.rules}
             onChange={setFieldValue}
             onBlur={setFieldTouched}
           />
