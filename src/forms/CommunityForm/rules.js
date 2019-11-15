@@ -103,7 +103,7 @@ class CommunityRules extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor="communityRules">Rules</label>
+        <label htmlFor="communityRules">Community Rules</label>
 
         <small id="ruleInstructions" className="form-text text-muted">
           This section is for rules that apply specifically to this community.
@@ -113,26 +113,32 @@ class CommunityRules extends React.Component {
         </small>
 
         <ol>{this.getExistingRules()}</ol>
+        <div className="form-group">
+          <label htmlFor="newRuleSummaryInput">Rule Summary</label>
+          <br />
+          <input
+            type="text"
+            className="form-control"
+            onKeyDown={this.handleSummaryChange}
+            placeholder="No cat posts allowed"
+            ref={c => {
+              this.ruleSummaryInput = c;
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="newRuleExplanationInput">Explanation</label>
 
-        <label htmlFor="newRuleSummaryInput">Rule Summary</label>
-        <input
-          type="text"
-          onKeyDown={this.handleSummaryChange}
-          placeholder="No cat posts allowed"
-          ref={c => {
-            this.ruleSummaryInput = c;
-          }}
-        />
-        <br></br>
-        <label htmlFor="newRuleExplanationInput">Explanation</label>
-        <input
-          type="text"
-          onKeyDown={this.handleExplanationChange}
-          placeholder="Because we are dog people"
-          ref={c => {
-            this.ruleExplanationInput = c;
-          }}
-        />
+          <textarea
+            className="form-control"
+            rows="4"
+            onKeyDown={this.handleExplanationChange}
+            placeholder="Because we are dog people"
+            ref={c => {
+              this.ruleExplanationInput = c;
+            }}
+          />
+        </div>
         <br />
         <button
           type="button"
