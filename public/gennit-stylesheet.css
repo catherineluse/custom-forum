@@ -21,17 +21,31 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
+h2 {
+    margin-top: 30px;
+    font-size: 25px;
+    color: green;
+}
+
 h3 {
     margin-top: 30px;
+    color: green;
+    font-size: 20px;
 }
 
 label {
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input {
+    margin-top: 1px;
 }
 
 small {
     color: palegreen;
     margin-left: 5px;
+    margin-top: 1px;
 }
 
 table {
@@ -44,7 +58,7 @@ th {
 }
 
 tr:hover {
-    background-color: forestgreen;
+    background-color: #3e824c;
     color: white;
     cursor: pointer;
 }
@@ -56,6 +70,7 @@ tr:hover .community-description {
 tr:hover .delete-button {
     background-color: forestgreen;
     color: white;
+    cursor: pointer;
 }
 
 .btn {
@@ -132,6 +147,20 @@ tr:hover .delete-button {
     background-color: black;
 }
 
+.btn-rule {
+    background-color: palegreen;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-rule:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
 .community-description {
     color: gray;
 }
@@ -153,8 +182,30 @@ tr:hover .delete-button {
     font-weight: bold;
 }
 
+.community-rule-list {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    background-color: #d7fade;
+    color: black;
+}
+
 .card {
     margin-top: 20px;
+}
+
+.add-rule-card {
+    margin-left: 20px;
+}
+
+.indented-info {
+    padding-left: 20px;
+    text-indent: -12px;
+}
+
+.info-icon {
+    margin-right: 10px;
 }
 
 .input-tag {

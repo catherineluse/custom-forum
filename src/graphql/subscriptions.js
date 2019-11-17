@@ -9,7 +9,11 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -66,7 +70,11 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -123,7 +131,11 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -172,6 +184,30 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
   }
 }
 `;
+export const onCreateRule = `subscription OnCreateRule {
+  onCreateRule {
+    id
+    summary
+    explanation
+  }
+}
+`;
+export const onUpdateRule = `subscription OnUpdateRule {
+  onUpdateRule {
+    id
+    summary
+    explanation
+  }
+}
+`;
+export const onDeleteRule = `subscription OnDeleteRule {
+  onDeleteRule {
+    id
+    summary
+    explanation
+  }
+}
+`;
 export const onCreateBan = `subscription OnCreateBan {
   onCreateBan {
     id
@@ -209,7 +245,11 @@ export const onCreateBan = `subscription OnCreateBan {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -294,7 +334,11 @@ export const onUpdateBan = `subscription OnUpdateBan {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -379,7 +423,11 @@ export const onDeleteBan = `subscription OnDeleteBan {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -637,7 +685,11 @@ export const onCreateEvent = `subscription OnCreateEvent {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -724,7 +776,11 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -811,7 +867,11 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1047,7 +1107,11 @@ export const onCreateReport = `subscription OnCreateReport {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1182,7 +1246,11 @@ export const onUpdateReport = `subscription OnUpdateReport {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1317,7 +1385,11 @@ export const onDeleteReport = `subscription OnDeleteReport {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1420,7 +1492,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1437,7 +1508,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1454,7 +1524,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1488,7 +1557,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1505,7 +1573,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1522,7 +1589,6 @@ export const onCreateUser = `subscription OnCreateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1563,7 +1629,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1580,7 +1645,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1597,7 +1661,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1631,7 +1694,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1648,7 +1710,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1665,7 +1726,6 @@ export const onUpdateUser = `subscription OnUpdateUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1706,7 +1766,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1723,7 +1782,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1740,7 +1798,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1774,7 +1831,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1791,7 +1847,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1808,7 +1863,6 @@ export const onDeleteUser = `subscription OnDeleteUser {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1847,7 +1901,6 @@ export const onCreateProfile = `subscription OnCreateProfile {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1867,7 +1920,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1917,7 +1974,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1967,7 +2028,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2038,7 +2103,6 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -2058,7 +2122,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2108,7 +2176,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2158,7 +2230,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2229,7 +2305,6 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -2249,7 +2324,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2299,7 +2378,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2349,7 +2432,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date

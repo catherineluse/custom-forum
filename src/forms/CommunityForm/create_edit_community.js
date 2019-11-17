@@ -120,7 +120,7 @@ const CommunityForm = props => {
       <div className="card-body">
         <Form>
           <h1 className="gradient-text">Create a Community</h1>
-          <h3>Required Fields</h3>
+          <h2>Required Fields</h2>
           <div className="form-group">
             <label htmlFor="name">Community Name</label>
             <Field
@@ -143,7 +143,7 @@ const CommunityForm = props => {
             {errors.url && touched.url ? <div>{errors.url}</div> : null}
             <ErrorMessage component={Error} name="communityUrlError" />
           </div>
-          <h3>Optional Fields</h3>
+          <h2>Optional Fields</h2>
           <div className="form-group">
             <label htmlFor="communityDescription">Description</label>
             <Field

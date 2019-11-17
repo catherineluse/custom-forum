@@ -9,7 +9,11 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -66,7 +70,11 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -123,7 +131,11 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -172,6 +184,30 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
   }
 }
 `;
+export const createRule = `mutation CreateRule($input: CreateRuleInput!) {
+  createRule(input: $input) {
+    id
+    summary
+    explanation
+  }
+}
+`;
+export const updateRule = `mutation UpdateRule($input: UpdateRuleInput!) {
+  updateRule(input: $input) {
+    id
+    summary
+    explanation
+  }
+}
+`;
+export const deleteRule = `mutation DeleteRule($input: DeleteRuleInput!) {
+  deleteRule(input: $input) {
+    id
+    summary
+    explanation
+  }
+}
+`;
 export const createBan = `mutation CreateBan($input: CreateBanInput!) {
   createBan(input: $input) {
     id
@@ -209,7 +245,11 @@ export const createBan = `mutation CreateBan($input: CreateBanInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -294,7 +334,11 @@ export const updateBan = `mutation UpdateBan($input: UpdateBanInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -379,7 +423,11 @@ export const deleteBan = `mutation DeleteBan($input: DeleteBanInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -637,7 +685,11 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -724,7 +776,11 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -811,7 +867,11 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1047,7 +1107,11 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1182,7 +1246,11 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1317,7 +1385,11 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1420,7 +1492,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1437,7 +1508,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1454,7 +1524,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1488,7 +1557,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1505,7 +1573,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1522,7 +1589,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1563,7 +1629,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1580,7 +1645,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1597,7 +1661,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1631,7 +1694,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1648,7 +1710,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1665,7 +1726,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1706,7 +1766,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1723,7 +1782,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1740,7 +1798,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1774,7 +1831,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1791,7 +1847,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1808,7 +1863,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1847,7 +1901,6 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1867,7 +1920,11 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1917,7 +1974,11 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1967,7 +2028,11 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2038,7 +2103,6 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -2058,7 +2122,11 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2108,7 +2176,11 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2158,7 +2230,11 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2229,7 +2305,6 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -2249,7 +2324,11 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2299,7 +2378,11 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -2349,7 +2432,11 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date

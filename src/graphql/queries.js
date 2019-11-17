@@ -9,7 +9,11 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     description
     creator
     created_date
-    rules
+    rules {
+      id
+      summary
+      explanation
+    }
     locations
     hidden
     hidden_date
@@ -71,7 +75,11 @@ export const listCommunitys = `query ListCommunitys(
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -118,6 +126,29 @@ export const listCommunitys = `query ListCommunitys(
   }
 }
 `;
+export const getRule = `query GetRule($id: ID!) {
+  getRule(id: $id) {
+    id
+    summary
+    explanation
+  }
+}
+`;
+export const listRules = `query ListRules(
+  $filter: ModelRuleFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      summary
+      explanation
+    }
+    nextToken
+  }
+}
+`;
 export const getBan = `query GetBan($id: ID!) {
   getBan(id: $id) {
     id
@@ -155,7 +186,11 @@ export const getBan = `query GetBan($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -219,7 +254,6 @@ export const listBans = `query ListBans($filter: ModelBanFilterInput, $limit: In
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -373,7 +407,11 @@ export const getEvent = `query GetEvent($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -465,7 +503,6 @@ export const listEvents = `query ListEvents(
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -598,7 +635,11 @@ export const getReport = `query GetReport($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -730,7 +771,6 @@ export const listReports = `query ListReports(
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -780,7 +820,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -797,7 +836,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -814,7 +852,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -848,7 +885,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -865,7 +901,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -882,7 +917,6 @@ export const getUser = `query GetUser($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -957,7 +991,6 @@ export const getProfile = `query GetProfile($id: ID!) {
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -977,7 +1010,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1027,7 +1064,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1077,7 +1118,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       description
       creator
       created_date
-      rules
+      rules {
+        id
+        summary
+        explanation
+      }
       locations
       hidden
       hidden_date
@@ -1152,7 +1197,6 @@ export const listProfiles = `query ListProfiles(
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1169,7 +1213,6 @@ export const listProfiles = `query ListProfiles(
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date
@@ -1186,7 +1229,6 @@ export const listProfiles = `query ListProfiles(
         description
         creator
         created_date
-        rules
         locations
         hidden
         hidden_date

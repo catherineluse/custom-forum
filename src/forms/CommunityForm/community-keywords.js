@@ -79,10 +79,6 @@ class CommunityKeywords extends React.Component {
       <div className="form-group">
         <label>Community Keywords</label>
 
-        <small id="keywordInstructions" className="form-text text-muted">
-          Type a keyword and press Enter to add the keyword.
-        </small>
-
         <div className="input-tag">
           <ul className="input-tag__tags">
             {this.getExistingKeywords()}
@@ -97,7 +93,9 @@ class CommunityKeywords extends React.Component {
             </li>
           </ul>
         </div>
-
+        <small id="keywordInstructions" className="form-text text-muted">
+          Type a keyword and press Enter to add the keyword.
+        </small>
         <small id="communityKeywords" className="form-text text-muted">
           This community will show in searches for these keywords.
         </small>

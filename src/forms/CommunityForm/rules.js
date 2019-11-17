@@ -11,8 +11,18 @@ class CommunityRules extends React.Component {
     };
   }
 
+  cleanRulesForDTO = rules => {
+    return rules.map(({ summary, explanation }) => {
+      if (explanation) {
+        return { summary, explanation };
+      }
+      return { summary };
+    });
+  };
   updateFormState = () => {
-    this.props.onChange("rules", this.state.rules, false);
+    let cleanedRules = this.cleanRulesForDTO(this.state.rules);
+    console.log("cleaned rules are ", cleanedRules);
+    this.props.onChange("rules", cleanedRules, false);
   };
 
   createNewRuleObject = (summary, explanation) => {
@@ -51,21 +61,24 @@ class CommunityRules extends React.Component {
   };
 
   getExistingRules = () => {
-    return this.state.rules.map((rule, i) => (
-      <li key={rule.key}>
-        <span className="rule-summary">{rule.summary}</span>{" "}
-        <span className="rule-explanation">{rule.explanation}</span>
-        <button
-          className="delete-button"
-          type="button"
-          onClick={() => {
-            this.removeRule(i);
-          }}
-        >
-          &#215;
-        </button>
-      </li>
-    ));
+    if (this.state.rules.length > 0) {
+      return this.state.rules.map((rule, i) => (
+        <li key={rule.key}>
+          <span className="rule-summary">{rule.summary}</span>{" "}
+          <span className="rule-explanation">{rule.explanation}</span>
+          <button
+            className="delete-button"
+            type="button"
+            onClick={() => {
+              this.removeRule(i);
+            }}
+          >
+            &#215;
+          </button>
+        </li>
+      ));
+    }
+    return <p>This community has no rules yet.</p>;
   };
 
   resetExplanationInput = () => {
@@ -86,15 +99,10 @@ class CommunityRules extends React.Component {
     console.log("Trying to add new rule ", JSON.stringify(newRule));
     //Trying to add new rule  {"summary":"cats onl","explanation":"dog peopl"}
     const newRules = [...this.state.rules, newRule];
-    console.log("Trying to add new rules ", JSON.stringify(newRules));
     this.setState({ rules: newRules }, () => {
+      this.updateFormState();
       console.log("set rules in state as ", this.state.rules);
     });
-
-    this.updateFormState();
-    console.log(
-      "after updating form state, rule state is " + JSON.stringify(this.state)
-    );
 
     this.resetSummaryInput();
     this.resetExplanationInput();
@@ -103,50 +111,61 @@ class CommunityRules extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor="communityRules">Community Rules</label>
+        <h3>Community Rules</h3>
 
-        <small id="ruleInstructions" className="form-text text-muted">
-          This section is for rules that apply specifically to this community.
-          When someone reports a comment or discussion in this community, they
-          will be able to select reasons for why it should be removed. The
-          reasons come from the sitewide rules and from these community rules.
+        <small
+          id="ruleInstructions"
+          className="form-text text-muted indented-info"
+        >
+          <i class="fas fa-info-circle info-icon"></i>This section is for rules
+          that apply specifically to this community. When someone reports a
+          comment or discussion in this community, they will be able to select
+          reasons for why it should be removed. The reasons come from the
+          sitewide rules and from these community rules.
         </small>
 
-        <ol>{this.getExistingRules()}</ol>
-        <div className="form-group">
-          <label htmlFor="newRuleSummaryInput">Rule Summary</label>
-          <br />
-          <input
-            type="text"
-            className="form-control"
-            onKeyDown={this.handleSummaryChange}
-            placeholder="No cat posts allowed"
-            ref={c => {
-              this.ruleSummaryInput = c;
-            }}
-          />
+        <div className="community-rule-list">
+          <ol>{this.getExistingRules()}</ol>
         </div>
-        <div className="form-group">
-          <label htmlFor="newRuleExplanationInput">Explanation</label>
+        <div class="card add-rule-card">
+          <div class="card-header">Add a Rule</div>
+          <div class="card-body">
+            <div className="form-group">
+              <label htmlFor="newRuleSummaryInput">Rule Summary</label>
+              <br />
+              <input
+                type="text"
+                className="form-control"
+                onKeyDown={this.handleSummaryChange}
+                placeholder="No cat posts allowed"
+                ref={c => {
+                  this.ruleSummaryInput = c;
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="newRuleExplanationInput">Explanation</label>
 
-          <textarea
-            className="form-control"
-            rows="4"
-            onKeyDown={this.handleExplanationChange}
-            placeholder="Because we are dog people"
-            ref={c => {
-              this.ruleExplanationInput = c;
-            }}
-          />
+              <textarea
+                className="form-control"
+                rows="4"
+                onKeyDown={this.handleExplanationChange}
+                placeholder="Because we are dog people"
+                ref={c => {
+                  this.ruleExplanationInput = c;
+                }}
+              />
+            </div>
+            <br />
+            <button
+              type="button"
+              onClick={this.handleAddNewRule}
+              className="btn-rule"
+            >
+              &#x2b; Add New Rule
+            </button>
+          </div>
         </div>
-        <br />
-        <button
-          type="button"
-          onClick={this.handleAddNewRule}
-          className="btn-secondary"
-        >
-          &#x2b; Add New Rule
-        </button>
       </div>
     );
   }

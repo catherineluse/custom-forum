@@ -79,10 +79,6 @@ class DiscussionTags extends React.Component {
       <div className="form-group">
         <label>Discussion Tags</label>
 
-        <small id="tagInstructions" className="form-text text-muted">
-          Type a tag and press Enter to add the tag.
-        </small>
-
         <div className="input-tag">
           <ul className="input-tag__tags">
             {this.getExistingTags()}
@@ -97,7 +93,9 @@ class DiscussionTags extends React.Component {
             </li>
           </ul>
         </div>
-
+        <small id="tagInstructions" className="form-text text-muted">
+          Type a tag and press Enter to add the tag.
+        </small>
         <small id="tagDefinition" className="form-text text-muted">
           Discussions within this community can be tagged, allowing you to
           filter discussions by tag.
