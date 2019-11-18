@@ -58,7 +58,6 @@ class AdminCommunityList extends Component {
               <thead>
                 <tr>
                   <th scope="col">Community Name</th>
-                  <th scope="col">Name in URL</th>
                   <th scope="col">Moderation Level</th>
                   <th scope="col">Delete</th>
                 </tr>
@@ -71,11 +70,11 @@ class AdminCommunityList extends Component {
                       <div className="community-description">
                         {item.description}
                       </div>
+                      <div className="community-url">{item.url}</div>
                       <div className="community-keywords">
                         {this.showCommunityKeywords(item.keywords)}
                       </div>
                     </td>
-                    <td>{item.url}</td>
                     <td>{this.mapModLevelToWord(item.moderation_level)}</td>
                     <td>
                       <button

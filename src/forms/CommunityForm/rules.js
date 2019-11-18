@@ -35,13 +35,7 @@ class CommunityRules extends React.Component {
 
   handleSummaryChange = e => {
     const summary = e.target.value;
-    console.log("summary is " + summary);
-    this.setState({ newRuleSummary: summary }, () => {
-      console.log(
-        "handle summary change ran, state is now: ",
-        JSON.stringify(this.state)
-      );
-    });
+    this.setState({ newRuleSummary: summary });
   };
 
   handleExplanationChange = e => {
@@ -82,11 +76,11 @@ class CommunityRules extends React.Component {
   };
 
   resetExplanationInput = () => {
-    this.ruleExplanationInput.value = null;
+    this.ruleExplanationInput.value = "";
   };
 
   resetSummaryInput = () => {
-    this.ruleSummaryInput.value = null;
+    this.ruleSummaryInput.value = "";
   };
 
   handleAddNewRule = () => {
@@ -101,11 +95,10 @@ class CommunityRules extends React.Component {
     const newRules = [...this.state.rules, newRule];
     this.setState({ rules: newRules }, () => {
       this.updateFormState();
+      this.resetSummaryInput();
+      this.resetExplanationInput();
       console.log("set rules in state as ", this.state.rules);
     });
-
-    this.resetSummaryInput();
-    this.resetExplanationInput();
   };
 
   render() {
@@ -117,9 +110,9 @@ class CommunityRules extends React.Component {
           id="ruleInstructions"
           className="form-text text-muted indented-info"
         >
-          <i class="fas fa-info-circle info-icon"></i>This section is for rules
-          that apply specifically to this community. When someone reports a
-          comment or discussion in this community, they will be able to select
+          <i className="fas fa-info-circle info-icon"></i>This section is for
+          rules that apply specifically to this community. When someone reports
+          a comment or discussion in this community, they will be able to select
           reasons for why it should be removed. The reasons come from the
           sitewide rules and from these community rules.
         </small>
@@ -127,11 +120,11 @@ class CommunityRules extends React.Component {
         <div className="community-rule-list">
           <ol>{this.getExistingRules()}</ol>
         </div>
-        <div class="card add-rule-card">
-          <div class="card-header">Add a Rule</div>
-          <div class="card-body">
+        <div className="card add-rule-card">
+          <div className="card-header">Add a Rule</div>
+          <div className="card-body">
             <div className="form-group">
-              <label htmlFor="newRuleSummaryInput">Rule Summary</label>
+              <label htmlFor="newRuleSummaryInput">Rule (required)</label>
               <br />
               <input
                 type="text"
@@ -144,9 +137,12 @@ class CommunityRules extends React.Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="newRuleExplanationInput">Explanation</label>
+              <label htmlFor="newRuleExplanationInput">
+                Reason or Explanation (optional)
+              </label>
 
               <textarea
+                type="text"
                 className="form-control"
                 rows="4"
                 onKeyDown={this.handleExplanationChange}

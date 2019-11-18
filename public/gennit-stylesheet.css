@@ -262,7 +262,7 @@ tr:hover .delete-button {
 }
 
 .rule-summary {
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .rule-explanation {

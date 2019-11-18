@@ -39,6 +39,13 @@ const removeEmptyStringsFromDTO = payload => {
   }
   return input;
 };
+
+const urlIsTaken = url => {
+  console.log("this.props.communities", this.props.communities);
+  const isTaken =
+    this.props.communities.findIndex(community => community.url === url) > -1;
+  return isTaken ? true : false;
+};
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
   payload.moderation_level = payload.moderation_level.value | 1;
@@ -144,6 +151,10 @@ const CommunityForm = props => {
             <ErrorMessage component={Error} name="communityUrlError" />
           </div>
           <h2>Optional Fields</h2>
+          <p>
+            You can fill out these fields to make it easier for people to
+            understand what the group is for and how it works.
+          </p>
           <div className="form-group">
             <label htmlFor="communityDescription">Description</label>
             <Field
@@ -218,16 +229,6 @@ const handleUpdateCommunity = async () => {
     ...communities.slice(index + 1),
   ];
   this.setState({ notes: updatedCommunities, note: "", id: "" });
-};
-
-const hasExistingCommunity = () => {
-  const { communities, communityId } = this.state;
-  if (communityId) {
-    const isCommunity =
-      communities.findIndex(community => community.id === communityId) > -1;
-    return isCommunity;
-  }
-  return false;
 };
 
 const CommunityFormWrapped = formikWrapper(CommunityForm);
