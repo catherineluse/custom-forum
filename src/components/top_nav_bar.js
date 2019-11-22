@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopNavbar = () => {
+const TopNavBar = () => {
   return (
     <nav className="navbar">
       <div className="container-fluid">
@@ -13,4 +13,4 @@ const TopNavbar = () => {
   );
 };
 
-export default TopNavbar;
+export default TopNavBar;
