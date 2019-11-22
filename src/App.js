@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
 import { listCommunitys } from "./graphql/queries";
-import { onCreateCommunity } from "./graphql/subscriptions";
+import { withAuthenticator, AmplifyTheme } from "aws-amplify-react";
+import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
 import TopNavbar from "./components/top_nav_bar";
 import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
 import AdminCommunityList from "./components/admin_community_list";
@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount = async () => {
     this.getCommunities();
-    this.createNoteListener = API.graphql(
+    this.createCommunityListener = API.graphql(
       graphqlOperation(onCreateCommunity)
     ).subscribe({
       next: communityData => {
@@ -25,10 +25,21 @@ class App extends Component {
         this.setState({ communities: updatedCommunities });
       },
     });
+    this.deleteCommunityListener = API.graphql(
+      graphqlOperation(onDeleteCommunity)
+    ).subscribe({
+      next: communityData => {
+        const deletedCommunity = communityData.value.data.onDeleteCommunity;
+        const updatedCommunities = this.state.communities.filter(
+          community => community.id !== deletedCommunity.id
+        );
+        this.setState({ communities: updatedCommunities });
+      },
+    });
   };
 
   componentWillUnmount() {
-    this.createNoteListener.unsubscribe();
+    this.createCommunityListener.unsubscribe();
   }
 
   getCommunities = async () => {
@@ -52,4 +63,12 @@ class App extends Component {
   }
 }
 
-export default withAuthenticator(App);
+const theme = {
+  ...AmplifyTheme,
+  sectionHeader: {
+    ...AmplifyTheme.sectionHeader,
+    backgroundColor: "forestgreen",
+  },
+};
+
+export default withAuthenticator(App, true, [], null, theme);

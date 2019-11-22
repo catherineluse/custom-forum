@@ -11,6 +11,7 @@
     "aws-amplify-react": "^2.3.10",
     "babel-preset-react-app": "^9.0.2",
     "bootstrap": "^4.3.1",
+    "element-theme-default": "^1.4.13",
     "formik": "^1.5.8",
     "react": "^16.3.1",
     "react-beautiful-dnd": "^12.0.0",

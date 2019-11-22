@@ -8,19 +8,10 @@ class AdminCommunityList extends Component {
   };
 
   handleDeleteCommunity = async communityId => {
-    console.log("delete community ran");
-    const { communities } = this.state;
     const input = {
       id: communityId,
     };
-    const result = await API.graphql(
-      graphqlOperation(deleteCommunity, { input })
-    );
-    const deletedCommunityId = result.data.deleteCommunity.id;
-    const updatedCommunities = communities.filter(
-      community => community.id !== deletedCommunityId
-    );
-    this.setState({ communities: updatedCommunities });
+    await API.graphql(graphqlOperation(deleteCommunity, { input }));
   };
 
   showCommunityKeywords = keywords => {
