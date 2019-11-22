@@ -1,17 +1,23 @@
 import React, { Component } from "react";
+import { Auth, Hub } from "aws-amplify";
 import { API, graphqlOperation } from "aws-amplify";
 import { listCommunitys } from "./graphql/queries";
-import { withAuthenticator } from "aws-amplify-react";
+import { Authenticator } from "aws-amplify-react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
 import TopNavBar from "./components/top_nav_bar";
-import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
+import CommunityPage from "./pages/community_page";
+import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
 class App extends Component {
   state = {
+    user: null,
     communities: [],
   };
 
   componentDidMount = async () => {
+    this.getUserData();
+    Hub.listen("auth", this, "onHubCapsule");
     this.getCommunities();
     this.createCommunityListener = API.graphql(
       graphqlOperation(onCreateCommunity)
@@ -47,20 +53,82 @@ class App extends Component {
     this.setState({ communities: result.data.listCommunitys.items });
   };
 
+  getUserData = async () => {
+    const user = Auth.currentAuthenticatedUser();
+    user ? this.setState({ user }) : this.setState({ user: null });
+  };
+
+  onHubCapsule = capsule => {
+    switch (capsule.payload.event) {
+      case "signIn":
+        console.log("signed in");
+        this.getUserData();
+        break;
+      case "signUp":
+        console.log("signed up");
+        break;
+      case "signOut":
+        console.log("signed out");
+        this.setState({ user: null });
+        break;
+      default:
+        return;
+    }
+  };
+
+  handleSignout = async () => {
+    try {
+      await Auth.signOut();
+    } catch (err) {
+      console.error("error signing out user", err);
+    }
+  };
+
   render() {
     const { communities } = this.state;
+    const { user } = this.state;
 
-    return (
+    return !user ? (
+      <Authenticator />
+    ) : (
       <div>
-        <TopNavBar />
-
-        <div className="container">
-          <CommunityFormWrapped communities={communities} />
-          <AdminCommunityList communities={communities} />
-        </div>
+        <Router>
+          <>
+            <TopNavBar user={user} handleSignout={this.handleSignout} />
+            <div className="app-container">
+              <Route
+                exact
+                path="/"
+                component={() => {
+                  return (
+                    <div className="container">
+                      <AdminCommunityList communities={communities} />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                path="/profile"
+                component={() => {
+                  return (
+                    <div className="container">
+                      <ProfilePage user={user} />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                path="/communities/:communityId"
+                component={({ match }) => (
+                  <CommunityPage communityId={match.params.communityId} />
+                )}
+              />
+            </div>
+          </>
+        </Router>
       </div>
     );
   }
 }
 
-export default withAuthenticator(App);
+export default App;

@@ -1,11 +1,20 @@
 nav {
     color: palegreen;
-    font-size: 150px;
-    background: forestgreen;
+    background-color: forestgreen;
     margin-bottom: 20px;
 }
 
+.navbar-brand {
+    color: palegreen;
+}
 
+.nav-link {
+    color: palegreen;
+}
+
+a:hover {
+    color: white;
+}
 
 body {
     background: #f2f2f2;
