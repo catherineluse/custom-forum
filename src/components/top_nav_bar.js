@@ -35,6 +35,12 @@ class TopNavBar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
+              <i class="fas fa-envelope"></i>
+            </li>
+            <li className="nav-item">
+              <i class="fas fa-user"></i>
+            </li>
+            <li className="nav-item">
               <button type="warning" onClick={handleSignout}>
                 Sign Out
               </button>
