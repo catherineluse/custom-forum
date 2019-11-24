@@ -21,12 +21,12 @@ class TopNavBar extends Component {
             </li>
             <li className="nav-item">
               <NavLink to="/" className="nav-link">
-                Find a Community
+                <i class="fas fa-search"></i> Find a Community
               </NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#myAlert" data-toggle="collapse">
-                My Communities
+                <i class="fas fa-user-friends"></i> My Communities
               </a>
             </li>
             <li className="nav-item">
