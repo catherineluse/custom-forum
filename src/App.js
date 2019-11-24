@@ -9,6 +9,7 @@ import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
 import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
+
 class App extends Component {
   state = {
     user: null,
@@ -46,10 +47,12 @@ class App extends Component {
 
   componentWillUnmount() {
     this.createCommunityListener.unsubscribe();
+    this.deleteCommunityListener.unsubscribe();
   }
 
   getCommunities = async () => {
     const result = await API.graphql(graphqlOperation(listCommunitys));
+    console.log("result of listCommunitys API call", result);
     this.setState({ communities: result.data.listCommunitys.items });
   };
 
@@ -118,9 +121,14 @@ class App extends Component {
                 }}
               />
               <Route
-                path="/communities/:communityId"
+                path="/c/:nameInUrl"
                 component={({ match }) => (
-                  <CommunityPage communityId={match.params.communityId} />
+                  <div className="container">
+                    <CommunityPage
+                      nameInUrl={match.params.nameInUrl}
+                      communities={communities}
+                    />
+                  </div>
                 )}
               />
             </div>

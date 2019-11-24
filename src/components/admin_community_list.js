@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteCommunity } from "../graphql/mutations";
 import CommunityFormWrapped from "../forms/CommunityForm/create_edit_community";
@@ -54,6 +55,7 @@ class AdminCommunityList extends Component {
                   <tr>
                     <th scope="col">Community Name</th>
                     <th scope="col">Moderation Level</th>
+                    <th scope="col">Link</th>
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
@@ -64,15 +66,21 @@ class AdminCommunityList extends Component {
                         <div className="community-name-in-table">
                           {item.name}
                         </div>
+
                         <div className="community-description">
                           {item.description}
                         </div>
-                        <div className="community-url">{item.url}</div>
+                        <div className="community-url">
+                          gennit.net/c/{item.url}
+                        </div>
                         <div className="community-keywords">
                           {this.showCommunityKeywords(item.keywords)}
                         </div>
                       </td>
                       <td>{this.mapModLevelToWord(item.moderation_level)}</td>
+                      <td>
+                        <NavLink to={`/c/${item.url}`}>Visit community</NavLink>
+                      </td>
                       <td>
                         <button
                           onClick={() => this.handleDeleteCommunity(item.id)}

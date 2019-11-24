@@ -66,13 +66,23 @@ th {
     background-color: #d0ebca;
 }
 
+
+
 tr:hover {
     background-color: #3e824c;
     color: white;
     cursor: pointer;
 }
 
+.community-url {
+    color: gray;
+}
+
 tr:hover .community-description {
+    color: palegreen;
+}
+
+tr:hover .community-url {
     color: palegreen;
 }
 
@@ -177,6 +187,10 @@ tr:hover .delete-button {
 .community-keywords {
     color: forestgreen;
     margin-top: 10px;
+}
+
+.community-url {
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 .keyword {
