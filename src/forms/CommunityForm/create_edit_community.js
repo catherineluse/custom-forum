@@ -126,10 +126,13 @@ const CommunityForm = props => {
     <div className="card shadow">
       <div className="card-body">
         <Form>
-          <h1 className="gradient-text">Create a Community</h1>
-          <h2>Required Fields</h2>
+          <h1 className="gradient-text">+ Create a Community</h1>
+
           <div className="form-group">
             <label htmlFor="name">Community Name</label>
+            <small className="form-text text-muted">
+              This name can be changed later.
+            </small>
             <Field
               name="name"
               type="text"
@@ -141,6 +144,13 @@ const CommunityForm = props => {
           </div>
           <div className="form-group">
             <label htmlFor="url">Name in URL</label>
+            <small className="form-text text-muted">
+              This name is permanent and must be unique. This community will be
+              available at:
+              <div className="community-url">
+                gennit.net/c/[this unique name]
+              </div>
+            </small>
             <Field
               name="url"
               type="text"
@@ -150,11 +160,6 @@ const CommunityForm = props => {
             {errors.url && touched.url ? <div>{errors.url}</div> : null}
             <ErrorMessage component={Error} name="communityUrlError" />
           </div>
-          <h2>Optional Fields</h2>
-          <p>
-            You can fill out these fields to make it easier for people to
-            understand what the group is for and how it works.
-          </p>
           <div className="form-group">
             <label htmlFor="communityDescription">Description</label>
             <Field
@@ -167,6 +172,8 @@ const CommunityForm = props => {
             />
             <ErrorMessage component={Error} name="communityDescriptionError" />
           </div>
+          <h2>Advanced Options</h2>
+
           <div className="form-group">
             <label>Moderation Level</label>
             <ModerationLevelDropdown

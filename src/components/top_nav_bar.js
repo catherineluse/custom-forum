@@ -8,7 +8,7 @@ class TopNavBar extends Component {
       <nav className="navbar navbar-expand-md ">
         <div className="navbar-brand abs">
           <i className="fas fa-seedling"></i> Gennit
-          <small>a site for meetups and discussions</small>
+          <small> a site for meetups and discussions</small>
         </div>
 
         <div className="navbar-collapse collapse" id="collapsingNavbar">
@@ -29,19 +29,19 @@ class TopNavBar extends Component {
                 <i class="fas fa-user-friends"></i> My Communities
               </a>
             </li>
+
+            <li className="nav-item">
+              <a className="nav-link" href="#myAlert" data-toggle="collapse">
+                <i class="fas fa-envelope"></i> Messages
+              </a>
+            </li>
             <li className="nav-item">
               <NavLink to="/profile" className="nav-link">
-                Profile
+                <i class="fas fa-user"></i> Profile
               </NavLink>
             </li>
             <li className="nav-item">
-              <i class="fas fa-envelope"></i>
-            </li>
-            <li className="nav-item">
-              <i class="fas fa-user"></i>
-            </li>
-            <li className="nav-item">
-              <button type="warning" onClick={handleSignout}>
+              <button className="nav-link" onClick={handleSignout}>
                 Sign Out
               </button>
             </li>

@@ -4,8 +4,6 @@ import ListOfDiscussions from "../components/community_components/list_of_discus
 
 class CommunityPage extends React.Component {
   state = {
-    communityName: "",
-    discussions: [],
     communityData: "Gennit can't find a community with that name.",
   };
 
@@ -26,10 +24,13 @@ class CommunityPage extends React.Component {
   };
 
   render() {
+    const { communityData } = this.state;
     return (
       <>
+        <h1>{communityData ? communityData["name"] : ""}</h1>
+        <p>{communityData ? communityData["description"] : ""}</p>
         <p>{JSON.stringify(this.state.communityData)}</p>
-        <h1>Discussion</h1>
+        <h2>Discussion</h2>
         <NewDiscussion />
         <button>+ New Discussion</button>
         <ListOfDiscussions />
