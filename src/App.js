@@ -106,7 +106,10 @@ class App extends Component {
                 component={() => {
                   return (
                     <div className="container">
-                      <CommunityFormWrapped communities={communities} />
+                      <CommunityFormWrapped
+                        creator={user}
+                        communities={communities}
+                      />
                     </div>
                   );
                 }}

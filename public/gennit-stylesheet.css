@@ -204,14 +204,14 @@ tr:hover .delete-button {
   transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
 
-.btn-primary {
+.form-submit {
   background-color: forestgreen;
   color: white;
   width: 100%;
   height: 35px;
 }
 
-.btn-primary:hover {
+.form-submit:hover {
   background-color: black;
 }
 
@@ -244,6 +244,7 @@ tr:hover .delete-button {
 
 .community-url {
   font-family: "Lucida Console", Monaco, monospace;
+  margin-bottom: 5px;
 }
 
 .keyword {

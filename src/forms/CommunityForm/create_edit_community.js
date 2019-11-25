@@ -109,6 +109,7 @@ const formikWrapper = withFormik({
     moderation_level: Yup.string().required("A moderation level is required."),
     tags: Yup.array().of(Yup.string()),
     keywords: Yup.array().of(Yup.string()),
+    creator: Yup.string().required("A user is required."),
   }),
 });
 const CommunityForm = props => {
@@ -120,6 +121,7 @@ const CommunityForm = props => {
     isSubmitting,
     errors,
     touched,
+    creator,
   } = props;
 
   return (
@@ -210,7 +212,7 @@ const CommunityForm = props => {
           <span>
             <button
               type="submit"
-              className="btn btn-primary"
+              className="form-submit"
               disabled={isSubmitting}
             >
               Submit
