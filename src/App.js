@@ -9,6 +9,7 @@ import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
 import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
+import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
 
 class App extends Component {
   state = {
@@ -105,6 +106,17 @@ class App extends Component {
                 component={() => {
                   return (
                     <div className="container">
+                      <CommunityFormWrapped communities={communities} />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                exact
+                path="/find"
+                component={() => {
+                  return (
+                    <div className="container">
                       <AdminCommunityList communities={communities} />
                     </div>
                   );
@@ -123,12 +135,10 @@ class App extends Component {
               <Route
                 path="/c/:nameInUrl"
                 component={({ match }) => (
-                  <div className="container">
-                    <CommunityPage
-                      nameInUrl={match.params.nameInUrl}
-                      communities={communities}
-                    />
-                  </div>
+                  <CommunityPage
+                    nameInUrl={match.params.nameInUrl}
+                    communities={communities}
+                  />
                 )}
               />
             </div>

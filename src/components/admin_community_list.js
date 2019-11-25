@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteCommunity } from "../graphql/mutations";
-import CommunityFormWrapped from "../forms/CommunityForm/create_edit_community";
 
 class AdminCommunityList extends Component {
   state = {
@@ -44,13 +43,12 @@ class AdminCommunityList extends Component {
     const { communities } = this.props;
     return (
       <div>
-        <CommunityFormWrapped communities={communities} />
-
         <div className="card">
           <div className="card-body">
-            <h1>
-              <i class="fas fa-search"></i> Find a Community
-            </h1>
+            <span className="page-name">
+              <span className="community-header-name">Find a Community</span>
+            </span>
+
             <div className="table-responsive">
               <table className="table">
                 <thead>

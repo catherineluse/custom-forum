@@ -20,28 +20,28 @@ class TopNavBar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
-                <i class="fas fa-search"></i> Find a Community
+              <NavLink to="/find" className="nav-link">
+                <i className="fas fa-search"></i> Find a Community
               </NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#myAlert" data-toggle="collapse">
-                <i class="fas fa-user-friends"></i> My Communities
+                <i className="fas fa-user-friends"></i> My Communities
               </a>
             </li>
 
             <li className="nav-item">
               <a className="nav-link" href="#myAlert" data-toggle="collapse">
-                <i class="fas fa-envelope"></i> Messages
+                <i className="fas fa-envelope"></i>
               </a>
             </li>
             <li className="nav-item">
               <NavLink to="/profile" className="nav-link">
-                <i class="fas fa-user"></i> Profile
+                <i className="fas fa-user"></i>
               </NavLink>
             </li>
             <li className="nav-item">
-              <button className="nav-link" onClick={handleSignout}>
+              <button className="nav-link btn-signout" onClick={handleSignout}>
                 Sign Out
               </button>
             </li>

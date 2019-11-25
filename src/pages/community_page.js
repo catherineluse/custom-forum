@@ -1,6 +1,9 @@
 import React from "react";
 import NewDiscussion from "../components/discussion_components/new_discussion";
 import ListOfDiscussions from "../components/community_components/list_of_discussions";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class CommunityPage extends React.Component {
   state = {
@@ -23,17 +26,125 @@ class CommunityPage extends React.Component {
     this.getCommunityData(communities, nameInUrl);
   };
 
+  showCommunityKeywords = keywords => {
+    if (keywords) {
+      return keywords.map(keyword => (
+        <span key={keyword} className="keyword">
+          {keyword}
+        </span>
+      ));
+    }
+    return "";
+  };
+
   render() {
     const { communityData } = this.state;
     return (
       <>
-        <h1>{communityData ? communityData["name"] : ""}</h1>
-        <p>{communityData ? communityData["description"] : ""}</p>
-        <p>{JSON.stringify(this.state.communityData)}</p>
-        <h2>Discussion</h2>
-        <NewDiscussion />
-        <button>+ New Discussion</button>
-        <ListOfDiscussions />
+        <div className="community-header">
+          <div className="container">
+            <span className="community-header-name">
+              {communityData ? communityData["name"] : ""}
+            </span>
+            <span className="community-url">
+              gennit.net/c/{communityData ? communityData["url"] : ""}
+            </span>
+            <p className="community-description">
+              {communityData ? communityData["description"] : ""}
+            </p>
+          </div>
+        </div>
+
+        <div className="container">
+          <Tabs
+            className="community-tabs"
+            defaultActiveKey="discussions"
+            id="uncontrolled-tab-example"
+          >
+            <Tab
+              eventKey="discussions"
+              title={
+                <span>
+                  <i className="fas fa-comments"></i> Discussions
+                </span>
+              }
+            >
+              <h2>Discussions</h2>
+              <NewDiscussion />
+              <button>+ New Discussion</button>
+              <ListOfDiscussions />
+            </Tab>
+            <Tab
+              eventKey="info"
+              title={
+                <span>
+                  <i className="fas fa-info-circle"></i> Info
+                </span>
+              }
+            >
+              <h3 className="header-within-tab">Topics</h3>
+              This community shows in searches for the following keywords:
+              <br />
+              <div className="community-keywords">
+                {communityData
+                  ? this.showCommunityKeywords(communityData["keywords"])
+                  : ""}
+              </div>
+              <h3 className="header-within-tab">Discussion Tags</h3>
+              You can add these tags to discussions:
+              <br />
+              <div className="community-keywords">
+                {communityData
+                  ? this.showCommunityKeywords(communityData["tags"])
+                  : ""}
+              </div>
+              <h3 className="header-within-tab">Creator</h3>
+              {communityData ? communityData["creator"] : ""}
+              <h3 className="header-within-tab">Created Date</h3>
+              {communityData ? communityData["created_date"] : ""}
+            </Tab>
+            <Tab
+              eventKey="calendar"
+              title={
+                <span>
+                  <i className="fas fa-calendar-alt"></i> Calendar
+                </span>
+              }
+            >
+              Calendar
+            </Tab>
+            <Tab
+              eventKey="rules"
+              title={
+                <span>
+                  <i className="fas fa-gavel"></i> Rules
+                </span>
+              }
+            >
+              Rules
+            </Tab>
+            <Tab
+              eventKey="wiki"
+              title={
+                <span className="community-tab-name">
+                  <i className="fas fa-book-open"></i> Wiki
+                </span>
+              }
+            >
+              Wiki
+            </Tab>
+            <Tab
+              eventKey="settings"
+              title={
+                <span className="community-tab-name">
+                  <i className="fas fa-cog"></i> Settings
+                </span>
+              }
+            >
+              Settings
+            </Tab>
+          </Tabs>
+        </div>
       </>
     );
   }
