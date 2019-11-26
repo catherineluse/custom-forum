@@ -45,9 +45,7 @@ class AdminCommunityList extends Component {
       <div>
         <div className="card">
           <div className="card-body">
-            <span className="page-name">
-              <span className="community-header-name">Find a Community</span>
-            </span>
+            <h1 className="community-header-name">Find a Community</h1>
 
             <div className="table-responsive">
               <table className="table">

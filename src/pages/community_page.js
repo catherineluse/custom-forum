@@ -46,9 +46,7 @@ class CommunityPage extends React.Component {
             <span className="community-header-name">
               {communityData ? communityData["name"] : ""}
             </span>
-            <span className="community-url">
-              gennit.net/c/{communityData ? communityData["url"] : ""}
-            </span>
+
             <p className="community-description">
               {communityData ? communityData["description"] : ""}
             </p>
@@ -65,11 +63,10 @@ class CommunityPage extends React.Component {
               eventKey="discussions"
               title={
                 <span>
-                  <i className="fas fa-comments"></i> Discussions
+                  <i className="fas fa-comments"></i>
                 </span>
               }
             >
-              <h2>Discussions</h2>
               <NewDiscussion />
               <button>+ New Discussion</button>
               <ListOfDiscussions />
@@ -78,10 +75,13 @@ class CommunityPage extends React.Component {
               eventKey="info"
               title={
                 <span>
-                  <i className="fas fa-info-circle"></i> Info
+                  <i className="fas fa-info-circle"></i>
                 </span>
               }
             >
+              <p className="community-url">
+                gennit.net/c/{communityData ? communityData["url"] : ""}
+              </p>
               <h3 className="header-within-tab">Topics</h3>
               This community shows in searches for the following keywords:
               <br />
@@ -107,7 +107,7 @@ class CommunityPage extends React.Component {
               eventKey="calendar"
               title={
                 <span>
-                  <i className="fas fa-calendar-alt"></i> Calendar
+                  <i className="fas fa-calendar-alt"></i>
                 </span>
               }
             >
@@ -117,7 +117,7 @@ class CommunityPage extends React.Component {
               eventKey="rules"
               title={
                 <span>
-                  <i className="fas fa-gavel"></i> Rules
+                  <i className="fas fa-gavel"></i>
                 </span>
               }
             >
@@ -127,7 +127,7 @@ class CommunityPage extends React.Component {
               eventKey="wiki"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-book-open"></i> Wiki
+                  <i className="fas fa-book-open"></i>
                 </span>
               }
             >
@@ -137,7 +137,7 @@ class CommunityPage extends React.Component {
               eventKey="settings"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-cog"></i> Settings
+                  <i className="fas fa-cog"></i>
                 </span>
               }
             >

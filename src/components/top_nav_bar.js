@@ -41,9 +41,14 @@ class TopNavBar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn-signout" onClick={handleSignout}>
-                Sign Out
-              </button>
+              <div
+                className="nav-link"
+                onClick={handleSignout}
+                href="/"
+                data-toggle="collapse"
+              >
+                <i className="fas fa-sign-out-alt"></i>
+              </div>
             </li>
           </ul>
         </div>
