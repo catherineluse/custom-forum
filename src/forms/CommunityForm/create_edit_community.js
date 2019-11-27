@@ -40,6 +40,13 @@ const removeEmptyStringsFromDTO = payload => {
   return input;
 };
 
+const addDateToDTO = input => {
+  return {
+    ...input,
+    created_date: new Date(),
+  };
+};
+
 const urlIsTaken = url => {
   console.log("this.props.communities", this.props.communities);
   const isTaken =
@@ -62,13 +69,15 @@ const levels = [
 ];
 
 const formikWrapper = withFormik({
-  mapPropsToValues: () => ({
+  enableReinitialize: true,
+  mapPropsToValues: ({ creator }) => ({
     name: "",
     url: "",
     description: "",
     moderation_level: 1,
     tags: [],
     keywords: [],
+    creator: creator || "",
   }),
   handleSubmit: async (values, { setSubmitting }) => {
     const formData = {
@@ -76,6 +85,7 @@ const formikWrapper = withFormik({
     };
     let input = removeEmptyStringsFromDTO(formData);
     input = turnModerationLevelIntoNumber(input);
+    input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(createCommunity, { input }))
       .then(response => {
@@ -102,127 +112,129 @@ const formikWrapper = withFormik({
       .min(2, "Must have at least two characters.")
       .max(70, "Can have a maximum of 70 characters.")
       .required("Please enter a unique name with no spaces."),
-    description: Yup.string().max(
-      10000,
-      "Can have a maximum of 70 characters."
-    ),
+    description: Yup.string().max(140, "Can have a maximum of 140 characters."),
     moderation_level: Yup.string().required("A moderation level is required."),
     tags: Yup.array().of(Yup.string()),
     keywords: Yup.array().of(Yup.string()),
-    creator: Yup.string().required("A user is required."),
   }),
 });
-const CommunityForm = props => {
+class CommunityForm extends React.Component {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
-  const {
-    values,
-    setFieldValue,
-    setFieldTouched,
-    isSubmitting,
-    errors,
-    touched,
-    creator,
-  } = props;
 
-  return (
-    <div className="card shadow">
-      <div className="card-body">
-        <Form>
-          <h1 className="gradient-text">+ Create a Community</h1>
+  render() {
+    const {
+      values,
+      setFieldValue,
+      setFieldTouched,
+      isSubmitting,
+      errors,
+      touched,
+      creator,
+    } = this.props;
 
-          <div className="form-group">
-            <label htmlFor="name">Community Name</label>
-            <small className="form-text text-muted">
-              This name can be changed later.
-            </small>
-            <Field
-              name="name"
-              type="text"
-              placeholder="Enter community name"
-              className="form-control"
-            />
-            {errors.name && touched.name ? <div>{errors.name}</div> : null}
-            <ErrorMessage component={Error} name="communityNameError" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="url">Name in URL</label>
-            <small className="form-text text-muted">
-              This name is permanent and must be unique. This community will be
-              available at:
-              <div className="community-url">
-                gennit.net/c/[this unique name]
-              </div>
-            </small>
-            <Field
-              name="url"
-              type="text"
-              placeholder="Enter a unique name with no spaces"
-              className="form-control"
-            />
-            {errors.url && touched.url ? <div>{errors.url}</div> : null}
-            <ErrorMessage component={Error} name="communityUrlError" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="communityDescription">Description</label>
-            <Field
-              component="textarea"
-              rows="3"
-              type="description"
-              name="description"
-              placeholder="Why should people join this community?"
-              className="form-control"
-            />
-            <ErrorMessage component={Error} name="communityDescriptionError" />
-          </div>
-          <h2>Advanced Options</h2>
+    return (
+      <div className="card shadow">
+        <div className="card-body">
+          <Form>
+            <h1 className="gradient-text">+ Create a Community</h1>
 
-          <div className="form-group">
-            <label>Moderation Level</label>
-            <ModerationLevelDropdown
-              id="moderationLevelDropdown"
-              value={values.moderation_level}
+            <div className="form-group">
+              <label htmlFor="name">Community Name</label>
+              <small className="form-text text-muted">
+                This name can be changed later.
+              </small>
+              <Field
+                name="name"
+                type="text"
+                placeholder="Enter community name"
+                className="form-control"
+              />
+              {errors.name && touched.name ? <div>{errors.name}</div> : null}
+              <ErrorMessage component={Error} name="communityNameError" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="url">Name in URL</label>
+              <small className="form-text text-muted">
+                This name is permanent and must be unique. This community will
+                be available at:
+                <div className="community-url">
+                  gennit.net/c/[this unique name]
+                </div>
+              </small>
+              <Field
+                name="url"
+                type="text"
+                placeholder="Enter a unique name with no spaces"
+                className="form-control"
+              />
+              {errors.url && touched.url ? <div>{errors.url}</div> : null}
+              <ErrorMessage component={Error} name="communityUrlError" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="communityDescription">Description</label>
+              <Field
+                component="textarea"
+                rows="3"
+                type="description"
+                name="description"
+                placeholder="Why should people join this community?"
+                className="form-control"
+              />
+              <ErrorMessage
+                component={Error}
+                name="communityDescriptionError"
+              />
+            </div>
+            <h2>Advanced Options</h2>
+
+            <div className="form-group">
+              <label>Moderation Level</label>
+              <ModerationLevelDropdown
+                id="moderationLevelDropdown"
+                value={values.moderation_level}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+                options={levels}
+              />
+              <ErrorMessage
+                component={Error}
+                name="communityModerationLevelError"
+              />
+            </div>
+            <CommunityKeywords
+              id="communityKeywordInput"
+              value={values.keywords}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
-              options={levels}
             />
-            <ErrorMessage
-              component={Error}
-              name="communityModerationLevelError"
+            <DiscussionTags
+              id="discussionTagsInput"
+              value={values.tags}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
             />
-          </div>
-          <CommunityKeywords
-            id="communityKeywordInput"
-            value={values.keywords}
-            onChange={setFieldValue}
-            onBlur={setFieldTouched}
-          />
-          <DiscussionTags
-            id="discussionTagsInput"
-            value={values.tags}
-            onChange={setFieldValue}
-            onBlur={setFieldTouched}
-          />
-          <CommunityRules
-            id="communityRules"
-            value={values.rules}
-            onChange={setFieldValue}
-            onBlur={setFieldTouched}
-          />
+            <CommunityRules
+              id="communityRules"
+              value={values.rules}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+            />
 
-          <span>
-            <button
-              type="submit"
-              className="form-submit"
-              disabled={isSubmitting}
-            >
-              Submit
-            </button>
-          </span>
-        </Form>
+            <span>
+              <button
+                type="submit"
+                className="form-submit"
+                disabled={isSubmitting}
+              >
+                Submit
+              </button>
+            </span>
+          </Form>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const handleUpdateCommunity = async () => {
   const { communities, id, note } = this.state;

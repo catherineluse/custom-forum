@@ -5,12 +5,12 @@ type Community @model {
   url: String!
   name: String!
   description: String
-  creator: ID
-  created_date: AWSDate
+  creator: String!
+  created_date: String!
   rules: [Rule]
   locations: [String]
   hidden: Boolean
-  hidden_date: AWSDate
+  hidden_date: String
   sitewide_reasons_for_being_hidden: [String]
   keywords: [String]
   tags: [String]

@@ -46,7 +46,9 @@ class CommunityPage extends React.Component {
             <span className="community-header-name">
               {communityData ? communityData["name"] : ""}
             </span>
-
+            <p className="community-url">
+              gennit.net/c/{communityData ? communityData["url"] : ""}
+            </p>
             <p className="community-description">
               {communityData ? communityData["description"] : ""}
             </p>
@@ -79,9 +81,6 @@ class CommunityPage extends React.Component {
                 </span>
               }
             >
-              <p className="community-url">
-                gennit.net/c/{communityData ? communityData["url"] : ""}
-              </p>
               <h3 className="header-within-tab">Topics</h3>
               This community shows in searches for the following keywords:
               <br />

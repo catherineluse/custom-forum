@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Auth, Hub } from "aws-amplify";
 import { API, graphqlOperation } from "aws-amplify";
 import { listCommunitys } from "./graphql/queries";
@@ -37,7 +36,7 @@ const theme = createMuiTheme({
 
 class App extends Component {
   state = {
-    user: null,
+    username: "",
     communities: [],
   };
 
@@ -82,8 +81,11 @@ class App extends Component {
   };
 
   getUserData = async () => {
-    const user = Auth.currentAuthenticatedUser();
-    user ? this.setState({ user }) : this.setState({ user: null });
+    const user = await Auth.currentAuthenticatedUser();
+
+    if (user) {
+      this.setState({ username: user.username });
+    }
   };
 
   onHubCapsule = capsule => {
@@ -114,16 +116,16 @@ class App extends Component {
 
   render() {
     const { communities } = this.state;
-    const { user } = this.state;
+    const { username } = this.state;
 
-    return !user ? (
+    return !username ? (
       <Authenticator />
     ) : (
       <div>
         <ThemeProvider theme={theme}>
           <Router>
             <>
-              <TopNavBar user={user} handleSignout={this.handleSignout} />
+              <TopNavBar user={username} handleSignout={this.handleSignout} />
 
               <div className="app-container">
                 <Route
@@ -133,7 +135,7 @@ class App extends Component {
                     return (
                       <div className="container">
                         <CommunityFormWrapped
-                          creator={user}
+                          creator={username}
                           communities={communities}
                         />
                       </div>
@@ -156,7 +158,7 @@ class App extends Component {
                   component={() => {
                     return (
                       <div className="container">
-                        <ProfilePage user={user} />
+                        <ProfilePage user={username} />
                       </div>
                     );
                   }}
