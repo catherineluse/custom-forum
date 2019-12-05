@@ -77,7 +77,9 @@ class App extends Component {
   getCommunities = async () => {
     const result = await API.graphql(graphqlOperation(listCommunitys));
     console.log("result of listCommunitys API call", result);
-    this.setState({ communities: result.data.listCommunitys.items });
+    if (result) {
+      this.setState({ communities: result.data.listCommunitys.items });
+    }
   };
 
   getUserData = async () => {
@@ -85,6 +87,10 @@ class App extends Component {
 
     if (user) {
       this.setState({ username: user.username });
+    } else {
+      user.catch(() => {
+        console.log("Could not get user date.");
+      });
     }
   };
 

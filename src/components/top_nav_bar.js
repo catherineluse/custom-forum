@@ -15,18 +15,18 @@ class TopNavBar extends Component {
           <ul className="navbar-nav"></ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                About
-              </a>
+              <NavLink to="/" className="nav-link">
+                <i className="fas fa-plus"></i> Create
+              </NavLink>
             </li>
             <li className="nav-item">
               <NavLink to="/find" className="nav-link">
-                <i className="fas fa-search"></i> Find a Community
+                <i className="fas fa-search"></i> Find
               </NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#myAlert" data-toggle="collapse">
-                <i className="fas fa-user-friends"></i> My Communities
+                <i className="fas fa-star"></i> Starred Communities
               </a>
             </li>
 

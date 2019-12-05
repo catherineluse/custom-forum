@@ -136,7 +136,7 @@ class CommunityForm extends React.Component {
       <div className="card shadow">
         <div className="card-body">
           <Form>
-            <h1 className="gradient-text">+ Create a Community</h1>
+            <h1>Create a Community</h1>
 
             <div className="form-group">
               <label htmlFor="name">Community Name</label>

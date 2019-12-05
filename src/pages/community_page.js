@@ -43,9 +43,7 @@ class CommunityPage extends React.Component {
       <>
         <div className="community-header">
           <div className="container">
-            <span className="community-header-name">
-              {communityData ? communityData["name"] : ""}
-            </span>
+            <h1>{communityData ? communityData["name"] : ""}</h1>
             <p className="community-url">
               gennit.net/c/{communityData ? communityData["url"] : ""}
             </p>
@@ -70,7 +68,7 @@ class CommunityPage extends React.Component {
               }
             >
               <NewDiscussion />
-              <button>+ New Discussion</button>
+              <button className="btn-rule">+ New Discussion</button>
               <ListOfDiscussions />
             </Tab>
             <Tab
