@@ -24,6 +24,12 @@ const addDateToDTO = input => {
   };
 };
 
+const onKeyDown = keyEvent => {
+  if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
+    keyEvent.preventDefault();
+  }
+};
+
 const formikWrapper = withFormik({
   enableReinitialize: true,
   mapPropsToValues: ({ creator, tags, communityUrl }) => ({
@@ -75,7 +81,7 @@ class DiscussionForm extends React.Component {
     return (
       <div className="card shadow">
         <div className="card-body">
-          <Form>
+          <Form onKeyDown={onKeyDown}>
             <h1>Create a Discussion</h1>
 
             <div className="form-group">

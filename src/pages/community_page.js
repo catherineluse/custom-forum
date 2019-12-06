@@ -55,7 +55,7 @@ class CommunityPage extends React.Component {
 
         <div className="container">
           <Tabs
-            className="community-tabs"
+            className="community-tabs justify-content-center"
             defaultActiveKey="discussions"
             id="uncontrolled-tab-example"
           >
