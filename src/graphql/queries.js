@@ -23,8 +23,8 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     flagged_comments {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -40,14 +40,11 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     }
     flagged_discussions {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -55,7 +52,7 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     moderation_level
     number_of_users
@@ -89,8 +86,8 @@ export const listCommunitys = `query ListCommunitys(
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -106,10 +103,11 @@ export const listCommunitys = `query ListCommunitys(
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -117,7 +115,7 @@ export const listCommunitys = `query ListCommunitys(
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -200,8 +198,8 @@ export const getBan = `query GetBan($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -217,10 +215,11 @@ export const getBan = `query GetBan($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -228,7 +227,7 @@ export const getBan = `query GetBan($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -274,8 +273,8 @@ export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
     content
-    author
-    thread_id
+    creator
+    discussionId
     created_date
     hidden
     hidden_date
@@ -300,8 +299,8 @@ export const listComments = `query ListComments(
     items {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -322,36 +321,11 @@ export const listComments = `query ListComments(
 export const getDiscussion = `query GetDiscussion($id: ID!) {
   getDiscussion(id: $id) {
     id
-    headline
-    creator {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    created_date
-    date_last_edited
-    description
+    title
+    creator
+    communityUrl
+    createdDate
+    content
     locked
     hidden
     sitewide_reasons_for_being_hidden
@@ -359,7 +333,7 @@ export const getDiscussion = `query GetDiscussion($id: ID!) {
     hidden_date
     upvotes
     downvotes
-    keywords
+    tags
   }
 }
 `;
@@ -371,14 +345,11 @@ export const listDiscussions = `query ListDiscussions(
   listDiscussions(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -386,7 +357,7 @@ export const listDiscussions = `query ListDiscussions(
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     nextToken
   }
@@ -421,8 +392,8 @@ export const getEvent = `query GetEvent($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -438,10 +409,11 @@ export const getEvent = `query GetEvent($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -449,7 +421,7 @@ export const getEvent = `query GetEvent($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -583,8 +555,8 @@ export const getReport = `query GetReport($id: ID!) {
     comment {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -600,14 +572,11 @@ export const getReport = `query GetReport($id: ID!) {
     }
     discussion {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -615,7 +584,7 @@ export const getReport = `query GetReport($id: ID!) {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     message {
       id
@@ -649,8 +618,8 @@ export const getReport = `query GetReport($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -666,10 +635,11 @@ export const getReport = `query GetReport($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -677,7 +647,7 @@ export const getReport = `query GetReport($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -727,8 +697,8 @@ export const listReports = `query ListReports(
       comment {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -744,10 +714,11 @@ export const listReports = `query ListReports(
       }
       discussion {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -755,7 +726,7 @@ export const listReports = `query ListReports(
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       message {
         id
@@ -1024,8 +995,8 @@ export const getProfile = `query GetProfile($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1041,10 +1012,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1052,7 +1024,7 @@ export const getProfile = `query GetProfile($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1078,8 +1050,8 @@ export const getProfile = `query GetProfile($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1095,10 +1067,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1106,7 +1079,7 @@ export const getProfile = `query GetProfile($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1132,8 +1105,8 @@ export const getProfile = `query GetProfile($id: ID!) {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1149,10 +1122,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1160,7 +1134,7 @@ export const getProfile = `query GetProfile($id: ID!) {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users

@@ -23,8 +23,8 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     flagged_comments {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -40,14 +40,11 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     }
     flagged_discussions {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -55,7 +52,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     moderation_level
     number_of_users
@@ -84,8 +81,8 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     flagged_comments {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -101,14 +98,11 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     }
     flagged_discussions {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -116,7 +110,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     moderation_level
     number_of_users
@@ -145,8 +139,8 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     flagged_comments {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -162,14 +156,11 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     }
     flagged_discussions {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -177,7 +168,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     moderation_level
     number_of_users
@@ -259,8 +250,8 @@ export const onCreateBan = `subscription OnCreateBan {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -276,10 +267,11 @@ export const onCreateBan = `subscription OnCreateBan {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -287,7 +279,7 @@ export const onCreateBan = `subscription OnCreateBan {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -348,8 +340,8 @@ export const onUpdateBan = `subscription OnUpdateBan {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -365,10 +357,11 @@ export const onUpdateBan = `subscription OnUpdateBan {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -376,7 +369,7 @@ export const onUpdateBan = `subscription OnUpdateBan {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -437,8 +430,8 @@ export const onDeleteBan = `subscription OnDeleteBan {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -454,10 +447,11 @@ export const onDeleteBan = `subscription OnDeleteBan {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -465,7 +459,7 @@ export const onDeleteBan = `subscription OnDeleteBan {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -479,8 +473,8 @@ export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
     content
-    author
-    thread_id
+    creator
+    discussionId
     created_date
     hidden
     hidden_date
@@ -500,8 +494,8 @@ export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
     content
-    author
-    thread_id
+    creator
+    discussionId
     created_date
     hidden
     hidden_date
@@ -521,8 +515,8 @@ export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
     content
-    author
-    thread_id
+    creator
+    discussionId
     created_date
     hidden
     hidden_date
@@ -541,36 +535,11 @@ export const onDeleteComment = `subscription OnDeleteComment {
 export const onCreateDiscussion = `subscription OnCreateDiscussion {
   onCreateDiscussion {
     id
-    headline
-    creator {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    created_date
-    date_last_edited
-    description
+    title
+    creator
+    communityUrl
+    createdDate
+    content
     locked
     hidden
     sitewide_reasons_for_being_hidden
@@ -578,43 +547,18 @@ export const onCreateDiscussion = `subscription OnCreateDiscussion {
     hidden_date
     upvotes
     downvotes
-    keywords
+    tags
   }
 }
 `;
 export const onUpdateDiscussion = `subscription OnUpdateDiscussion {
   onUpdateDiscussion {
     id
-    headline
-    creator {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    created_date
-    date_last_edited
-    description
+    title
+    creator
+    communityUrl
+    createdDate
+    content
     locked
     hidden
     sitewide_reasons_for_being_hidden
@@ -622,43 +566,18 @@ export const onUpdateDiscussion = `subscription OnUpdateDiscussion {
     hidden_date
     upvotes
     downvotes
-    keywords
+    tags
   }
 }
 `;
 export const onDeleteDiscussion = `subscription OnDeleteDiscussion {
   onDeleteDiscussion {
     id
-    headline
-    creator {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    created_date
-    date_last_edited
-    description
+    title
+    creator
+    communityUrl
+    createdDate
+    content
     locked
     hidden
     sitewide_reasons_for_being_hidden
@@ -666,7 +585,7 @@ export const onDeleteDiscussion = `subscription OnDeleteDiscussion {
     hidden_date
     upvotes
     downvotes
-    keywords
+    tags
   }
 }
 `;
@@ -699,8 +618,8 @@ export const onCreateEvent = `subscription OnCreateEvent {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -716,10 +635,11 @@ export const onCreateEvent = `subscription OnCreateEvent {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -727,7 +647,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -790,8 +710,8 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -807,10 +727,11 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -818,7 +739,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -881,8 +802,8 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -898,10 +819,11 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -909,7 +831,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1055,8 +977,8 @@ export const onCreateReport = `subscription OnCreateReport {
     comment {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -1072,14 +994,11 @@ export const onCreateReport = `subscription OnCreateReport {
     }
     discussion {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -1087,7 +1006,7 @@ export const onCreateReport = `subscription OnCreateReport {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     message {
       id
@@ -1121,8 +1040,8 @@ export const onCreateReport = `subscription OnCreateReport {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1138,10 +1057,11 @@ export const onCreateReport = `subscription OnCreateReport {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1149,7 +1069,7 @@ export const onCreateReport = `subscription OnCreateReport {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1194,8 +1114,8 @@ export const onUpdateReport = `subscription OnUpdateReport {
     comment {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -1211,14 +1131,11 @@ export const onUpdateReport = `subscription OnUpdateReport {
     }
     discussion {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -1226,7 +1143,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     message {
       id
@@ -1260,8 +1177,8 @@ export const onUpdateReport = `subscription OnUpdateReport {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1277,10 +1194,11 @@ export const onUpdateReport = `subscription OnUpdateReport {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1288,7 +1206,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1333,8 +1251,8 @@ export const onDeleteReport = `subscription OnDeleteReport {
     comment {
       id
       content
-      author
-      thread_id
+      creator
+      discussionId
       created_date
       hidden
       hidden_date
@@ -1350,14 +1268,11 @@ export const onDeleteReport = `subscription OnDeleteReport {
     }
     discussion {
       id
-      headline
-      creator {
-        id
-        email
-      }
-      created_date
-      date_last_edited
-      description
+      title
+      creator
+      communityUrl
+      createdDate
+      content
       locked
       hidden
       sitewide_reasons_for_being_hidden
@@ -1365,7 +1280,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       hidden_date
       upvotes
       downvotes
-      keywords
+      tags
     }
     message {
       id
@@ -1399,8 +1314,8 @@ export const onDeleteReport = `subscription OnDeleteReport {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1416,10 +1331,11 @@ export const onDeleteReport = `subscription OnDeleteReport {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1427,7 +1343,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1934,8 +1850,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -1951,10 +1867,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -1962,7 +1879,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -1988,8 +1905,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2005,10 +1922,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2016,7 +1934,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2042,8 +1960,8 @@ export const onCreateProfile = `subscription OnCreateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2059,10 +1977,11 @@ export const onCreateProfile = `subscription OnCreateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2070,7 +1989,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2136,8 +2055,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2153,10 +2072,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2164,7 +2084,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2190,8 +2110,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2207,10 +2127,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2218,7 +2139,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2244,8 +2165,8 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2261,10 +2182,11 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2272,7 +2194,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2338,8 +2260,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2355,10 +2277,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2366,7 +2289,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2392,8 +2315,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2409,10 +2332,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2420,7 +2344,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users
@@ -2446,8 +2370,8 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       flagged_comments {
         id
         content
-        author
-        thread_id
+        creator
+        discussionId
         created_date
         hidden
         hidden_date
@@ -2463,10 +2387,11 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       }
       flagged_discussions {
         id
-        headline
-        created_date
-        date_last_edited
-        description
+        title
+        creator
+        communityUrl
+        createdDate
+        content
         locked
         hidden
         sitewide_reasons_for_being_hidden
@@ -2474,7 +2399,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
         hidden_date
         upvotes
         downvotes
-        keywords
+        tags
       }
       moderation_level
       number_of_users

@@ -1,5 +1,5 @@
 import React from "react";
-import NewDiscussion from "../components/discussion_components/new_discussion";
+import DiscussionFormWrapped from "../forms/DiscussionForm/create_edit_discussion";
 import ListOfDiscussions from "../components/community_components/list_of_discussions";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
@@ -20,12 +20,6 @@ class CommunityPage extends React.Component {
     console.log("community data is ", communityData);
   };
 
-  componentDidMount = () => {
-    const { communities, nameInUrl } = this.props;
-    console.log("component mount ran");
-    this.getCommunityData(communities, nameInUrl);
-  };
-
   showCommunityKeywords = keywords => {
     if (keywords) {
       return keywords.map(keyword => (
@@ -35,6 +29,12 @@ class CommunityPage extends React.Component {
       ));
     }
     return "";
+  };
+
+  componentDidMount = () => {
+    const { communities, nameInUrl } = this.props;
+    console.log("component mount ran");
+    this.getCommunityData(communities, nameInUrl);
   };
 
   render() {
@@ -63,19 +63,22 @@ class CommunityPage extends React.Component {
               eventKey="discussions"
               title={
                 <span>
-                  <i className="fas fa-comments"></i>
+                  <i className="fas fa-comments"></i> Discussions
                 </span>
               }
             >
-              <NewDiscussion />
-              <button className="btn-rule">+ New Discussion</button>
+              <DiscussionFormWrapped
+                creator={`${communityData ? communityData["creator"] : ""}`}
+                tags={`${communityData ? communityData["tags"] : []}`}
+                communityUrl={`${communityData ? communityData["url"] : ""}`}
+              />
               <ListOfDiscussions />
             </Tab>
             <Tab
               eventKey="info"
               title={
                 <span>
-                  <i className="fas fa-info-circle"></i>
+                  <i className="fas fa-info-circle"></i> Basic Info
                 </span>
               }
             >
@@ -104,7 +107,7 @@ class CommunityPage extends React.Component {
               eventKey="calendar"
               title={
                 <span>
-                  <i className="fas fa-calendar-alt"></i>
+                  <i className="fas fa-calendar-alt"></i> Calendar
                 </span>
               }
             >
@@ -114,7 +117,7 @@ class CommunityPage extends React.Component {
               eventKey="rules"
               title={
                 <span>
-                  <i className="fas fa-gavel"></i>
+                  <i className="fas fa-gavel"></i> Rules
                 </span>
               }
             >
@@ -124,7 +127,7 @@ class CommunityPage extends React.Component {
               eventKey="wiki"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-book-open"></i>
+                  <i className="fas fa-book-open"></i> Wiki
                 </span>
               }
             >
@@ -134,7 +137,7 @@ class CommunityPage extends React.Component {
               eventKey="settings"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-cog"></i>
+                  <i className="fas fa-cog"></i> Settings
                 </span>
               }
             >
