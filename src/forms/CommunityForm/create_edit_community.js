@@ -47,12 +47,12 @@ const addDateToDTO = input => {
   };
 };
 
-const urlIsTaken = url => {
-  console.log("this.props.communities", this.props.communities);
+const urlIsTaken = (url, communities) => {
   const isTaken =
-    this.props.communities.findIndex(community => community.url === url) > -1;
+    communities.findIndex(community => community.url === url) > -1;
   return isTaken ? true : false;
 };
+
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
   payload.moderation_level = payload.moderation_level.value | 1;
@@ -130,6 +130,7 @@ class CommunityForm extends React.Component {
       errors,
       touched,
       creator,
+      handleSubmit,
     } = this.props;
 
     return (
@@ -222,7 +223,8 @@ class CommunityForm extends React.Component {
 
             <span>
               <button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
                 className="form-submit"
                 disabled={isSubmitting}
               >

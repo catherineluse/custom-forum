@@ -60,13 +60,13 @@ class DiscussionTags extends React.Component {
     this.tagInput.value = null;
   };
 
-  inputKeyDown = e => {
+  inputKeyDown = async e => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
       if (this.tagExists(val)) {
         return;
       }
-      this.addTagToState(val);
+      await this.addTagToState(val);
       this.resetInput();
       this.handleChange();
     } else if (e.key === "Backspace" && !val) {

@@ -77,7 +77,9 @@ class AdminCommunityList extends Component {
                       </td>
                       <td>{this.mapModLevelToWord(item.moderation_level)}</td>
                       <td>
-                        <NavLink to={`/c/${item.url}`}>Visit community</NavLink>
+                        <NavLink className="table-link" to={`/c/${item.url}`}>
+                          Visit community
+                        </NavLink>
                       </td>
                       <td>
                         <button

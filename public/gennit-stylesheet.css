@@ -68,8 +68,8 @@ table {
 }
 
 th {
-  color: forestgreen;
-  background-color: #d0ebca;
+  color: white;
+  background-color: black;
 }
 
 .page-name {
@@ -105,17 +105,25 @@ tr:hover {
 }
 
 tr:hover .community-description {
-  color: palegreen;
+  color: lightgray;
 }
 
 tr:hover .community-url {
-  color: palegreen;
+  color: lightgray;
 }
 
 tr:hover .delete-button {
-  background-color: forestgreen;
+  background-color: black;
   color: white;
   cursor: pointer;
+}
+
+tr:hover .table-link {
+  color: palegreen;
+}
+
+.table-link {
+  color: green;
 }
 
 .btn {

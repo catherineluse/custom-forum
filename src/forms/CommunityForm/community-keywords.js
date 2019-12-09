@@ -60,15 +60,15 @@ class CommunityKeywords extends React.Component {
     this.keywordInput.value = null;
   };
 
-  inputKeyDown = e => {
+  inputKeyDown = async e => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
       if (this.keywordExists(val)) {
         return;
       }
-      this.addKeywordToState(val);
-      this.handleChange();
+      await this.addKeywordToState(val);
       this.resetInput();
+      this.handleChange();
     } else if (e.key === "Backspace" && !val) {
       this.removeLastKeyword();
     }
