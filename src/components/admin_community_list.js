@@ -52,7 +52,6 @@ class AdminCommunityList extends Component {
                 <thead>
                   <tr>
                     <th scope="col">Community Name</th>
-                    <th scope="col">Moderation Level</th>
                     <th scope="col">Link</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -75,7 +74,6 @@ class AdminCommunityList extends Component {
                           {this.showCommunityKeywords(item.keywords)}
                         </div>
                       </td>
-                      <td>{this.mapModLevelToWord(item.moderation_level)}</td>
                       <td>
                         <NavLink className="table-link" to={`/c/${item.url}`}>
                           Visit community

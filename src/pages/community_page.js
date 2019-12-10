@@ -47,9 +47,6 @@ class CommunityPage extends React.Component {
             <p className="community-url">
               gennit.net/c/{communityData ? communityData["url"] : ""}
             </p>
-            <p className="community-description">
-              {communityData ? communityData["description"] : ""}
-            </p>
           </div>
         </div>
 
@@ -67,18 +64,14 @@ class CommunityPage extends React.Component {
                 </span>
               }
             >
-              <DiscussionFormWrapped
-                creator={`${communityData ? communityData["creator"] : ""}`}
-                tags={`${communityData ? communityData["tags"] : []}`}
-                communityUrl={`${communityData ? communityData["url"] : ""}`}
-              />
-              <ListOfDiscussions />
+              <DiscussionFormWrapped communityData={communityData} />
+              <ListOfDiscussions communityData={communityData} />
             </Tab>
             <Tab
               eventKey="info"
               title={
                 <span>
-                  <i className="fas fa-info-circle"></i> Basic Info
+                  <i className="fas fa-chart-bar"></i> Data
                 </span>
               }
             >

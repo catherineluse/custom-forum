@@ -6,6 +6,7 @@ import {
   onCreateDiscussion,
   onDeleteDiscussion,
 } from "../../graphql/subscriptions";
+import { deleteDiscussion } from "../../graphql/mutations";
 
 // type Discussion @model {
 //   id: ID
@@ -29,12 +30,39 @@ class ListOfDiscussions extends Component {
     discussions: [],
   };
 
-  getDiscussions = async () => {
+  getDiscussions = async discussions => {
+    const { communityData } = this.props;
+    console.log("community data is ", communityData);
+
+    // This will be updated to only pull data for one community.
+    // The way this is written now, all discussions for the entire
+    // site are being loaded.
     const result = await API.graphql(graphqlOperation(listDiscussions));
     console.log("result of listDiscussions API call", result);
-    if (result) {
-      this.setState({ discussions: result.data.listDiscussions.items });
+    this.setState({ discussions: result.data.listDiscussions.items });
+  };
+
+  handleDeleteDiscussion = async discussionId => {
+    const input = {
+      id: discussionId,
+    };
+    await API.graphql(graphqlOperation(deleteDiscussion, { input }));
+  };
+
+  getDateOfDiscussion = discussionDate => {
+    return discussionDate.substring(0, 10);
+  };
+
+  showDiscussionTags = tags => {
+    if (tags) {
+      console.log("the tags are ", tags);
+      return tags.map(tag => (
+        <span key={tag} className="keyword">
+          {tag}
+        </span>
+      ));
     }
+    return "";
   };
 
   componentDidMount = async () => {
@@ -72,21 +100,57 @@ class ListOfDiscussions extends Component {
   mapDiscussionsToListView = discussions => {
     return discussions.map(discussion => {
       return (
-        <div>
-          <p>The title is {discussion.title}</p>
-          <p>The creator is {discussion.creator}</p>
-          <p>The createdDate is {discussion.createdDate}</p>
-        </div>
+        <tr key={discussion.id}>
+          <td className="discussion-title">{discussion.title}</td>
+          <td>{discussion.creator}</td>
+          <td>{this.getDateOfDiscussion(discussion.createdDate)}</td>
+          <td className="community-keywords">
+            {this.showDiscussionTags(discussion.tags)}
+          </td>
+          <td>
+            <button
+              onClick={() => this.handleDeleteDiscussion(discussion.id)}
+              className="delete-button"
+            >
+              <span>&times;</span>
+            </button>
+          </td>
+        </tr>
       );
     });
   };
+  filterDiscussions = communityData => {
+    const discussions = this.state.discussions;
+    const filteredDiscussions = discussions.filter(discussion => {
+      console.log("discussion.communityUrl is ", discussion.communityUrl);
+      console.log("communityData.url is ", communityData.url);
+      return discussion.communityUrl === communityData.url;
+    });
+    console.log("filtered discussions are ", filteredDiscussions);
+    return this.mapDiscussionsToListView(filteredDiscussions);
+  };
 
   render() {
-    const { discussions } = this.state;
+    const { communityData } = this.props;
 
-    return discussions
-      ? this.mapDiscussionsToListView(discussions)
-      : "There are no discussions yet.";
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Creator</th>
+            <th>Created Date</th>
+            <th>Tags</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {communityData && this.state.discussionData
+            ? this.filterDiscussions(communityData)
+            : "There are no discussions yet."}
+        </tbody>
+      </table>
+    );
   }
 }
 

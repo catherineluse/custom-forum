@@ -7,6 +7,7 @@ class TopNavBar extends Component {
     return (
       <nav className="navbar navbar-expand-md ">
         <div className="navbar-brand abs">
+          <i className="fas fa-bars menu-toggle"></i>
           <i className="fas fa-seedling"></i> Gennit
           <small> a site for meetups and discussions</small>
         </div>

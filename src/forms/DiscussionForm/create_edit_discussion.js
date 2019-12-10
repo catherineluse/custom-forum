@@ -17,6 +17,14 @@ const removeEmptyStringsFromDTO = payload => {
   return input;
 };
 
+const mapTagObjectsToStringsForDTO = input => {
+  console.log("mapping input for DTO ", input);
+  const tagObjects = input.tags;
+  const tagStrings = tagObjects.map(tagObj => tagObj.label);
+  input["tags"] = tagStrings;
+  return input;
+};
+
 const addDateToDTO = input => {
   return {
     ...input,
@@ -32,12 +40,12 @@ const onKeyDown = keyEvent => {
 
 const formikWrapper = withFormik({
   enableReinitialize: true,
-  mapPropsToValues: ({ creator, tags, communityUrl }) => ({
+  mapPropsToValues: ({ creator, tags, communityUrl, communityData }) => ({
     title: "",
     content: "",
-    creator: creator || "",
-    tags: tags || [],
-    communityUrl: communityUrl || "",
+    communityUrl: communityData ? communityData.url : "",
+    creator: communityData ? communityData.creator : "",
+    tags: [],
   }),
   handleSubmit: async (values, { setSubmitting }) => {
     const formData = {
@@ -45,6 +53,7 @@ const formikWrapper = withFormik({
     };
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
+    input = mapTagObjectsToStringsForDTO(input);
 
     await API.graphql(graphqlOperation(createDiscussion, { input }))
       .then(response => {
@@ -66,8 +75,16 @@ const formikWrapper = withFormik({
   }),
 });
 class DiscussionForm extends React.Component {
-  // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
+  addCommunityDataToDTO = input => {
+    const { communityData } = this.props;
+    return {
+      ...input,
+      communityUrl: communityData ? communityData.url : "",
+      creator: communityData ? communityData.creator : "",
+    };
+  };
 
+  // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   render() {
     const {
       values,
@@ -76,6 +93,7 @@ class DiscussionForm extends React.Component {
       isSubmitting,
       errors,
       touched,
+      communityData,
     } = this.props;
 
     return (
@@ -106,6 +124,7 @@ class DiscussionForm extends React.Component {
             <DiscussionTagsDropdown
               id="discussionTagsSelect"
               value={values.tags}
+              availableTags={communityData ? communityData.tags : []}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
             />
