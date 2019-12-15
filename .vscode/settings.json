@@ -1,7 +1,7 @@
 {
     "editor.fontFamily": "'Roboto Mono', monospace",
     "editor.minimap.enabled": false,
-    "editor.fontWeight": "bold",
-    "workbench.colorTheme": "Dainty – Andromeda",
+    "editor.fontWeight": "400",
+    "workbench.colorTheme": "Afterglow Remastered",
     "editor.lineHeight": 22
 }

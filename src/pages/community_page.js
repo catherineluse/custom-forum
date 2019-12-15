@@ -1,13 +1,15 @@
 import React from "react";
 import DiscussionFormWrapped from "../forms/DiscussionForm/create_edit_discussion";
+import CommunitySettingsFormWrapped from "../forms/CommunitySettingsForm/community_settings";
 import ListOfDiscussions from "../components/community_components/list_of_discussions";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CommunityRules from "../forms/CommunityRulesForm/rules_form";
 
 class CommunityPage extends React.Component {
   state = {
-    communityData: "Gennit can't find a community with that name.",
+    communityData: "Gennit can't find a community with that name."
   };
 
   getCommunityData = () => {
@@ -39,6 +41,7 @@ class CommunityPage extends React.Component {
 
   render() {
     const { communityData } = this.state;
+
     return (
       <>
         <div className="community-header">
@@ -60,7 +63,7 @@ class CommunityPage extends React.Component {
               eventKey="discussions"
               title={
                 <span>
-                  <i className="fas fa-comments"></i> Discussions
+                  <i className="fas fa-comments" /> Discussions
                 </span>
               }
             >
@@ -71,7 +74,7 @@ class CommunityPage extends React.Component {
               eventKey="info"
               title={
                 <span>
-                  <i className="fas fa-chart-bar"></i> Data
+                  <i className="fas fa-chart-bar" /> Data
                 </span>
               }
             >
@@ -100,7 +103,7 @@ class CommunityPage extends React.Component {
               eventKey="calendar"
               title={
                 <span>
-                  <i className="fas fa-calendar-alt"></i> Calendar
+                  <i className="fas fa-calendar-alt" /> Calendar
                 </span>
               }
             >
@@ -110,17 +113,17 @@ class CommunityPage extends React.Component {
               eventKey="rules"
               title={
                 <span>
-                  <i className="fas fa-gavel"></i> Rules
+                  <i className="fas fa-gavel" /> Rules
                 </span>
               }
             >
-              Rules
+              {/* <CommunityRules communityData={communityData} /> */}
             </Tab>
             <Tab
               eventKey="wiki"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-book-open"></i> Wiki
+                  <i className="fas fa-book-open" /> Wiki
                 </span>
               }
             >
@@ -130,11 +133,11 @@ class CommunityPage extends React.Component {
               eventKey="settings"
               title={
                 <span className="community-tab-name">
-                  <i className="fas fa-cog"></i> Settings
+                  <i className="fas fa-cog" /> Settings
                 </span>
               }
             >
-              Settings
+              <CommunitySettingsFormWrapped communityData={communityData} />
             </Tab>
           </Tabs>
         </div>

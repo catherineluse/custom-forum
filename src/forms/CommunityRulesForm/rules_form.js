@@ -1,6 +1,80 @@
 import React from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { updateRule } from "../../graphql/mutations";
+import { createRule } from "../../graphql/mutations";
+import { listRules } from "../../graphql/queries";
+import { onCreateRule, onDeleteRule } from "../../graphql/subscriptions";
+import { withFormik, ErrorMessage, Form, Field } from "formik";
+import * as Yup from "yup";
+import Error from "../Error";
 
-class CommunityRules extends React.Component {
+// type Rule @model {
+//   id: ID
+//   summary: String!
+//   explanation: String
+// }
+
+const removeEmptyStringsFromDTO = payload => {
+  // DynamoDB throws an error if you submit empty strings
+  let input = {};
+  for (let key in payload) {
+    if (payload[key] !== "") {
+      input[key] = payload[key];
+    }
+  }
+  return input;
+};
+
+const handleUpdateRules = async () => {
+  const { rules, id, rule } = this.state;
+  const input = { id, rule };
+  const result = await API.graphql(graphqlOperation(updateRule, { input }));
+  const updatedRule = result.data.updateRule;
+  const index = rules.findIndex(() => rule.id === updatedRule.id);
+  const updatedRules = [
+    ...rules.slice(0, index),
+    updatedRule,
+    ...rules.slice(index + 1)
+  ];
+  this.setState({ rules: updatedRules, rule: "", id: "" });
+};
+
+const formikWrapper = withFormik({
+  enableReinitialize: true,
+  mapPropsToValues: ({ communityData }) => ({
+    newRuleSummary: "",
+    newRuleExplanation: ""
+  }),
+  handleSubmit: async (values, { setSubmitting }) => {
+    const formData = {
+      ...values
+    };
+    let input = removeEmptyStringsFromDTO(formData);
+
+    await API.graphql(graphqlOperation(createRule, { input }))
+      .then(response => {
+        console.log("API call succeeded");
+        console.log("Response is ", response);
+      })
+      .catch(e => {
+        console.log("API call failed");
+        console.log("input was ", input);
+        console.log(e);
+      });
+    setSubmitting(false);
+  },
+  validationSchema: Yup.object().shape({
+    newRuleSummary: Yup.string()
+      .min(2, "Must have at least two characters.")
+      .max(70, "Can have a maximum of 140 characters.")
+      .required("Please enter a community name."),
+    newRuleExplanation: Yup.string()
+      .min(2, "Must have at least two characters.")
+      .max(1000, "Can have a maximum of 1000 characters.")
+  })
+});
+
+class CommunityRulesForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -8,8 +82,64 @@ class CommunityRules extends React.Component {
       newRuleSummary: "",
       newRuleExplanation: "",
       rules: [],
+      rule: {},
+      id: ""
     };
   }
+
+  componentDidMount = async () => {
+    this.getRules();
+    this.createRuleListener = API.graphql(
+      graphqlOperation(onCreateRule)
+    ).subscribe({
+      next: ruleData => {
+        const newRule = ruleData.value.data.onCreateRule;
+        const prevRules = this.state.rules.filter(
+          rule => rule.id !== newRule.id
+        );
+        const updatedRules = [...prevRules, newRule];
+        this.setState({ rules: updatedRules });
+      }
+    });
+    this.deleteRuleListener = API.graphql(
+      graphqlOperation(onDeleteRule)
+    ).subscribe({
+      next: ruleData => {
+        const deletedRule = ruleData.value.data.onDeleteRule;
+        const updatedRules = this.state.rules.filter(
+          rule => rule.id !== deletedRule.id
+        );
+        this.setState({ rules: updatedRules });
+      }
+    });
+  };
+
+  componentWillUnmount() {
+    this.createRuleListener.unsubscribe();
+    this.deleteRuleListener.unsubscribe();
+  }
+
+  getRules = async () => {
+    const result = await API.graphql(graphqlOperation(listRules));
+    console.log("result of listRules API call", result);
+    if (result) {
+      this.setState({ communities: result.data.listRules.items });
+    }
+  };
+
+  handleUpdateRule = async () => {
+    const { communities, id, note } = this.state;
+    const input = { id, note };
+    const result = await API.graphql(graphqlOperation(updateRule, { input }));
+    const updatedRule = result.data.updateRule;
+    const index = communities.findIndex(() => note.id === updatedRule.id);
+    const updatedCommunities = [
+      ...communities.slice(0, index),
+      updatedRule,
+      ...communities.slice(index + 1)
+    ];
+    this.setState({ notes: updatedCommunities, note: "", id: "" });
+  };
 
   cleanRulesForDTO = rules => {
     return rules.map(({ summary, explanation }) => {
@@ -29,7 +159,7 @@ class CommunityRules extends React.Component {
     return {
       key: summary,
       summary: summary,
-      explanation: explanation,
+      explanation: explanation
     };
   };
 
@@ -72,7 +202,7 @@ class CommunityRules extends React.Component {
         </li>
       ));
     }
-    return <p>This community has no rules yet.</p>;
+    return <p>This Rule has no rules yet.</p>;
   };
 
   resetExplanationInput = () => {
@@ -102,6 +232,17 @@ class CommunityRules extends React.Component {
   };
 
   render() {
+    const {
+      values,
+      setFieldValue,
+      setFieldTouched,
+      isSubmitting,
+      errors,
+      touched,
+      creator,
+      handleSubmit
+    } = this.props;
+
     return (
       <div className="form-group">
         <h3>Community Rules</h3>
@@ -166,4 +307,6 @@ class CommunityRules extends React.Component {
     );
   }
 }
-export default CommunityRules;
+
+const CommunityRulesFormWrapped = formikWrapper(CommunityRulesForm);
+export default CommunityRulesFormWrapped;
