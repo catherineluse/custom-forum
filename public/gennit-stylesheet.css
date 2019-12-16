@@ -100,12 +100,8 @@ tr:hover {
 
 .community-header {
   text-align: center;
-  color: forestgreen;
+  color: #538f72;
   padding-top: 15px;
-}
-
-.community-keywords {
-  color: forestgreen;
 }
 
 tr:hover .community-description {
@@ -232,9 +228,11 @@ tr:hover .table-link {
 
 .keyword {
   font-size: 11pt;
-  background-color: #d0ebca;
+  background-color: #e3fcef;
   padding: 5px;
   margin-right: 3px;
+  color: #538f72;
+  font-weight: normal
 }
 
 .community-name-in-table {
@@ -247,7 +245,7 @@ tr:hover .table-link {
   margin-top: 10px;
   padding-top: 20px;
   padding-bottom: 8px;
-  background-color: #d7fade;
+  background-color: #e3fcef;
   color: black;
 }
 
@@ -292,7 +290,7 @@ tr:hover .table-link {
 
 .input-tag__tags li {
   align-items: center;
-  background: palegreen;
+  background: #e3fcef;
   border-radius: 2px;
   color: black;
   display: flex;

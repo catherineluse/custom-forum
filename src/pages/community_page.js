@@ -9,7 +9,7 @@ import CommunityRules from "../forms/CommunityRulesForm/rules_form";
 
 class CommunityPage extends React.Component {
   state = {
-    communityData: "Gennit can't find a community with that name."
+    communityData: null
   };
 
   getCommunityData = () => {
@@ -47,8 +47,8 @@ class CommunityPage extends React.Component {
         <div className="community-header">
           <div className="container">
             <h1>{communityData ? communityData["name"] : ""}</h1>
-            <p className="community-url">
-              gennit.net/c/{communityData ? communityData["url"] : ""}
+            <p className="community-description">
+              {communityData ? communityData["description"] : ""}
             </p>
           </div>
         </div>
@@ -78,7 +78,7 @@ class CommunityPage extends React.Component {
                 </span>
               }
             >
-              <h3 className="header-within-tab">Topics</h3>
+              <h3 className="header-within-tab">Community Keywords</h3>
               This community shows in searches for the following keywords:
               <br />
               <div className="community-keywords">

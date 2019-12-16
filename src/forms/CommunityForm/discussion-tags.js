@@ -5,8 +5,13 @@ class DiscussionTags extends React.Component {
     super();
 
     this.state = {
-      tags: [],
+      tags: []
     };
+  }
+
+  componentDidMount() {
+    const { existingTags } = this.props;
+    this.setState({ tags: existingTags });
   }
 
   handleChange = () => {
@@ -25,10 +30,11 @@ class DiscussionTags extends React.Component {
     return false;
   };
 
-  removeTag = i => {
+  removeTag = async i => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
-    this.setState({ tags: newTags });
+    await this.setState({ tags: newTags });
+    this.handleChange();
   };
 
   getExistingTags = () => {
@@ -71,6 +77,7 @@ class DiscussionTags extends React.Component {
       this.handleChange();
     } else if (e.key === "Backspace" && !val) {
       this.removeLastTag();
+      this.handleChange();
     }
   };
 

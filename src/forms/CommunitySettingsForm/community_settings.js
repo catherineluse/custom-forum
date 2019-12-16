@@ -28,12 +28,6 @@ import CommunityKeywords from "../CommunityForm/community-keywords";
 //   number_of_users: Int
 // }
 
-const levels = [
-  { value: 1, label: "Low - Only the sitewide rules apply" },
-  { value: 2, label: "Medium - This community is moderated" },
-  { value: 3, label: "High - This community has strict rules" }
-];
-
 const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
   let input = {};
@@ -54,7 +48,7 @@ const addDateToDTO = input => {
 
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
-  payload.moderation_level = payload.moderation_level.value | 1;
+  payload.moderation_level = payload.moderation_level.value;
   console.log(
     "The moderation level is " + JSON.stringify(payload.moderation_level)
   );
@@ -63,12 +57,15 @@ const turnModerationLevelIntoNumber = formData => {
 
 const formikWrapper = withFormik({
   enableReinitialize: true,
+  initialValues: props => {
+    return { existingKeywords: props.existingKeywords };
+  },
   mapPropsToValues: ({ communityData }) => ({
-    name: "",
-    description: "",
-    moderation_level: 1,
-    tags: [],
-    keywords: [],
+    name: communityData ? communityData.name : "",
+    description: communityData ? communityData.description : "",
+    moderation_level: communityData ? communityData.moderation_level : 1,
+    tags: communityData ? communityData.tags : [],
+    keywords: communityData ? communityData.keywords : [],
     id: communityData ? communityData.id : ""
   }),
   handleSubmit: async (values, { setSubmitting }) => {
@@ -112,80 +109,88 @@ class CommunitySettingsForm extends React.Component {
       isSubmitting,
       errors,
       touched,
-      handleSubmit
+      handleSubmit,
+      communityData
     } = this.props;
 
-    return (
-      <div className="card shadow">
-        <div className="card-body">
-          <Form>
-            <h1>Update this Community</h1>
+    if (communityData) {
+      return (
+        <div className="card shadow">
+          <div className="card-body">
+            <Form>
+              <h1>Update this Community</h1>
 
-            <div className="form-group">
-              <label htmlFor="name">Community Name</label>
-              <small className="form-text text-muted">
-                This name can be changed later.
-              </small>
-              <Field
-                name="name"
-                type="text"
-                placeholder="Enter community name"
-                className="form-control"
-              />
-              {errors.name && touched.name ? <div>{errors.name}</div> : null}
-              <ErrorMessage component={Error} name="communityNameError" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="communityDescription">Description</label>
-              <Field
-                component="textarea"
-                rows="3"
-                type="description"
-                name="description"
-                placeholder="Why should people join this community?"
-                className="form-control"
-              />
-              <ErrorMessage
-                component={Error}
-                name="communityDescriptionError"
-              />
-            </div>
-            <div className="form-group">
-              <label>Moderation Level</label>
-              <ModerationLevelDropdown
-                id="moderationLevelDropdown"
-                value={values.moderation_level}
+              <div className="form-group">
+                <label htmlFor="name">Edit Community Name</label>
+                <Field
+                  name="name"
+                  type="text"
+                  placeholder="Enter community name"
+                  className="form-control"
+                />
+                {errors.name && touched.name ? <div>{errors.name}</div> : null}
+                <ErrorMessage component={Error} name="communityNameError" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="communityDescription">Edit Description</label>
+                <Field
+                  component="textarea"
+                  rows="3"
+                  type="description"
+                  name="description"
+                  placeholder="Why should people join this community?"
+                  className="form-control"
+                />
+                <ErrorMessage
+                  component={Error}
+                  name="communityDescriptionError"
+                />
+              </div>
+              <div className="form-group">
+                <label>Moderation Level</label>
+                <ModerationLevelDropdown
+                  id="moderationLevelDropdown"
+                  existingLevel={
+                    communityData ? communityData["moderation_level"] : []
+                  }
+                  value={values.moderation_level}
+                  onChange={setFieldValue}
+                  onBlur={setFieldTouched}
+                />
+              </div>
+              <CommunityKeywords
+                id="communityKeywordInput"
+                existingKeywords={
+                  communityData ? communityData["keywords"] : []
+                }
+                value={values.keywords}
                 onChange={setFieldValue}
                 onBlur={setFieldTouched}
-                options={levels}
               />
-            </div>
-            <CommunityKeywords
-              id="communityKeywordInput"
-              value={values.keywords}
-              onChange={setFieldValue}
-              onBlur={setFieldTouched}
-            />
-            <DiscussionTags
-              id="discussionTagsInput"
-              value={values.tags}
-              onChange={setFieldValue}
-              onBlur={setFieldTouched}
-            />
-            <span>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="form-submit"
-                disabled={isSubmitting}
-              >
-                Submit
-              </button>
-            </span>
-          </Form>
+              <DiscussionTags
+                id="discussionTagsInput"
+                existingTags={communityData ? communityData["tags"] : []}
+                value={values.tags}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+              />
+              <span>
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="form-submit"
+                  disabled={isSubmitting}
+                >
+                  Submit
+                </button>
+              </span>
+            </Form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>Loading community settings</p>;
+    }
   }
 }
 

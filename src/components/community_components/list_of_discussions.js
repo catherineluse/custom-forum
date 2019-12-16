@@ -4,7 +4,7 @@ import { listDiscussions } from "../../graphql/queries";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import {
   onCreateDiscussion,
-  onDeleteDiscussion,
+  onDeleteDiscussion
 } from "../../graphql/subscriptions";
 import { deleteDiscussion } from "../../graphql/mutations";
 
@@ -27,7 +27,7 @@ import { deleteDiscussion } from "../../graphql/mutations";
 
 class ListOfDiscussions extends Component {
   state = {
-    discussions: [],
+    discussions: []
   };
 
   getDiscussions = async discussions => {
@@ -37,14 +37,14 @@ class ListOfDiscussions extends Component {
     // This will be updated to only pull data for one community.
     // The way this is written now, all discussions for the entire
     // site are being loaded.
-    const result = await API.graphql(graphqlOperation(listDiscussions));
-    console.log("result of listDiscussions API call", result);
-    this.setState({ discussions: result.data.listDiscussions.items });
+    const allDiscussions = await API.graphql(graphqlOperation(listDiscussions));
+    console.log("result of listDiscussions API call", allDiscussions);
+    this.setState({ discussions: allDiscussions.data.listDiscussions.items });
   };
 
   handleDeleteDiscussion = async discussionId => {
     const input = {
-      id: discussionId,
+      id: discussionId
     };
     await API.graphql(graphqlOperation(deleteDiscussion, { input }));
   };
@@ -77,7 +77,7 @@ class ListOfDiscussions extends Component {
         );
         const updatedDiscussions = [...prevDiscussions, newDiscussion];
         this.setState({ discussions: updatedDiscussions });
-      },
+      }
     });
     this.deleteDiscussionListener = API.graphql(
       graphqlOperation(onDeleteDiscussion)
@@ -88,7 +88,7 @@ class ListOfDiscussions extends Component {
           discussion => discussion.id !== deletedDiscussion.id
         );
         this.setState({ discussions: updatedDiscussions });
-      },
+      }
     });
   };
 
@@ -101,12 +101,12 @@ class ListOfDiscussions extends Component {
     return discussions.map(discussion => {
       return (
         <tr key={discussion.id}>
-          <td className="discussion-title">{discussion.title}</td>
+          <td className="discussion-title">
+            {discussion.title}{" "}
+            <span>{this.showDiscussionTags(discussion.tags)}</span>
+          </td>
           <td>{discussion.creator}</td>
           <td>{this.getDateOfDiscussion(discussion.createdDate)}</td>
-          <td className="community-keywords">
-            {this.showDiscussionTags(discussion.tags)}
-          </td>
           <td>
             <button
               onClick={() => this.handleDeleteDiscussion(discussion.id)}
@@ -140,12 +140,11 @@ class ListOfDiscussions extends Component {
             <th>Title</th>
             <th>Creator</th>
             <th>Created Date</th>
-            <th>Tags</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {communityData && this.state.discussionData
+          {communityData
             ? this.filterDiscussions(communityData)
             : "There are no discussions yet."}
         </tbody>
