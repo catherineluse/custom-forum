@@ -4,9 +4,8 @@ import { updateRule } from "../../graphql/mutations";
 import { createRule } from "../../graphql/mutations";
 import { listRules } from "../../graphql/queries";
 import { onCreateRule, onDeleteRule } from "../../graphql/subscriptions";
-import { withFormik, ErrorMessage, Form, Field } from "formik";
+import { withFormik } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
 
 // type Rule @model {
 //   id: ID
@@ -123,22 +122,22 @@ class CommunityRulesForm extends React.Component {
     const result = await API.graphql(graphqlOperation(listRules));
     console.log("result of listRules API call", result);
     if (result) {
-      this.setState({ communities: result.data.listRules.items });
+      this.setState({ rules: result.data.listRules.items });
     }
   };
 
   handleUpdateRule = async () => {
-    const { communities, id, note } = this.state;
+    const { rules, id, note } = this.state;
     const input = { id, note };
     const result = await API.graphql(graphqlOperation(updateRule, { input }));
     const updatedRule = result.data.updateRule;
-    const index = communities.findIndex(() => note.id === updatedRule.id);
-    const updatedCommunities = [
-      ...communities.slice(0, index),
+    const index = rules.findIndex(() => note.id === updatedRule.id);
+    const updatedrules = [
+      ...rules.slice(0, index),
       updatedRule,
-      ...communities.slice(index + 1)
+      ...rules.slice(index + 1)
     ];
-    this.setState({ notes: updatedCommunities, note: "", id: "" });
+    this.setState({ notes: updatedrules, note: "", id: "" });
   };
 
   cleanRulesForDTO = rules => {
@@ -223,12 +222,15 @@ class CommunityRulesForm extends React.Component {
     console.log("Trying to add new rule ", JSON.stringify(newRule));
     //Trying to add new rule  {"summary":"cats onl","explanation":"dog peopl"}
     const newRules = [...this.state.rules, newRule];
-    this.setState({ rules: newRules }, () => {
-      this.updateFormState();
-      this.resetSummaryInput();
-      this.resetExplanationInput();
-      console.log("set rules in state as ", this.state.rules);
-    });
+    this.setState(
+      { rules: newRules, newRuleSummary: "", newRuleExplanation: "" },
+      () => {
+        this.updateFormState();
+        this.resetSummaryInput();
+        this.resetExplanationInput();
+        console.log("set rules in state as ", this.state.rules);
+      }
+    );
   };
 
   render() {

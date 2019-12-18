@@ -5,7 +5,7 @@ import ListOfDiscussions from "../components/community_components/list_of_discus
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
-import CommunityRules from "../forms/CommunityRulesForm/rules_form";
+import CommunityRulesFormWrapped from "../forms/CommunityRulesForm/rules_form";
 
 class CommunityPage extends React.Component {
   state = {
@@ -117,7 +117,7 @@ class CommunityPage extends React.Component {
                 </span>
               }
             >
-              {/* <CommunityRules communityData={communityData} /> */}
+              <CommunityRulesFormWrapped communityData={communityData} />
             </Tab>
             <Tab
               eventKey="wiki"
