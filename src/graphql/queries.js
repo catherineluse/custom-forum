@@ -11,6 +11,7 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -74,6 +75,7 @@ export const listCommunitys = `query ListCommunitys(
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -127,6 +129,7 @@ export const listCommunitys = `query ListCommunitys(
 export const getRule = `query GetRule($id: ID!) {
   getRule(id: $id) {
     id
+    community_id
     summary
     explanation
   }
@@ -140,6 +143,7 @@ export const listRules = `query ListRules(
   listRules(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      community_id
       summary
       explanation
     }
@@ -186,6 +190,7 @@ export const getBan = `query GetBan($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -380,6 +385,7 @@ export const getEvent = `query GetEvent($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -606,6 +612,7 @@ export const getReport = `query GetReport($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -983,6 +990,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1038,6 +1046,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1093,6 +1102,7 @@ export const getProfile = `query GetProfile($id: ID!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }

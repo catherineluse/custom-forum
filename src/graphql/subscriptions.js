@@ -11,6 +11,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -69,6 +70,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -127,6 +129,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -178,6 +181,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
 export const onCreateRule = `subscription OnCreateRule {
   onCreateRule {
     id
+    community_id
     summary
     explanation
   }
@@ -186,6 +190,7 @@ export const onCreateRule = `subscription OnCreateRule {
 export const onUpdateRule = `subscription OnUpdateRule {
   onUpdateRule {
     id
+    community_id
     summary
     explanation
   }
@@ -194,6 +199,7 @@ export const onUpdateRule = `subscription OnUpdateRule {
 export const onDeleteRule = `subscription OnDeleteRule {
   onDeleteRule {
     id
+    community_id
     summary
     explanation
   }
@@ -238,6 +244,7 @@ export const onCreateBan = `subscription OnCreateBan {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -328,6 +335,7 @@ export const onUpdateBan = `subscription OnUpdateBan {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -418,6 +426,7 @@ export const onDeleteBan = `subscription OnDeleteBan {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -606,6 +615,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -698,6 +708,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -790,6 +801,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1028,6 +1040,7 @@ export const onCreateReport = `subscription OnCreateReport {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1165,6 +1178,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1302,6 +1316,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1838,6 +1853,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1893,6 +1909,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1948,6 +1965,7 @@ export const onCreateProfile = `subscription OnCreateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2043,6 +2061,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2098,6 +2117,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2153,6 +2173,7 @@ export const onUpdateProfile = `subscription OnUpdateProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2248,6 +2269,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2303,6 +2325,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2358,6 +2381,7 @@ export const onDeleteProfile = `subscription OnDeleteProfile {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }

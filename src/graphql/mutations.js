@@ -11,6 +11,7 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -69,6 +70,7 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -127,6 +129,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
     created_date
     rules {
       id
+      community_id
       summary
       explanation
     }
@@ -178,6 +181,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
 export const createRule = `mutation CreateRule($input: CreateRuleInput!) {
   createRule(input: $input) {
     id
+    community_id
     summary
     explanation
   }
@@ -186,6 +190,7 @@ export const createRule = `mutation CreateRule($input: CreateRuleInput!) {
 export const updateRule = `mutation UpdateRule($input: UpdateRuleInput!) {
   updateRule(input: $input) {
     id
+    community_id
     summary
     explanation
   }
@@ -194,6 +199,7 @@ export const updateRule = `mutation UpdateRule($input: UpdateRuleInput!) {
 export const deleteRule = `mutation DeleteRule($input: DeleteRuleInput!) {
   deleteRule(input: $input) {
     id
+    community_id
     summary
     explanation
   }
@@ -238,6 +244,7 @@ export const createBan = `mutation CreateBan($input: CreateBanInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -328,6 +335,7 @@ export const updateBan = `mutation UpdateBan($input: UpdateBanInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -418,6 +426,7 @@ export const deleteBan = `mutation DeleteBan($input: DeleteBanInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -606,6 +615,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -698,6 +708,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -790,6 +801,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1028,6 +1040,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1165,6 +1178,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1302,6 +1316,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1838,6 +1853,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1893,6 +1909,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -1948,6 +1965,7 @@ export const createProfile = `mutation CreateProfile($input: CreateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2043,6 +2061,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2098,6 +2117,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2153,6 +2173,7 @@ export const updateProfile = `mutation UpdateProfile($input: UpdateProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2248,6 +2269,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2303,6 +2325,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }
@@ -2358,6 +2381,7 @@ export const deleteProfile = `mutation DeleteProfile($input: DeleteProfileInput!
       created_date
       rules {
         id
+        community_id
         summary
         explanation
       }

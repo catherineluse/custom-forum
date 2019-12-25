@@ -2,10 +2,11 @@ import React from "react";
 import DiscussionFormWrapped from "../forms/DiscussionForm/create_edit_discussion";
 import CommunitySettingsFormWrapped from "../forms/CommunitySettingsForm/community_settings";
 import ListOfDiscussions from "../components/community_components/list_of_discussions";
+import ListOfRules from "../components/community_components/list_of_rules";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
-import CommunityRulesFormWrapped from "../forms/CommunityRulesForm/rules_form";
+import CommunityRuleFormWrapped from "../forms/CommunityRulesForm/rules_form";
 
 class CommunityPage extends React.Component {
   state = {
@@ -117,7 +118,8 @@ class CommunityPage extends React.Component {
                 </span>
               }
             >
-              <CommunityRulesFormWrapped communityData={communityData} />
+              <ListOfRules communityData={communityData} />
+              <CommunityRuleFormWrapped communityData={communityData} />
             </Tab>
             <Tab
               eventKey="wiki"
