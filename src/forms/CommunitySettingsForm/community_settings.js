@@ -135,6 +135,7 @@ class CommunitySettingsForm extends React.Component {
                 <label htmlFor="communityDescription">Edit Description</label>
                 <Field
                   component="textarea"
+                  value="description"
                   rows="3"
                   type="description"
                   name="description"

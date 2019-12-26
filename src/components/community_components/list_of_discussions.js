@@ -62,7 +62,7 @@ class ListOfDiscussions extends Component {
         </span>
       ));
     }
-    return "";
+    return null;
   };
 
   componentDidMount = async () => {
@@ -144,9 +144,9 @@ class ListOfDiscussions extends Component {
           </tr>
         </thead>
         <tbody>
-          {communityData
-            ? this.filterDiscussions(communityData)
-            : "There are no discussions yet."}
+          {communityData ? (
+            this.filterDiscussions(communityData)
+          ) : this.filterDiscussions([])}
         </tbody>
       </table>
     );

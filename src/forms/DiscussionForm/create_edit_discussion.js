@@ -28,7 +28,7 @@ const mapTagObjectsToStringsForDTO = input => {
 const addDateToDTO = input => {
   return {
     ...input,
-    createdDate: new Date(),
+    createdDate: new Date()
   };
 };
 
@@ -45,11 +45,11 @@ const formikWrapper = withFormik({
     content: "",
     communityUrl: communityData ? communityData.url : "",
     creator: communityData ? communityData.creator : "",
-    tags: [],
+    tags: []
   }),
-  handleSubmit: async (values, { setSubmitting }) => {
+  handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
-      ...values,
+      ...values
     };
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
@@ -66,13 +66,14 @@ const formikWrapper = withFormik({
         console.log(e);
       });
     setSubmitting(false);
+    resetForm();
   },
   validationSchema: Yup.object().shape({
     title: Yup.string()
       .max(140, "Can have a maximum of 140 characters.")
       .required("Please enter a title for the discussion."),
-    content: Yup.string().max(3000, "Can have a maximum of 3,000 characters."),
-  }),
+    content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
+  })
 });
 class DiscussionForm extends React.Component {
   addCommunityDataToDTO = input => {
@@ -80,7 +81,7 @@ class DiscussionForm extends React.Component {
     return {
       ...input,
       communityUrl: communityData ? communityData.url : "",
-      creator: communityData ? communityData.creator : "",
+      creator: communityData ? communityData.creator : ""
     };
   };
 
@@ -93,7 +94,7 @@ class DiscussionForm extends React.Component {
       isSubmitting,
       errors,
       touched,
-      communityData,
+      communityData
     } = this.props;
 
     return (

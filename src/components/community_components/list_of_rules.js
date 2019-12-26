@@ -64,7 +64,7 @@ class ListOfRules extends Component {
     return rules.map(rule => {
       return (
         <li key={rule.id}>
-          <b>{rule.summary}</b> {rule.explanation} 
+          <b>{rule.summary}</b> {rule.explanation}
           <span onClick={() => this.handleDeleteRule(rule.id)}> &times;</span>
         </li>
       );
@@ -88,7 +88,7 @@ class ListOfRules extends Component {
       <ol>
         {communityData
           ? this.mapRulesToListView(this.filterRules(communityData.id))
-          : "There are no Rules yet."}
+          : this.mapRulesToListView([])}
       </ol>
     );
   }
