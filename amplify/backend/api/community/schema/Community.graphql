@@ -27,9 +27,9 @@ type Rule @model {
 
 type Ban @model {
   id: ID
-  user: User
-  is_sitewide_ban: Boolean
-  community: Community
+  user: ID
+  isSitewideBan: Boolean
+  community: ID
   createdDate: String
   expirationDate: String
 }
@@ -39,18 +39,18 @@ type Comment @model {
   content: String!
   creator: String!
   discussionId: ID
-  created_date: String!
+  createdDate: String!
+  parentCommentId: ID
+  threadId: ID
   hidden: Boolean
-  hidden_date: String
-  sitewide_reasons_for_being_hidden: [String]
-  community_reasons_for_being_hidden: [String]
-  contributed_to_discussion: Int
-  did_not_contribute_to_discussion: Int
-  agree: Int
-  disagree: Int
+  hiddenDate: String
+  sitewideReasonsForBeingHidden: [String]
+  communityReasonsForBeingHidden: [String]
+  upvotes: Int
+  downvotes: Int
   funny: Int
-  date_last_modified: String
-  parent_comment_id: ID
+  disagree: Int
+  dateLastModified: String
 }
 
 type Discussion @model {
@@ -62,9 +62,9 @@ type Discussion @model {
   content: String
   locked: Boolean
   hidden: Boolean
-  sitewide_reasons_for_being_hidden: [String]
-  community_reasons_for_being_hidden: [String]
-  hidden_date: String
+  sitewideReasonsForBeingHidden: [String]
+  communityReasonsForBeingHidden: [String]
+  hiddenDate: String
   upvotes: Int
   downvotes: Int
   tags: [String]
@@ -75,8 +75,8 @@ type Event @model {
   title: String
   description: String
   picture: String
-  start_time: String
-  end_time: String
+  startTime: String
+  endTime: String
   place: [Community]
   organizer: User
 }
@@ -92,15 +92,14 @@ type PrivateMessage @model {
 type Report @model {
   id: ID
   creator: ID
-  comment: Comment
-  discussion: Discussion
-  message: PrivateMessage
+  commentId: ID
+  discussionId: ID
+  messageId: ID
   complaint: String!
   community: Community
-  broken_sitewide_rules: [String]
-  broken_community_rules: [String]
-  author: User
-  created_date: String
+  brokenSitewideRules: [String]
+  brokenCommunityRules: [String]
+  createdDate: String
   resolved: Boolean
 }
 
@@ -108,21 +107,17 @@ type User @model {
   id: ID
   email: String
   profiles: [Profile]
-  default_profile: Profile
+  defaultProfile: Profile
 }
 
 type Profile @model {
   id: ID
   username: String!
-  real_sounding_name: String
+  humanName: String
   bio: String
   pronouns: String
   location: String
   picture: String
   reputation: Int
-  account_created_date: String
-  bans: [Ban]
-  member_of: [Community]
-  moderator_of: [Community]
-  creator_of: [Community]
+  accountCreatedDate: String
 }

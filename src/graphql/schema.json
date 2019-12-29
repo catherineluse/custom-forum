@@ -1024,7 +1024,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1035,6 +1035,28 @@
               "name" : "String",
               "ofType" : null
             }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "parentCommentId",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "threadId",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -1050,7 +1072,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1061,7 +1083,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1076,7 +1098,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1091,7 +1113,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "contributed_to_discussion",
+          "name" : "upvotes",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1102,29 +1124,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "did_not_contribute_to_discussion",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "agree",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "disagree",
+          "name" : "downvotes",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1146,23 +1146,23 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "date_last_modified",
+          "name" : "disagree",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
-            "name" : "String",
+            "name" : "Int",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "parent_comment_id",
+          "name" : "dateLastModified",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
-            "name" : "ID",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1286,7 +1286,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1301,7 +1301,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1316,7 +1316,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2035,14 +2035,14 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "OBJECT",
-            "name" : "User",
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "is_sitewide_ban",
+          "name" : "isSitewideBan",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2057,8 +2057,8 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "OBJECT",
-            "name" : "Community",
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2082,235 +2082,6 @@
             "kind" : "SCALAR",
             "name" : "String",
             "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "inputFields" : null,
-        "interfaces" : [ ],
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "OBJECT",
-        "name" : "User",
-        "description" : null,
-        "fields" : [ {
-          "name" : "id",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "email",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "profiles",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "Profile",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "default_profile",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "Profile",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "inputFields" : null,
-        "interfaces" : [ ],
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "OBJECT",
-        "name" : "Profile",
-        "description" : null,
-        "fields" : [ {
-          "name" : "id",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "username",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "real_sounding_name",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "bio",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "pronouns",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "location",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "picture",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "reputation",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "account_created_date",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "bans",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "Ban",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "member_of",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "Community",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "moderator_of",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "Community",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "creator_of",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "OBJECT",
-              "name" : "Community",
-              "ofType" : null
-            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -2369,11 +2140,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "is_sitewide_ban",
+          "name" : "user",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "isSitewideBan",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelBooleanFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "community",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2511,11 +2300,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelStringFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "parentCommentId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "threadId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2529,7 +2336,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2538,7 +2345,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2547,7 +2354,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2556,7 +2363,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "contributed_to_discussion",
+          "name" : "upvotes",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2565,25 +2372,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "did_not_contribute_to_discussion",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "agree",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "disagree",
+          "name" : "downvotes",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2601,20 +2390,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "date_last_modified",
+          "name" : "disagree",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
+            "name" : "ModelIntFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "parent_comment_id",
+          "name" : "dateLastModified",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDFilterInput",
+            "name" : "ModelStringFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2770,7 +2559,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2779,7 +2568,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2788,7 +2577,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2911,7 +2700,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "start_time",
+          "name" : "startTime",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2922,7 +2711,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "end_time",
+          "name" : "endTime",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2954,6 +2743,175 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "User",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "User",
+        "description" : null,
+        "fields" : [ {
+          "name" : "id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "email",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "profiles",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "OBJECT",
+              "name" : "Profile",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "defaultProfile",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "Profile",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "Profile",
+        "description" : null,
+        "fields" : [ {
+          "name" : "id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "username",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "humanName",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "bio",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "pronouns",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "location",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "picture",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "reputation",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "accountCreatedDate",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3040,7 +2998,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "start_time",
+          "name" : "startTime",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3049,7 +3007,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "end_time",
+          "name" : "endTime",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3302,34 +3260,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "comment",
+          "name" : "commentId",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "OBJECT",
-            "name" : "Comment",
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "discussion",
+          "name" : "discussionId",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "OBJECT",
-            "name" : "Discussion",
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "message",
+          "name" : "messageId",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "OBJECT",
-            "name" : "PrivateMessage",
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3361,7 +3319,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "broken_sitewide_rules",
+          "name" : "brokenSitewideRules",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -3376,7 +3334,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "broken_community_rules",
+          "name" : "brokenCommunityRules",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -3391,18 +3349,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "author",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "User",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -3487,6 +3434,33 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "commentId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "discussionId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "messageId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIDFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "complaint",
           "description" : null,
           "type" : {
@@ -3496,7 +3470,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_sitewide_rules",
+          "name" : "brokenSitewideRules",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3505,7 +3479,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_community_rules",
+          "name" : "brokenCommunityRules",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3514,7 +3488,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3726,7 +3700,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "real_sounding_name",
+          "name" : "humanName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3780,7 +3754,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "account_created_date",
+          "name" : "accountCreatedDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -5031,11 +5005,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "is_sitewide_ban",
+          "name" : "user",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "isSitewideBan",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
             "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "community",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5080,11 +5072,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "is_sitewide_ban",
+          "name" : "user",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "isSitewideBan",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
             "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "community",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5178,7 +5188,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -5191,6 +5201,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "parentCommentId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "threadId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "hidden",
           "description" : null,
           "type" : {
@@ -5200,7 +5228,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5209,7 +5237,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5222,7 +5250,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5235,7 +5263,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "contributed_to_discussion",
+          "name" : "upvotes",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5244,25 +5272,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "did_not_contribute_to_discussion",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "agree",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "disagree",
+          "name" : "downvotes",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5280,20 +5290,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "date_last_modified",
+          "name" : "disagree",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "String",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "parent_comment_id",
+          "name" : "dateLastModified",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "ID",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5347,11 +5357,29 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "parentCommentId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "threadId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5365,7 +5393,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5374,7 +5402,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5387,7 +5415,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5400,7 +5428,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "contributed_to_discussion",
+          "name" : "upvotes",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5409,25 +5437,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "did_not_contribute_to_discussion",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "agree",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "disagree",
+          "name" : "downvotes",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5445,20 +5455,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "date_last_modified",
+          "name" : "disagree",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "String",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "parent_comment_id",
+          "name" : "dateLastModified",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "ID",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5574,7 +5584,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5587,7 +5597,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5600,7 +5610,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5725,7 +5735,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5738,7 +5748,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_reasons_for_being_hidden",
+          "name" : "communityReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -5751,7 +5761,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5854,7 +5864,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "start_time",
+          "name" : "startTime",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5863,7 +5873,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "end_time",
+          "name" : "endTime",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5921,7 +5931,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "start_time",
+          "name" : "startTime",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5930,7 +5940,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "end_time",
+          "name" : "endTime",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6096,6 +6106,33 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "commentId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "discussionId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "messageId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "complaint",
           "description" : null,
           "type" : {
@@ -6109,7 +6146,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_sitewide_rules",
+          "name" : "brokenSitewideRules",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -6122,7 +6159,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_community_rules",
+          "name" : "brokenCommunityRules",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -6135,7 +6172,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6184,6 +6221,33 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "commentId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "discussionId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "messageId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "complaint",
           "description" : null,
           "type" : {
@@ -6193,7 +6257,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_sitewide_rules",
+          "name" : "brokenSitewideRules",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -6206,7 +6270,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "broken_community_rules",
+          "name" : "brokenCommunityRules",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -6219,7 +6283,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6362,7 +6426,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "real_sounding_name",
+          "name" : "humanName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6416,7 +6480,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "account_created_date",
+          "name" : "accountCreatedDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6456,7 +6520,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "real_sounding_name",
+          "name" : "humanName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6510,7 +6574,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "account_created_date",
+          "name" : "accountCreatedDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6880,25 +6944,6 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
-        "kind" : "ENUM",
-        "name" : "ModelSortDirection",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : [ {
-          "name" : "ASC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "DESC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "possibleTypes" : null
-      }, {
         "kind" : "INPUT_OBJECT",
         "name" : "ModelFloatFilterInput",
         "description" : null,
@@ -7000,6 +7045,25 @@
         "inputFields" : null,
         "interfaces" : null,
         "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "ENUM",
+        "name" : "ModelSortDirection",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "ASC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "DESC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
@@ -7785,6 +7849,23 @@
         "onFragment" : false,
         "onField" : true
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_cognito_user_pools",
         "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -7810,23 +7891,6 @@
         "description" : "Tells the service this field/object has access authorized by an OIDC token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

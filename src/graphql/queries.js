@@ -26,18 +26,18 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       content
       creator
       discussionId
-      created_date
+      createdDate
+      parentCommentId
+      threadId
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      contributed_to_discussion
-      did_not_contribute_to_discussion
-      agree
-      disagree
+      hiddenDate
+      sitewideReasonsForBeingHidden
+      communityReasonsForBeingHidden
+      upvotes
+      downvotes
       funny
-      date_last_modified
-      parent_comment_id
+      disagree
+      dateLastModified
     }
     flagged_discussions {
       id
@@ -48,9 +48,9 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       content
       locked
       hidden
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      hidden_date
+      sitewideReasonsForBeingHidden
+      communityReasonsForBeingHidden
+      hiddenDate
       upvotes
       downvotes
       tags
@@ -90,18 +90,18 @@ export const listCommunitys = `query ListCommunitys(
         content
         creator
         discussionId
-        created_date
+        createdDate
+        parentCommentId
+        threadId
         hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
+        hiddenDate
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        upvotes
+        downvotes
         funny
-        date_last_modified
-        parent_comment_id
+        disagree
+        dateLastModified
       }
       flagged_discussions {
         id
@@ -112,9 +112,9 @@ export const listCommunitys = `query ListCommunitys(
         content
         locked
         hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        hiddenDate
         upvotes
         downvotes
         tags
@@ -154,89 +154,9 @@ export const listRules = `query ListRules(
 export const getBan = `query GetBan($id: ID!) {
   getBan(id: $id) {
     id
-    user {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    is_sitewide_ban
-    community {
-      id
-      url
-      name
-      description
-      creator
-      created_date
-      rules {
-        id
-        community_id
-        summary
-        explanation
-      }
-      locations
-      hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      keywords
-      tags
-      flagged_comments {
-        id
-        content
-        creator
-        discussionId
-        created_date
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
-        funny
-        date_last_modified
-        parent_comment_id
-      }
-      flagged_discussions {
-        id
-        title
-        creator
-        communityUrl
-        createdDate
-        content
-        locked
-        hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
-        upvotes
-        downvotes
-        tags
-      }
-      moderation_level
-      number_of_users
-    }
+    user
+    isSitewideBan
+    community
     createdDate
     expirationDate
   }
@@ -246,27 +166,9 @@ export const listBans = `query ListBans($filter: ModelBanFilterInput, $limit: In
   listBans(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      user {
-        id
-        email
-      }
-      is_sitewide_ban
-      community {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
+      user
+      isSitewideBan
+      community
       createdDate
       expirationDate
     }
@@ -280,18 +182,18 @@ export const getComment = `query GetComment($id: ID!) {
     content
     creator
     discussionId
-    created_date
+    createdDate
+    parentCommentId
+    threadId
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
-    community_reasons_for_being_hidden
-    contributed_to_discussion
-    did_not_contribute_to_discussion
-    agree
-    disagree
+    hiddenDate
+    sitewideReasonsForBeingHidden
+    communityReasonsForBeingHidden
+    upvotes
+    downvotes
     funny
-    date_last_modified
-    parent_comment_id
+    disagree
+    dateLastModified
   }
 }
 `;
@@ -306,18 +208,18 @@ export const listComments = `query ListComments(
       content
       creator
       discussionId
-      created_date
+      createdDate
+      parentCommentId
+      threadId
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      contributed_to_discussion
-      did_not_contribute_to_discussion
-      agree
-      disagree
+      hiddenDate
+      sitewideReasonsForBeingHidden
+      communityReasonsForBeingHidden
+      upvotes
+      downvotes
       funny
-      date_last_modified
-      parent_comment_id
+      disagree
+      dateLastModified
     }
     nextToken
   }
@@ -333,9 +235,9 @@ export const getDiscussion = `query GetDiscussion($id: ID!) {
     content
     locked
     hidden
-    sitewide_reasons_for_being_hidden
-    community_reasons_for_being_hidden
-    hidden_date
+    sitewideReasonsForBeingHidden
+    communityReasonsForBeingHidden
+    hiddenDate
     upvotes
     downvotes
     tags
@@ -357,9 +259,9 @@ export const listDiscussions = `query ListDiscussions(
       content
       locked
       hidden
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      hidden_date
+      sitewideReasonsForBeingHidden
+      communityReasonsForBeingHidden
+      hiddenDate
       upvotes
       downvotes
       tags
@@ -374,8 +276,8 @@ export const getEvent = `query GetEvent($id: ID!) {
     title
     description
     picture
-    start_time
-    end_time
+    startTime
+    endTime
     place {
       id
       url
@@ -400,18 +302,18 @@ export const getEvent = `query GetEvent($id: ID!) {
         content
         creator
         discussionId
-        created_date
+        createdDate
+        parentCommentId
+        threadId
         hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
+        hiddenDate
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        upvotes
+        downvotes
         funny
-        date_last_modified
-        parent_comment_id
+        disagree
+        dateLastModified
       }
       flagged_discussions {
         id
@@ -422,9 +324,9 @@ export const getEvent = `query GetEvent($id: ID!) {
         content
         locked
         hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        hiddenDate
         upvotes
         downvotes
         tags
@@ -438,24 +340,24 @@ export const getEvent = `query GetEvent($id: ID!) {
       profiles {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
-      default_profile {
+      defaultProfile {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
     }
   }
@@ -472,8 +374,8 @@ export const listEvents = `query ListEvents(
       title
       description
       picture
-      start_time
-      end_time
+      startTime
+      endTime
       place {
         id
         url
@@ -510,24 +412,24 @@ export const getPrivateMessage = `query GetPrivateMessage($id: ID!) {
       profiles {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
-      default_profile {
+      defaultProfile {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
     }
     sentDate
@@ -558,50 +460,9 @@ export const getReport = `query GetReport($id: ID!) {
   getReport(id: $id) {
     id
     creator
-    comment {
-      id
-      content
-      creator
-      discussionId
-      created_date
-      hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      contributed_to_discussion
-      did_not_contribute_to_discussion
-      agree
-      disagree
-      funny
-      date_last_modified
-      parent_comment_id
-    }
-    discussion {
-      id
-      title
-      creator
-      communityUrl
-      createdDate
-      content
-      locked
-      hidden
-      sitewide_reasons_for_being_hidden
-      community_reasons_for_being_hidden
-      hidden_date
-      upvotes
-      downvotes
-      tags
-    }
-    message {
-      id
-      title
-      content
-      author {
-        id
-        email
-      }
-      sentDate
-    }
+    commentId
+    discussionId
+    messageId
     complaint
     community {
       id
@@ -627,18 +488,18 @@ export const getReport = `query GetReport($id: ID!) {
         content
         creator
         discussionId
-        created_date
+        createdDate
+        parentCommentId
+        threadId
         hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
+        hiddenDate
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        upvotes
+        downvotes
         funny
-        date_last_modified
-        parent_comment_id
+        disagree
+        dateLastModified
       }
       flagged_discussions {
         id
@@ -649,9 +510,9 @@ export const getReport = `query GetReport($id: ID!) {
         content
         locked
         hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
+        sitewideReasonsForBeingHidden
+        communityReasonsForBeingHidden
+        hiddenDate
         upvotes
         downvotes
         tags
@@ -659,35 +520,9 @@ export const getReport = `query GetReport($id: ID!) {
       moderation_level
       number_of_users
     }
-    broken_sitewide_rules
-    broken_community_rules
-    author {
-      id
-      email
-      profiles {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-      default_profile {
-        id
-        username
-        real_sounding_name
-        bio
-        pronouns
-        location
-        picture
-        reputation
-        account_created_date
-      }
-    }
-    created_date
+    brokenSitewideRules
+    brokenCommunityRules
+    createdDate
     resolved
   }
 }
@@ -701,46 +536,9 @@ export const listReports = `query ListReports(
     items {
       id
       creator
-      comment {
-        id
-        content
-        creator
-        discussionId
-        created_date
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
-        funny
-        date_last_modified
-        parent_comment_id
-      }
-      discussion {
-        id
-        title
-        creator
-        communityUrl
-        createdDate
-        content
-        locked
-        hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
-        upvotes
-        downvotes
-        tags
-      }
-      message {
-        id
-        title
-        content
-        sentDate
-      }
+      commentId
+      discussionId
+      messageId
       complaint
       community {
         id
@@ -758,13 +556,9 @@ export const listReports = `query ListReports(
         moderation_level
         number_of_users
       }
-      broken_sitewide_rules
-      broken_community_rules
-      author {
-        id
-        email
-      }
-      created_date
+      brokenSitewideRules
+      brokenCommunityRules
+      createdDate
       resolved
     }
     nextToken
@@ -778,132 +572,24 @@ export const getUser = `query GetUser($id: ID!) {
     profiles {
       id
       username
-      real_sounding_name
+      humanName
       bio
       pronouns
       location
       picture
       reputation
-      account_created_date
-      bans {
-        id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
+      accountCreatedDate
     }
-    default_profile {
+    defaultProfile {
       id
       username
-      real_sounding_name
+      humanName
       bio
       pronouns
       location
       picture
       reputation
-      account_created_date
-      bans {
-        id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
+      accountCreatedDate
     }
   }
 }
@@ -920,24 +606,24 @@ export const listUsers = `query ListUsers(
       profiles {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
-      default_profile {
+      defaultProfile {
         id
         username
-        real_sounding_name
+        humanName
         bio
         pronouns
         location
         picture
         reputation
-        account_created_date
+        accountCreatedDate
       }
     }
     nextToken
@@ -948,207 +634,13 @@ export const getProfile = `query GetProfile($id: ID!) {
   getProfile(id: $id) {
     id
     username
-    real_sounding_name
+    humanName
     bio
     pronouns
     location
     picture
     reputation
-    account_created_date
-    bans {
-      id
-      user {
-        id
-        email
-      }
-      is_sitewide_ban
-      community {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      createdDate
-      expirationDate
-    }
-    member_of {
-      id
-      url
-      name
-      description
-      creator
-      created_date
-      rules {
-        id
-        community_id
-        summary
-        explanation
-      }
-      locations
-      hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      keywords
-      tags
-      flagged_comments {
-        id
-        content
-        creator
-        discussionId
-        created_date
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
-        funny
-        date_last_modified
-        parent_comment_id
-      }
-      flagged_discussions {
-        id
-        title
-        creator
-        communityUrl
-        createdDate
-        content
-        locked
-        hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
-        upvotes
-        downvotes
-        tags
-      }
-      moderation_level
-      number_of_users
-    }
-    moderator_of {
-      id
-      url
-      name
-      description
-      creator
-      created_date
-      rules {
-        id
-        community_id
-        summary
-        explanation
-      }
-      locations
-      hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      keywords
-      tags
-      flagged_comments {
-        id
-        content
-        creator
-        discussionId
-        created_date
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
-        funny
-        date_last_modified
-        parent_comment_id
-      }
-      flagged_discussions {
-        id
-        title
-        creator
-        communityUrl
-        createdDate
-        content
-        locked
-        hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
-        upvotes
-        downvotes
-        tags
-      }
-      moderation_level
-      number_of_users
-    }
-    creator_of {
-      id
-      url
-      name
-      description
-      creator
-      created_date
-      rules {
-        id
-        community_id
-        summary
-        explanation
-      }
-      locations
-      hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
-      keywords
-      tags
-      flagged_comments {
-        id
-        content
-        creator
-        discussionId
-        created_date
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        contributed_to_discussion
-        did_not_contribute_to_discussion
-        agree
-        disagree
-        funny
-        date_last_modified
-        parent_comment_id
-      }
-      flagged_discussions {
-        id
-        title
-        creator
-        communityUrl
-        createdDate
-        content
-        locked
-        hidden
-        sitewide_reasons_for_being_hidden
-        community_reasons_for_being_hidden
-        hidden_date
-        upvotes
-        downvotes
-        tags
-      }
-      moderation_level
-      number_of_users
-    }
+    accountCreatedDate
   }
 }
 `;
@@ -1161,67 +653,13 @@ export const listProfiles = `query ListProfiles(
     items {
       id
       username
-      real_sounding_name
+      humanName
       bio
       pronouns
       location
       picture
       reputation
-      account_created_date
-      bans {
-        id
-        is_sitewide_ban
-        createdDate
-        expirationDate
-      }
-      member_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      moderator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
-      creator_of {
-        id
-        url
-        name
-        description
-        creator
-        created_date
-        locations
-        hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
-        keywords
-        tags
-        moderation_level
-        number_of_users
-      }
+      accountCreatedDate
     }
     nextToken
   }

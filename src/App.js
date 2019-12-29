@@ -8,6 +8,7 @@ import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
 import { ThemeProvider } from "@material-ui/core/styles";
 import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
+import CommentsInDiscussion from "./pages/comments_in_discussion_page";
 import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
 import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
@@ -15,12 +16,12 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: ["Zilla Slab", "cursive"].join(","),
+    fontFamily: ["Zilla Slab", "cursive"].join(",")
   },
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#000000",
+      main: "#000000"
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -28,16 +29,16 @@ const theme = createMuiTheme({
       light: "#98FB98",
       main: "#98FB98",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: "#000000",
-    },
+      contrastText: "#000000"
+    }
     // error: will use the default color
-  },
+  }
 });
 
 class App extends Component {
   state = {
     username: "",
-    communities: [],
+    communities: []
   };
 
   componentDidMount = async () => {
@@ -54,7 +55,7 @@ class App extends Component {
         );
         const updatedCommunities = [...prevCommunities, newCommunity];
         this.setState({ communities: updatedCommunities });
-      },
+      }
     });
     this.deleteCommunityListener = API.graphql(
       graphqlOperation(onDeleteCommunity)
@@ -65,7 +66,7 @@ class App extends Component {
           community => community.id !== deletedCommunity.id
         );
         this.setState({ communities: updatedCommunities });
-      },
+      }
     });
   };
 
@@ -131,7 +132,11 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <Router>
             <>
-              <TopNavBar user={username} handleSignout={this.handleSignout} />
+              <TopNavBar
+                className="top-nav-bar"
+                user={username}
+                handleSignout={this.handleSignout}
+              />
 
               <div className="app-container">
                 <Route
@@ -170,11 +175,21 @@ class App extends Component {
                   }}
                 />
                 <Route
+                  exact
                   path="/c/:nameInUrl"
                   component={({ match }) => (
                     <CommunityPage
                       nameInUrl={match.params.nameInUrl}
                       communities={communities}
+                    />
+                  )}
+                />
+                <Route
+                  path="/c/:url/:discussionId"
+                  component={({ match }) => (
+                    <CommentsInDiscussion
+                      communityUrl={match.params.url}
+                      discussionId={match.params.discussionId}
                     />
                   )}
                 />

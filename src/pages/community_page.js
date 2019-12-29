@@ -7,6 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CommunityRuleFormWrapped from "../forms/CommunityRulesForm/rules_form";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class CommunityPage extends React.Component {
   state = {
@@ -67,7 +68,8 @@ class CommunityPage extends React.Component {
                   <i className="fas fa-comments" /> Discussions
                 </span>
               }
-            >
+            >  
+              
               <DiscussionFormWrapped communityData={communityData} />
               <ListOfDiscussions communityData={communityData} />
             </Tab>

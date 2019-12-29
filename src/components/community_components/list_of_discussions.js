@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { listDiscussions } from "../../graphql/queries";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { NavLink, BrowserRouter as Router, Route } from "react-router-dom";
 import {
   onCreateDiscussion,
   onDeleteDiscussion
@@ -97,19 +97,23 @@ class ListOfDiscussions extends Component {
     this.deleteDiscussionListener.unsubscribe();
   }
 
-  mapDiscussionsToListView = discussions => {
+  mapDiscussionsToListView = (discussions, url) => {
     return discussions.map(discussion => {
+      const { id, creator, createdDate, title, tags } = discussion;
+
       return (
-        <tr key={discussion.id}>
+        <tr key={id}>
           <td className="discussion-title">
-            {discussion.title}{" "}
-            <span>{this.showDiscussionTags(discussion.tags)}</span>
+            <NavLink className="nav-link" to={`/c/${url}/${id}`}>
+              {title}
+            </NavLink>
+            <span> {this.showDiscussionTags(tags)}</span>
           </td>
-          <td>{discussion.creator}</td>
-          <td>{this.getDateOfDiscussion(discussion.createdDate)}</td>
+          <td>{creator}</td>
+          <td>{this.getDateOfDiscussion(createdDate)}</td>
           <td>
             <button
-              onClick={() => this.handleDeleteDiscussion(discussion.id)}
+              onClick={() => this.handleDeleteDiscussion(id)}
               className="delete-button"
             >
               <span>&times;</span>
@@ -127,7 +131,10 @@ class ListOfDiscussions extends Component {
       return discussion.communityUrl === communityData.url;
     });
     console.log("filtered discussions are ", filteredDiscussions);
-    return this.mapDiscussionsToListView(filteredDiscussions);
+    return this.mapDiscussionsToListView(
+      filteredDiscussions,
+      communityData.url
+    );
   };
 
   render() {
@@ -144,9 +151,9 @@ class ListOfDiscussions extends Component {
           </tr>
         </thead>
         <tbody>
-          {communityData ? (
-            this.filterDiscussions(communityData)
-          ) : this.filterDiscussions([])}
+          {communityData
+            ? this.filterDiscussions(communityData)
+            : this.filterDiscussions([])}
         </tbody>
       </table>
     );
