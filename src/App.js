@@ -8,7 +8,7 @@ import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
 import { ThemeProvider } from "@material-ui/core/styles";
 import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
-import CommentsInDiscussion from "./pages/comments_in_discussion_page";
+import CommentSection from "./pages/comment_section";
 import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
 import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
@@ -187,7 +187,7 @@ class App extends Component {
                 <Route
                   path="/c/:url/:discussionId"
                   component={({ match }) => (
-                    <CommentsInDiscussion
+                    <CommentSection
                       communityUrl={match.params.url}
                       discussionId={match.params.discussionId}
                     />

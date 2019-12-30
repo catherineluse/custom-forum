@@ -22,8 +22,24 @@ h2 {
   color: white;
 }
 
-.nav-link {
-  color: lime;
+
+.breadcrumbs>.nav-link {
+  color: gray;
+  text-decoration: underline;
+}
+
+.breadcrumbs>.nav-link:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.discussion-attribution {
+  color: darkgray;
+}
+
+.discussion-content {
+  background-color: #ebedeb;
+  padding: 10px;
 }
 
 a:hover {
@@ -81,8 +97,6 @@ th {
 .nav-link {
   color: inherit;
   text-decoration: inherit;
-  margin-left: inherit;
-  padding: inherit;
 }
 
 tr:hover {
@@ -241,8 +255,13 @@ tr:hover .nav-link {
   color: palegreen;
 }
 
+.discussion {
+  margin-top: 20px;
+}
+
 .discussion-title>.nav-link {
   padding-left: 0px;
+  margin-left: 0px;
 }
 
 .keyword {

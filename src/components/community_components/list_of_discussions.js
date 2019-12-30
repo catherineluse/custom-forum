@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { listDiscussions } from "../../graphql/queries";
-import { NavLink, BrowserRouter as Router, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   onCreateDiscussion,
   onDeleteDiscussion
@@ -99,27 +99,24 @@ class ListOfDiscussions extends Component {
 
   mapDiscussionsToListView = (discussions, url) => {
     return discussions.map(discussion => {
-      const { id, creator, createdDate, title, tags } = discussion;
+      const { id, creator, createdDate, title, tags, content } = discussion;
 
       return (
-        <tr key={id}>
-          <td className="discussion-title">
-            <NavLink className="nav-link" to={`/c/${url}/${id}`}>
-              {title}
-            </NavLink>
-            <span> {this.showDiscussionTags(tags)}</span>
-          </td>
-          <td>{creator}</td>
-          <td>{this.getDateOfDiscussion(createdDate)}</td>
-          <td>
-            <button
-              onClick={() => this.handleDeleteDiscussion(id)}
-              className="delete-button"
-            >
-              <span>&times;</span>
-            </button>
-          </td>
-        </tr>
+        <div className="discussion" key={id}>
+          <NavLink className="nav-link discussion-title" to={`/c/${url}/${id}`}>
+            {title}
+          </NavLink>
+          {content}
+          <span>{this.showDiscussionTags(tags)}</span>
+          {`Created by ${creator} on ${this.getDateOfDiscussion(createdDate)}`}
+
+          <button
+            onClick={() => this.handleDeleteDiscussion(id)}
+            className="delete-button"
+          >
+            <span>&times; Delete</span>
+          </button>
+        </div>
       );
     });
   };
@@ -141,21 +138,11 @@ class ListOfDiscussions extends Component {
     const { communityData } = this.props;
 
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Creator</th>
-            <th>Created Date</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {communityData
-            ? this.filterDiscussions(communityData)
-            : this.filterDiscussions([])}
-        </tbody>
-      </table>
+      <>
+        {communityData
+          ? this.filterDiscussions(communityData)
+          : this.filterDiscussions([])}
+      </>
     );
   }
 }

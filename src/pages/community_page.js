@@ -68,10 +68,9 @@ class CommunityPage extends React.Component {
                   <i className="fas fa-comments" /> Discussions
                 </span>
               }
-            >  
-              
-              <DiscussionFormWrapped communityData={communityData} />
+            >
               <ListOfDiscussions communityData={communityData} />
+              <DiscussionFormWrapped communityData={communityData} />
             </Tab>
             <Tab
               eventKey="info"
