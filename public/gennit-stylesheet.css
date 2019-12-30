@@ -1,7 +1,7 @@
 nav {
   color: white;
   background-color: black;
-  font-family: "Zilla Slab", serif;
+  font-family: "Lato", sans-serif;
 }
 
 h2 {
@@ -24,8 +24,10 @@ h2 {
 
 
 .breadcrumbs>.nav-link {
+  margin-top: 10px;
   color: gray;
   text-decoration: underline;
+  font-family: Lato;
 }
 
 .breadcrumbs>.nav-link:hover {
@@ -33,14 +35,6 @@ h2 {
   text-decoration: underline;
 }
 
-.discussion-attribution {
-  color: darkgray;
-}
-
-.discussion-content {
-  background-color: #ebedeb;
-  padding: 10px;
-}
 
 a:hover {
   color: palegreen;
@@ -229,10 +223,6 @@ tr:hover .table-link {
   color: gray;
 }
 
-tr:hover .nav-link {
-  color: palegreen;
-}
-
 .community-tabs>.nav-link:hover {
   color: black;
 }
@@ -256,10 +246,62 @@ tr:hover .nav-link {
 }
 
 .discussion {
-  margin-top: 20px;
+  margin-top: 10px;
+  border-bottom: 1px solid lightgray;
 }
 
-.discussion-title>.nav-link {
+.discussion-attribution {
+  color: darkgray;
+}
+
+.discussion-title {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.discussion-title-in-comment-page {
+  font-family: Lato;
+  font-weight: bold;
+}
+
+.discussion-title:hover {
+  color: gray;
+}
+
+.discussion-content {
+  background-color: #f5f5f5;
+  color: #474747;
+  font-family: Lato;
+  font-size: 18px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.discussion-content-in-list {
+  font-style: italic;
+  margin-top: 0px;
+  padding-top: 0px;
+  margin-bottom: 5px;
+  background-color: #f5f5f5;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  color: gray;
+}
+
+.dicussion-metadata {
+  color: gray;
+  font-size: 12px;
+  font-family: Lato;
+}
+
+.discussion-tag-list {
+  margin-left: 10px;
+}
+
+.discussion>.nav-link {
   padding-left: 0px;
   margin-left: 0px;
 }
@@ -364,8 +406,4 @@ tr:hover .nav-link {
 .rule-explanation {
   color: gray;
   font-weight: 300;
-}
-
-.discussion-title {
-  font-weight: bold;
 }

@@ -119,6 +119,10 @@ class CommentSection extends React.Component {
     return commentDate.substring(0, 10);
   };
 
+  getDiscussionPreview = discussionContent => {
+    return discussionContent.substring(0, 100);
+  };
+
   mapCommentsToTreeView = comments => {
     return comments.map(comment => {
       const { id, content, creator, createdDate } = comment;
@@ -174,9 +178,13 @@ class CommentSection extends React.Component {
           <p className="discussion-attribution">
             {`Discussion started by ${discussionCreator} on ${createdDate}`}
           </p>
-          <div className="discussion-content">
-            <p>{discussionContent}</p>
-          </div>
+          {discussionContent ? (
+            <div className="discussion-content">
+              <p>{this.getDiscussionPreview(discussionContent)}</p>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </>
     );

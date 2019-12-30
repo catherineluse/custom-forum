@@ -105,17 +105,26 @@ class ListOfDiscussions extends Component {
         <div className="discussion" key={id}>
           <NavLink className="nav-link discussion-title" to={`/c/${url}/${id}`}>
             {title}
+            <span className="discussion-tag-list">
+              {this.showDiscussionTags(tags)}
+            </span>
           </NavLink>
-          {content}
-          <span>{this.showDiscussionTags(tags)}</span>
-          {`Created by ${creator} on ${this.getDateOfDiscussion(createdDate)}`}
-
-          <button
-            onClick={() => this.handleDeleteDiscussion(id)}
-            className="delete-button"
-          >
-            <span>&times; Delete</span>
-          </button>
+          {content ? (
+            <div className="discussion-content-in-list">{content}</div>
+          ) : (
+            <></>
+          )}
+          <div className="dicussion-metadata">
+            {`Created by ${creator} on ${this.getDateOfDiscussion(
+              createdDate
+            )} `}
+            <button
+              onClick={() => this.handleDeleteDiscussion(id)}
+              className="delete-button"
+            >
+              <span>&times; Delete</span>
+            </button>
+          </div>
         </div>
       );
     });
