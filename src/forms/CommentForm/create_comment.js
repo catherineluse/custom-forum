@@ -6,23 +6,23 @@ import * as Yup from "yup";
 import Error from "../Error";
 
 // type Comment @model {
-    //     id: ID
-    //     content: String!
-    //     creator: String!
-    //     discussionId: ID
-    //     createdDate: String!
-    //     parentCommentId: ID
-    //     threadId: ID
-    //     hidden: Boolean
-    //     hiddenDate: String
-    //     sitewideReasonsForBeingHidden: [String]
-    //     communityReasonsForBeingHidden: [String]
-    //     upvotes: Int
-    //     downvotes: Int
-    //     funny: Int
-    //     disagree: Int
-    //     dateLastModified: String
-    // }
+//     id: ID
+//     content: String!
+//     creator: String!
+//     discussionId: ID
+//     createdDate: String!
+//     parentCommentId: ID
+//     threadId: ID
+//     hidden: Boolean
+//     hiddenDate: String
+//     sitewideReasonsForBeingHidden: [String]
+//     communityReasonsForBeingHidden: [String]
+//     upvotes: Int
+//     downvotes: Int
+//     funny: Int
+//     disagree: Int
+//     dateLastModified: String
+// }
 
 const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
@@ -44,12 +44,14 @@ const addDateToDTO = input => {
 
 const formikWrapper = withFormik({
   enableReinitialize: true,
-  mapPropsToValues: ({ creator, tags, communityUrl, communityData }) => ({
-    title: "",
+  //   content: String!
+  //   creator: String!
+  //   discussionId: ID
+  //   createdDate: String!
+  mapPropsToValues: ({ user, discussionId }) => ({
     content: "",
-    communityUrl: communityData ? communityData.url : "",
-    creator: communityData ? communityData.creator : "",
-    tags: []
+    creator: user,
+    discussionId
   }),
   handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
@@ -57,7 +59,6 @@ const formikWrapper = withFormik({
     };
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
-    input = mapTagObjectsToStringsForDTO(input);
 
     await API.graphql(graphqlOperation(createComment, { input }))
       .then(response => {
@@ -67,19 +68,17 @@ const formikWrapper = withFormik({
       .catch(e => {
         console.log("CreateComment API call failed");
         console.log("input was ", input);
+        console.log("values was ", values);
         console.log(e);
       });
     setSubmitting(false);
     resetForm();
   },
   validationSchema: Yup.object().shape({
-    title: Yup.string()
-      .max(140, "Can have a maximum of 140 characters.")
-      .required("Please enter a title for the comment."),
     content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
   })
 });
-class CommentForm extends React.Component {
+class CreateTopLevelComment extends React.Component {
   addCommunityDataToDTO = input => {
     const { communityData } = this.props;
     return {
@@ -102,53 +101,27 @@ class CommentForm extends React.Component {
     } = this.props;
 
     return (
-      <div className="card shadow">
-        <div className="card-body">
-          <Form onKeyDown={onKeyDown}>
-            <h1>Create a Comment</h1>
-
-            <div className="form-group">
-              <label htmlFor="title">Comment Title</label>
-              <Field name="title" type="text" className="form-control" />
-              {errors.title && touched.title ? <div>{errors.title}</div> : null}
-              <ErrorMessage component={Error} name="commentTitleError" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="commentContent">Text Post (Optional)</label>
-              <Field
-                component="textarea"
-                rows="3"
-                type="content"
-                name="content"
-                placeholder="If you want to say something beyond what fits in the title, add it here."
-                className="form-control"
-              />
-              <ErrorMessage component={Error} name="commentContentError" />
-            </div>
-            <CommentTagsDropdown
-              id="commentTagsSelect"
-              value={values.tags}
-              availableTags={communityData ? communityData.tags : []}
-              onChange={setFieldValue}
-              onBlur={setFieldTouched}
-            />
-            <span>
-              <button
-                type="submit"
-                className="form-submit"
-                disabled={isSubmitting}
-              >
-                + Create Comment
-              </button>
-            </span>
-          </Form>
+      <Form>
+        <div className="form-group">
+          <Field
+            component="textarea"
+            rows="3"
+            type="content"
+            name="content"
+            placeholder="Reply here."
+            className="form-control"
+          />
+          <ErrorMessage component={Error} name="commentContentError" />
         </div>
-      </div>
+        <span>
+          <button type="submit" className="form-submit" disabled={isSubmitting}>
+            + Reply
+          </button>
+        </span>
+      </Form>
     );
   }
 }
 
-const CommentFormWrapped = formikWrapper(CommentForm);
-export default CommentFormWrapped;
-
+const CreateTopLevelCommentWrapped = formikWrapper(CreateTopLevelComment);
+export default CreateTopLevelCommentWrapped;

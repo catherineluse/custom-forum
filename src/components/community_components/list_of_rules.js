@@ -85,7 +85,7 @@ class ListOfRules extends Component {
     const { communityData } = this.props;
 
     return (
-      <ol>
+      <ol className="rules">
         {communityData
           ? this.mapRulesToListView(this.filterRules(communityData.id))
           : this.mapRulesToListView([])}

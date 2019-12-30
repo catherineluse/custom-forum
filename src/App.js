@@ -169,7 +169,7 @@ class App extends Component {
                   component={() => {
                     return (
                       <div className="container">
-                        <ProfilePage user={username} />
+                        <ProfilePage user={this.state.username} />
                       </div>
                     );
                   }}
@@ -190,6 +190,7 @@ class App extends Component {
                     <CommentSection
                       communityUrl={match.params.url}
                       discussionId={match.params.discussionId}
+                      user={this.state.username}
                     />
                   )}
                 />

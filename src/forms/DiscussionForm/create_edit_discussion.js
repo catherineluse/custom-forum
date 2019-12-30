@@ -54,6 +54,7 @@ const formikWrapper = withFormik({
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
     input = mapTagObjectsToStringsForDTO(input);
+    console.log("trying to submit this create discussion DTO ", input);
 
     await API.graphql(graphqlOperation(createDiscussion, { input }))
       .then(response => {
@@ -101,7 +102,7 @@ class DiscussionForm extends React.Component {
       <div className="card shadow">
         <div className="card-body">
           <Form onKeyDown={onKeyDown}>
-            <h1>Create a Discussion</h1>
+            <h1>Start a Discussion</h1>
 
             <div className="form-group">
               <label htmlFor="title">Discussion Title</label>

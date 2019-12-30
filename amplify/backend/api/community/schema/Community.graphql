@@ -38,7 +38,7 @@ type Comment @model {
   id: ID
   content: String!
   creator: String!
-  discussionId: ID
+  discussionId: ID!
   createdDate: String!
   parentCommentId: ID
   threadId: ID

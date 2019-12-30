@@ -3,6 +3,8 @@ import { API, graphqlOperation } from "aws-amplify";
 import { listComments, listDiscussions } from "../graphql/queries";
 import { onCreateComment, onDeleteComment } from "../graphql/subscriptions";
 import { NavLink } from "react-router-dom";
+import CreateTopLevelCommentWrapped from "../forms/CommentForm/create_comment.js";
+import { deleteComment } from "../graphql/mutations";
 
 // type Comment @model {
 //   id: ID
@@ -90,8 +92,8 @@ class CommentSection extends React.Component {
     const relevantDiscussion = discussions.filter(
       discussion => discussion.id === discussionId
     );
-    if (relevantDiscussion) {
-      const discussionData = relevantDiscussion[0];
+    const discussionData = relevantDiscussion[0];
+    if (discussionData) {
       const { title, content, creator, createdDate } = discussionData;
       this.setState(
         {
@@ -104,6 +106,10 @@ class CommentSection extends React.Component {
           console.log("relevantDiscussion is ", relevantDiscussion);
         }
       );
+    } else {
+      console.log("couldn't get discussion data");
+      console.log("all discussions are", discussions);
+      console.log("discussionId", discussionId);
     }
   };
 
@@ -123,20 +129,31 @@ class CommentSection extends React.Component {
     return discussionContent.substring(0, 100);
   };
 
+  handleDeleteComment = async commentId => {
+    const input = {
+      id: commentId
+    };
+    await API.graphql(graphqlOperation(deleteComment, { input }));
+  };
+
   mapCommentsToTreeView = comments => {
     return comments.map(comment => {
       const { id, content, creator, createdDate } = comment;
       return (
-        <div key={id}>
-          <p>{creator}</p>
-          <p>{content}</p>
-          <p>{this.getDateOfComment(createdDate)}</p>
-          <button
-            onClick={() => this.handleDeleteComment(id)}
-            className="delete-button"
-          >
-            <span>&times; Delete</span>
-          </button>
+        <div className="comment" key={id}>
+          <div className="comment-header">
+            <div className="username-in-comment">{creator}</div>
+            <div className="comment-metadata">
+              {this.getDateOfComment(createdDate)}
+              <span
+                className="delete-comment-button"
+                onClick={() => this.handleDeleteComment(id)}
+              >
+                <span> &times; Delete</span>
+              </span>
+            </div>
+          </div>
+          <div className="comment-content">{content}</div>
         </div>
       );
     });
@@ -147,7 +164,6 @@ class CommentSection extends React.Component {
     const filteredComments = comments.filter(comment => {
       return comment.discussionId === discussionId;
     });
-    this.setState({ comments, filteredComments });
     console.log("filtered comments are ", filteredComments);
     return this.mapCommentsToTreeView(filteredComments);
   };
@@ -158,8 +174,10 @@ class CommentSection extends React.Component {
       discussionTitle,
       discussionContent,
       discussionCreator,
-      discussionCreatedDate
+      discussionCreatedDate,
+      comments
     } = this.state;
+    const { discussionId, user } = this.props;
 
     const createdDate = this.getDateOfComment(discussionCreatedDate);
 
@@ -178,12 +196,24 @@ class CommentSection extends React.Component {
           <p className="discussion-attribution">
             {`Discussion started by ${discussionCreator} on ${createdDate}`}
           </p>
+
           {discussionContent ? (
             <div className="discussion-content">
               <p>{this.getDiscussionPreview(discussionContent)}</p>
             </div>
           ) : (
             <></>
+          )}
+
+          <CreateTopLevelCommentWrapped
+            discussionId={discussionId}
+            user={user}
+          />
+          <hr></hr>
+          {comments ? (
+            this.filterComments(comments)
+          ) : (
+            <p>There are no replies yet.</p>
           )}
         </div>
       </>

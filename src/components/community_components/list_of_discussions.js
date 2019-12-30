@@ -98,45 +98,51 @@ class ListOfDiscussions extends Component {
   }
 
   mapDiscussionsToListView = (discussions, url) => {
-    return discussions.map(discussion => {
-      const { id, creator, createdDate, title, tags, content } = discussion;
+    if (discussions.length === 0) {
+      return <p className="placeholder">There are no discussions yet.</p>;
+    } else {
+      return discussions.map(discussion => {
+        const { id, creator, createdDate, title, tags, content } = discussion;
 
-      return (
-        <div className="discussion" key={id}>
-          <NavLink className="nav-link discussion-title" to={`/c/${url}/${id}`}>
-            {title}
-            <span className="discussion-tag-list">
-              {this.showDiscussionTags(tags)}
-            </span>
-          </NavLink>
-          {content ? (
-            <div className="discussion-content-in-list">{content}</div>
-          ) : (
-            <></>
-          )}
-          <div className="dicussion-metadata">
-            {`Created by ${creator} on ${this.getDateOfDiscussion(
-              createdDate
-            )} `}
-            <button
-              onClick={() => this.handleDeleteDiscussion(id)}
-              className="delete-button"
+        return (
+          <div className="discussion" key={id}>
+            <NavLink
+              className="nav-link discussion-title"
+              to={`/c/${url}/${id}`}
             >
-              <span>&times; Delete</span>
-            </button>
+              {title}
+              <span className="discussion-tag-list">
+                {this.showDiscussionTags(tags)}
+              </span>
+            </NavLink>
+            {content ? (
+              <div className="discussion-content-in-list">{content}</div>
+            ) : (
+              <></>
+            )}
+            <div className="dicussion-metadata">
+              {`Created by ${creator} on ${this.getDateOfDiscussion(
+                createdDate
+              )} `}
+              <button
+                onClick={() => this.handleDeleteDiscussion(id)}
+                className="delete-button"
+              >
+                <span>&times; Delete</span>
+              </button>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
   };
   filterDiscussions = communityData => {
     const discussions = this.state.discussions;
     const filteredDiscussions = discussions.filter(discussion => {
-      console.log("discussion.communityUrl is ", discussion.communityUrl);
-      console.log("communityData.url is ", communityData.url);
       return discussion.communityUrl === communityData.url;
     });
     console.log("filtered discussions are ", filteredDiscussions);
+    console.log("community data is ", communityData);
     return this.mapDiscussionsToListView(
       filteredDiscussions,
       communityData.url
