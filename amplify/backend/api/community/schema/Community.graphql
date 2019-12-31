@@ -41,6 +41,7 @@ type Comment @model {
   discussionId: ID!
   createdDate: String!
   parentCommentId: ID
+  children: [ID]
   threadId: ID
   hidden: Boolean
   hiddenDate: String

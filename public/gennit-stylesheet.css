@@ -1,6 +1,6 @@
 nav {
-  color: white;
-  background-color: black;
+  color: #e3fcef;
+  background-color: #6ca388;
   font-family: "Lato", sans-serif;
 }
 
@@ -12,20 +12,33 @@ h2 {
   margin-right: 10px;
 }
 
-
 .header-within-tab {
   margin-top: 20px;
   color: black;
 }
 
 .navbar-brand {
-  color: white;
+  color: #6ca388;
+  ;
 }
 
+nav>.navbar {
+  margin-bottom: 0px;
+}
+
+.no-gap {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.breadcrumbs {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
 
 .breadcrumbs>.nav-link {
   margin-top: 10px;
-  color: gray;
+  color: silver;
   text-decoration: underline;
   font-family: Lato;
 }
@@ -37,7 +50,7 @@ h2 {
 
 
 a:hover {
-  color: palegreen;
+  color: #6ca388;
 }
 
 h1 {
@@ -54,9 +67,9 @@ h2 {
 
 h3 {
   margin-top: 30px;
-  color: green;
+  color: #6ca388;
   font-size: 15px;
-  font-family: "Zilla Slab", cursive;
+  font-family: "Lato", sans-serif;
 }
 
 label {
@@ -69,7 +82,7 @@ input {
 }
 
 small {
-  color: white;
+  color: #6ca388;
   margin-left: 5px;
   margin-top: 1px;
 }
@@ -94,14 +107,14 @@ th {
 }
 
 tr:hover {
-  background-color: black;
+  background-color: honeydew;
   color: white;
   cursor: pointer;
-  color: palegreen;
+  color: #6ca388;
 }
 
 .community-url {
-  color: gray;
+  color: darkgray;
 }
 
 .community-header {
@@ -111,11 +124,11 @@ tr:hover {
 }
 
 tr:hover .community-description {
-  color: lightgray;
+  color: #538f72;
 }
 
 tr:hover .community-url {
-  color: lightgray;
+  color: #538f72;
 }
 
 tr:hover .delete-button {
@@ -125,7 +138,7 @@ tr:hover .delete-button {
 }
 
 tr:hover .table-link {
-  color: palegreen;
+  color: #6ca388;
 }
 
 .table-link {
@@ -184,16 +197,16 @@ tr:hover .table-link {
 }
 
 .form-submit {
-  background-color: black;
+  background-color: silver;
   font-family: "Lato", sans-serif;
-  color: white;
+  color: black;
   width: 100%;
   height: 35px;
 }
 
 .form-submit:hover {
-  color: black;
-  background-color: silver;
+  color: white;
+  background-color: black;
 }
 
 .btn-rule {
@@ -208,7 +221,7 @@ tr:hover .table-link {
 
 .btn-rule:hover {
   cursor: pointer;
-  color: palegreen;
+  color: #6ca388;
 }
 
 .community-description {
@@ -239,11 +252,11 @@ tr:hover .table-link {
 }
 
 .nav-item>.nav-link {
-  color: white;
+  color: #538f72;
 }
 
 .nav-item>.nav-link:hover {
-  color: palegreen;
+  color: black;
 }
 
 .discussion {
@@ -264,10 +277,17 @@ tr:hover .table-link {
 .discussion-title-in-comment-page {
   font-family: Lato;
   font-weight: bold;
+  font-size: 24px;
 }
 
 .discussion-title:hover {
   color: gray;
+}
+
+.discussion-signifier {
+  background-color: #e3fcef;
+  color: #6ca388;
+  margin-right: 5px;
 }
 
 .discussion-content {
@@ -424,6 +444,7 @@ tr:hover .table-link {
 
 .comment {
   margin-bottom: 10px;
+  border-top: 1px solid #e3fcef;
 }
 
 .comment-header {
@@ -433,18 +454,50 @@ tr:hover .table-link {
 .comment-content {
   clear: both;
   float: none;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.comment-buttons {
+  padding: 5px;
+  color: #6ca388;
+  background-color: #e3fcef;
+}
+
+.comment-button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.metadata-button {
+  margin-left: 5px;
+  margin-right: 5spx;
 }
 
 .username-in-comment {
-  color: forestgreen;
+  color: #6ca388;
   font-size: 12px;
   float: left;
+  margin-top: 5px;
 }
 
 .comment-metadata {
-  font-size: 12px;
+  font-size: 16px;
   float: right;
-  color: gray;
+  color: silver;
+  margin-top: 5px;
+}
+
+.metadata-action:hover {
+  color: #6ca388;
+  cursor: pointer;
+}
+
+.comment-action:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .delete-comment-button {

@@ -5,7 +5,7 @@ class TopNavBar extends Component {
   render() {
     const { user, handleSignout } = this.props;
     return (
-      <nav className="navbar navbar-expand-md ">
+      <nav className="navbar navbar-expand-md no-gap">
         <div className="navbar-brand abs">
           <i className="fas fa-bars menu-toggle"></i>
           <i className="fas fa-seedling"></i> Gennit
@@ -27,7 +27,7 @@ class TopNavBar extends Component {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#myAlert" data-toggle="collapse">
-                <i className="fas fa-star"></i> Starred Communities
+                <i className="fas fa-star"></i> Shortlist
               </a>
             </li>
 

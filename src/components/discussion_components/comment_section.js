@@ -1,10 +1,11 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listComments, listDiscussions } from "../graphql/queries";
-import { onCreateComment, onDeleteComment } from "../graphql/subscriptions";
+import { listComments, listDiscussions } from "../../graphql/queries";
+import { onCreateComment, onDeleteComment } from "../../graphql/subscriptions";
 import { NavLink } from "react-router-dom";
-import CreateTopLevelCommentWrapped from "../forms/CommentForm/create_comment.js";
-import { deleteComment } from "../graphql/mutations";
+import CreateTopLevelCommentWrapped from "../../forms/CommentForm/create_comment";
+import { deleteComment } from "../../graphql/mutations";
+import Comment from "./comment";
 
 // type Comment @model {
 //   id: ID
@@ -121,10 +122,6 @@ class CommentSection extends React.Component {
     }
   };
 
-  getDateOfComment = commentDate => {
-    return commentDate.substring(0, 10);
-  };
-
   getDiscussionPreview = discussionContent => {
     return discussionContent.substring(0, 100);
   };
@@ -136,25 +133,52 @@ class CommentSection extends React.Component {
     await API.graphql(graphqlOperation(deleteComment, { input }));
   };
 
-  mapCommentsToTreeView = comments => {
-    return comments.map(comment => {
-      const { id, content, creator, createdDate } = comment;
+  getDateOfComment = commentDate => {
+    return commentDate.substring(5, 10);
+  };
+
+  getCommentById = id => {
+    const { comments } = this.state;
+    return comments.filter(comment => {
+      return comment.id === id;
+    })[0];
+  };
+
+  nestChildCommentsUnderParent = childIds => {
+    return childIds.map(id => {
+      const childComment = this.getCommentById(id);
+      const { children } = childComment;
       return (
-        <div className="comment" key={id}>
-          <div className="comment-header">
-            <div className="username-in-comment">{creator}</div>
-            <div className="comment-metadata">
-              {this.getDateOfComment(createdDate)}
-              <span
-                className="delete-comment-button"
-                onClick={() => this.handleDeleteComment(id)}
-              >
-                <span> &times; Delete</span>
-              </span>
-            </div>
-          </div>
-          <div className="comment-content">{content}</div>
-        </div>
+        <>
+          <Comment
+            key={childComment.id}
+            commentData={childComment}
+            handleDeleteComment={this.handleDeleteComment}
+            getDateOfComment={this.getDateOfComment}
+          />
+          <p>Spacer</p>
+          {children ? this.nestChildCommentsUnderParent(children) : null}
+        </>
+      );
+    });
+  };
+
+  mapCommentsToTreeView = comments => {
+    return comments.map(commentData => {
+      const { children, id } = commentData;
+      return (
+        <>
+          <Comment
+            key={id}
+            commentData={commentData}
+            handleDeleteComment={this.handleDeleteComment}
+            getDateOfComment={this.getDateOfComment}
+          />
+          <p>Spacer</p>
+          {children.length > 0
+            ? this.nestChildCommentsUnderParent(children)
+            : null}
+        </>
       );
     });
   };
@@ -165,7 +189,11 @@ class CommentSection extends React.Component {
       return comment.discussionId === discussionId;
     });
     console.log("filtered comments are ", filteredComments);
-    return this.mapCommentsToTreeView(filteredComments);
+    if (filteredComments.length > 0) {
+      return this.mapCommentsToTreeView(filteredComments);
+    } else {
+      return <p>There are no replies yet.</p>;
+    }
   };
 
   render() {
@@ -191,10 +219,11 @@ class CommentSection extends React.Component {
         </div>
         <div className="container">
           <h1 className="discussion-title-in-comment-page">
-            {discussionTitle}
+            <span className="discussion-signifier">Discussion: </span>
+            <span>{discussionTitle}</span>
           </h1>
           <p className="discussion-attribution">
-            {`Discussion started by ${discussionCreator} on ${createdDate}`}
+            {`Started by ${discussionCreator} on ${createdDate}`}
           </p>
 
           {discussionContent ? (
@@ -210,11 +239,8 @@ class CommentSection extends React.Component {
             user={user}
           />
           <hr></hr>
-          {comments ? (
-            this.filterComments(comments)
-          ) : (
-            <p>There are no replies yet.</p>
-          )}
+          <h3>Replies</h3>
+          {comments ? this.filterComments(comments) : null}
         </div>
       </>
     );

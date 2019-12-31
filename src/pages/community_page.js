@@ -121,7 +121,7 @@ class CommunityPage extends React.Component {
                 eventKey="calendar"
                 title={
                   <span>
-                    <i className="fas fa-calendar-alt" /> Calendar
+                    <i className="fas fa-calendar-alt" /> Events
                   </span>
                 }
               >

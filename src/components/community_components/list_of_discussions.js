@@ -108,7 +108,7 @@ class ListOfDiscussions extends Component {
           <div className="discussion" key={id}>
             <NavLink
               className="nav-link discussion-title"
-              to={`/c/${url}/${id}`}
+              to={`/c/${url}/discussions/${id}`}
             >
               {title}
               <span className="discussion-tag-list">
@@ -121,7 +121,7 @@ class ListOfDiscussions extends Component {
               <></>
             )}
             <div className="dicussion-metadata">
-              {`Created by ${creator} on ${this.getDateOfDiscussion(
+              {`Started by ${creator} on ${this.getDateOfDiscussion(
                 createdDate
               )} `}
               <button

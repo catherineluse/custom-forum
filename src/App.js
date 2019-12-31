@@ -8,7 +8,7 @@ import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
 import { ThemeProvider } from "@material-ui/core/styles";
 import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
-import CommentSection from "./pages/comment_section";
+import CommentSection from "./components/discussion_components/comment_section";
 import ProfilePage from "./pages/profile_page";
 import AdminCommunityList from "./components/admin_community_list";
 import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
@@ -132,13 +132,9 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <Router>
             <>
-              <TopNavBar
-                className="top-nav-bar"
-                user={username}
-                handleSignout={this.handleSignout}
-              />
+              <TopNavBar user={username} handleSignout={this.handleSignout} />
 
-              <div className="app-container">
+              <div className="no-gap">
                 <Route
                   exact
                   path="/"
@@ -185,7 +181,7 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path="/c/:url/:discussionId"
+                  path="/c/:url/discussions/:discussionId"
                   component={({ match }) => (
                     <CommentSection
                       communityUrl={match.params.url}

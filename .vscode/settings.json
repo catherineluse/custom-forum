@@ -3,5 +3,6 @@
     "editor.minimap.enabled": false,
     "editor.fontWeight": "400",
     "editor.lineHeight": 30,
-    "workbench.colorTheme": "Amethyst Dark (Higher Contrast)"
+    "workbench.colorTheme": "Amethyst Dark (Higher Contrast)",
+    "editor.formatOnSave": true
 }
