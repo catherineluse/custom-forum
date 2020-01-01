@@ -24,8 +24,9 @@ import Error from "../Error";
 //     dateLastModified: String
 // }
 
-const removeEmptyStringsFromDTO = payload => {
+const removeEmptyDataFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
+  // or arrays
   let input = {};
   for (let key in payload) {
     if (payload[key] !== "" && payload[key] !== []) {
@@ -57,7 +58,7 @@ const formikWrapper = withFormik({
     const formData = {
       ...values
     };
-    let input = removeEmptyStringsFromDTO(formData);
+    let input = removeEmptyDataFromDTO(formData);
     input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(createComment, { input }))

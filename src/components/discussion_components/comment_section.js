@@ -149,16 +149,16 @@ class CommentSection extends React.Component {
       const childComment = this.getCommentById(id);
       const { children } = childComment;
       return (
-        <>
+        <div className="comment" key={id}>
           <Comment
             key={childComment.id}
             commentData={childComment}
             handleDeleteComment={this.handleDeleteComment}
             getDateOfComment={this.getDateOfComment}
           />
-          <p>Spacer</p>
+          <p>This is a child comment</p>
           {children ? this.nestChildCommentsUnderParent(children) : null}
-        </>
+        </div>
       );
     });
   };
@@ -167,18 +167,15 @@ class CommentSection extends React.Component {
     return comments.map(commentData => {
       const { children, id } = commentData;
       return (
-        <>
+        <div className="comment" key={id}>
           <Comment
             key={id}
             commentData={commentData}
             handleDeleteComment={this.handleDeleteComment}
             getDateOfComment={this.getDateOfComment}
           />
-          <p>Spacer</p>
-          {children.length > 0
-            ? this.nestChildCommentsUnderParent(children)
-            : null}
-        </>
+          {children ? this.nestChildCommentsUnderParent(children) : null}
+        </div>
       );
     });
   };
@@ -239,7 +236,6 @@ class CommentSection extends React.Component {
             user={user}
           />
           <hr></hr>
-          <h3>Replies</h3>
           {comments ? this.filterComments(comments) : null}
         </div>
       </>

@@ -28,6 +28,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -87,6 +88,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -146,6 +148,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -246,6 +249,7 @@ export const onCreateComment = `subscription OnCreateComment {
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -267,6 +271,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -288,6 +293,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -392,6 +398,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -485,6 +492,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -578,6 +586,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -776,6 +785,7 @@ export const onCreateReport = `subscription OnCreateReport {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -847,6 +857,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -918,6 +929,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate

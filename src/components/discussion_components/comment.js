@@ -32,7 +32,10 @@ class Comment extends Component {
         <div className="comment-metadata">
           <i className="fas fa-arrow-circle-up metadata-button metadata-action"></i>
           <i className="fas fa-arrow-circle-down metadata-button metadata-action"></i>
-          <i className="fas fa-reply metadata-button metadata-action"></i>
+          <i
+            className="fas fa-reply metadata-button metadata-action"
+            onClick={this.toggleReplyToCommentForm}
+          ></i>
           <i className="fas fa-coins metadata-button"></i>
           {" 1 "}
           <i className="fas fa-sitemap metadata-button"></i>
@@ -46,7 +49,10 @@ class Comment extends Component {
           <div className="comment-buttons">
             <i className="fas fa-arrow-circle-up comment-button comment-action"></i>
             <i className="fas fa-arrow-circle-down comment-button comment-action"></i>
-            <i className="fas fa-reply comment-button comment-action"></i>
+            <i
+              className="fas fa-reply comment-button comment-action"
+              onClick={this.toggleReplyToCommentForm}
+            ></i>
             <i className="fas fa-star comment-button comment-action"></i>
             <i className="fas fa-flag comment-button comment-action"></i>
             <span

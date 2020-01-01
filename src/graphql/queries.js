@@ -28,6 +28,7 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -92,6 +93,7 @@ export const listCommunitys = `query ListCommunitys(
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -184,6 +186,7 @@ export const getComment = `query GetComment($id: ID!) {
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -210,6 +213,7 @@ export const listComments = `query ListComments(
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -304,6 +308,7 @@ export const getEvent = `query GetEvent($id: ID!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -490,6 +495,7 @@ export const getReport = `query GetReport($id: ID!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate

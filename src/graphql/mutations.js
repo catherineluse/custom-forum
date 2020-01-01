@@ -28,6 +28,7 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -87,6 +88,7 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -146,6 +148,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
       discussionId
       createdDate
       parentCommentId
+      children
       threadId
       hidden
       hiddenDate
@@ -246,6 +249,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -267,6 +271,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -288,6 +293,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
     discussionId
     createdDate
     parentCommentId
+    children
     threadId
     hidden
     hiddenDate
@@ -392,6 +398,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -485,6 +492,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -578,6 +586,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -776,6 +785,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -847,6 +857,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
@@ -918,6 +929,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
         discussionId
         createdDate
         parentCommentId
+        children
         threadId
         hidden
         hiddenDate
