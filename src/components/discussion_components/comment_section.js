@@ -42,7 +42,6 @@ import Comment from "./comment";
 //   downvotes: Int
 //   tags: [String]
 // }
-
 class CommentSection extends React.Component {
   state = {
     discussionTitle: "",
@@ -65,7 +64,17 @@ class CommentSection extends React.Component {
           comment => comment.id !== newComment.id
         );
         const updatedComments = [...prevComments, newComment];
-        this.setState({ comments: updatedComments });
+
+        if (!discussionId) {
+          this.setState({ comments: updatedComments });
+          return;
+        }
+
+        const discussionComments = updatedComments.filter(comment => {
+          return comment.discussionId === discussionId;
+        });
+
+        this.setState({ comments: discussionComments });
       }
     });
     this.deleteCommentListener = API.graphql(
@@ -95,9 +104,10 @@ class CommentSection extends React.Component {
     );
     const discussionData = relevantDiscussion[0];
     if (discussionData) {
-      const { title, content, creator, createdDate } = discussionData;
+      const { id, title, content, creator, createdDate } = discussionData;
       this.setState(
         {
+          discussionId: id,
           discussionTitle: title,
           discussionContent: content,
           discussionCreator: creator,
@@ -144,20 +154,49 @@ class CommentSection extends React.Component {
     })[0];
   };
 
-  nestChildCommentsUnderParent = childIds => {
-    return childIds.map(id => {
-      const childComment = this.getCommentById(id);
-      const { children } = childComment;
+  nestChildCommentsUnderParent = (
+    childIds,
+    topLevelCommentId,
+    parentCommentId,
+    levelInHierarchy
+  ) => {
+    
+    const { user, discussionId } = this.props;
+
+    const childComments = childIds.map(id => {
+      return this.getCommentById(id);
+    });
+
+    return childComments.map(commentData => {
+      if (!commentData) {
+        console.log("could not find child comment");
+        return null;
+      }
+
+      const { id, children } = commentData;
+
       return (
-        <div className="comment" key={id}>
+        <div className="comment indented" key={id}>
           <Comment
-            key={childComment.id}
-            commentData={childComment}
+            className="indent-me"
+            key={id}
+            user={user}
+            commentData={commentData}
+            discussionId={discussionId}
             handleDeleteComment={this.handleDeleteComment}
             getDateOfComment={this.getDateOfComment}
+            parentCommentId={parentCommentId}
+            topLevelCommentId={topLevelCommentId}
           />
           <p>This is a child comment</p>
-          {children ? this.nestChildCommentsUnderParent(children) : null}
+          {children
+            ? this.nestChildCommentsUnderParent(
+                children,
+                topLevelCommentId,
+                commentData.id,
+                levelInHierarchy + 1
+              )
+            : null}
         </div>
       );
     });
@@ -166,15 +205,33 @@ class CommentSection extends React.Component {
   mapCommentsToTreeView = comments => {
     return comments.map(commentData => {
       const { children, id } = commentData;
+      const { discussionId } = this.state;
+      const { user } = this.props;
+
+      // This variable affects the indentation
+      // in the comment tree. Because each nested
+      // tree starts with a top-level root comment,
+      // we start with level 0.
+      const levelInHierarchy = 0;
+
       return (
         <div className="comment" key={id}>
           <Comment
-            key={id}
+            discussionId={discussionId}
+            user={user}
             commentData={commentData}
             handleDeleteComment={this.handleDeleteComment}
             getDateOfComment={this.getDateOfComment}
+            topLevelCommentId={id}
           />
-          {children ? this.nestChildCommentsUnderParent(children) : null}
+          {children
+            ? this.nestChildCommentsUnderParent(
+                children,
+                id,
+                id,
+                levelInHierarchy
+              )
+            : null}
         </div>
       );
     });

@@ -4,7 +4,11 @@ import { API, graphqlOperation } from "aws-amplify";
 import { listCommunitys } from "./graphql/queries";
 import { Authenticator } from "aws-amplify-react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { onCreateCommunity, onDeleteCommunity } from "./graphql/subscriptions";
+import {
+  onCreateCommunity,
+  onDeleteCommunity,
+  onUpdateCommunity
+} from "./graphql/subscriptions";
 import { ThemeProvider } from "@material-ui/core/styles";
 import TopNavBar from "./components/top_nav_bar";
 import CommunityPage from "./pages/community_page";
@@ -47,6 +51,18 @@ class App extends Component {
     this.getCommunities();
     this.createCommunityListener = API.graphql(
       graphqlOperation(onCreateCommunity)
+    ).subscribe({
+      next: communityData => {
+        const newCommunity = communityData.value.data.onCreateCommunity;
+        const prevCommunities = this.state.communities.filter(
+          community => community.id !== newCommunity.id
+        );
+        const updatedCommunities = [...prevCommunities, newCommunity];
+        this.setState({ communities: updatedCommunities });
+      }
+    });
+    this.updateCommunityListener = API.graphql(
+      graphqlOperation(onUpdateCommunity)
     ).subscribe({
       next: communityData => {
         const newCommunity = communityData.value.data.onCreateCommunity;

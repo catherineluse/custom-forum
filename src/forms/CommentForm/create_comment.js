@@ -80,14 +80,7 @@ const formikWrapper = withFormik({
   })
 });
 class CreateTopLevelComment extends React.Component {
-  addCommunityDataToDTO = input => {
-    const { communityData } = this.props;
-    return {
-      ...input,
-      communityUrl: communityData ? communityData.url : "",
-      creator: communityData ? communityData.creator : ""
-    };
-  };
+  
 
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   render() {

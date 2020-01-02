@@ -1,6 +1,7 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { createComment } from "../../graphql/mutations";
+import { createComment, updateComment } from "../../graphql/mutations";
+import { listComments } from "../../graphql/queries";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../Error";
@@ -42,16 +43,72 @@ const addDateToDTO = input => {
   };
 };
 
+const createChildCommentWithParentCommentId = async input => {
+  const newChildId = await API.graphql(
+    graphqlOperation(createComment, { input })
+  )
+    .then(response => {
+      console.log("CreateComment API call succeeded");
+      console.log("Response is ", response);
+      const newChildId = response.data.createComment.id;
+      console.log("new child data is ", newChildId);
+      return newChildId;
+    })
+    .catch(e => {
+      console.log("CreateComment API call failed");
+      console.log("input was ", input);
+      console.log(e);
+      return null;
+    });
+  return newChildId;
+};
+
+const updateParentCommentToAddChild = async (parentCommentId, newChildId) => {
+  const result = await API.graphql(graphqlOperation(listComments));
+  const comments = result.data.listComments.items;
+  const parentCommentData = comments.filter(
+    comment => comment.id === parentCommentId
+  )[0];
+  if (!parentCommentData) {
+    console.log("Could not get parent comment");
+    return;
+  }
+  const existingChildren = parentCommentData.children;
+  const input = {
+    ...parentCommentData,
+    children: existingChildren
+      ? [newChildId, ...existingChildren]
+      : [newChildId]
+  };
+  await API.graphql(graphqlOperation(updateComment, { input }))
+    .then(response => {
+      console.log("Update parent comment API call succeeded");
+      console.log("Response is ", response);
+    })
+    .catch(e => {
+      console.log("Update parent comment API call failed");
+      console.log("input was ", input);
+      console.log(e);
+    });
+};
+
 const formikWrapper = withFormik({
   enableReinitialize: true,
   //   content: String!
   //   creator: String!
   //   discussionId: ID
   //   createdDate: String!
-  mapPropsToValues: ({ user, discussionId }) => ({
+  mapPropsToValues: ({
+    user,
+    discussionId,
+    parentCommentId,
+    topLevelCommentId
+  }) => ({
     content: "",
     creator: user,
-    discussionId
+    discussionId,
+    parentCommentId,
+    threadId: topLevelCommentId
   }),
   handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
@@ -60,21 +117,16 @@ const formikWrapper = withFormik({
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
 
-    // Needs two graphql operations.
-    // One to update the parent comment to add a child.
-    // One to create a new comment with a parent ID.
+    const newChildId = await createChildCommentWithParentCommentId(
+      input,
+      values.parentCommentId
+    );
+    console.log(
+      "trying to add this child id to the parent comment ",
+      newChildId
+    );
+    await updateParentCommentToAddChild(values.parentCommentId, newChildId);
 
-    await API.graphql(graphqlOperation(createComment, { input }))
-      .then(response => {
-        console.log("CreateComment API call succeeded");
-        console.log("Response is ", response);
-      })
-      .catch(e => {
-        console.log("CreateComment API call failed");
-        console.log("input was ", input);
-        console.log("values was ", values);
-        console.log(e);
-      });
     setSubmitting(false);
     resetForm();
   },
@@ -82,7 +134,7 @@ const formikWrapper = withFormik({
     content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
   })
 });
-class CreateTopLevelComment extends React.Component {
+class CreateChildComment extends React.Component {
   addCommunityDataToDTO = input => {
     const { communityData } = this.props;
     return {
@@ -94,15 +146,7 @@ class CreateTopLevelComment extends React.Component {
 
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   render() {
-    const {
-      values,
-      setFieldValue,
-      setFieldTouched,
-      isSubmitting,
-      errors,
-      touched,
-      communityData
-    } = this.props;
+    const { isSubmitting, errors } = this.props;
 
     return (
       <Form>
@@ -115,7 +159,9 @@ class CreateTopLevelComment extends React.Component {
             placeholder="Reply here."
             className="form-control"
           />
-          <ErrorMessage component={Error} name="commentContentError" />
+          {errors ? (
+            <ErrorMessage component={Error} name="commentContentError" />
+          ) : null}
         </div>
         <span>
           <button type="submit" className="form-submit" disabled={isSubmitting}>
@@ -127,5 +173,5 @@ class CreateTopLevelComment extends React.Component {
   }
 }
 
-const CreateTopLevelCommentWrapped = formikWrapper(CreateTopLevelComment);
-export default CreateTopLevelCommentWrapped;
+const CreateChildCommentWrapped = formikWrapper(CreateChildComment);
+export default CreateChildCommentWrapped;

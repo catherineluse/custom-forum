@@ -19,10 +19,9 @@ h2 {
 
 .navbar-brand {
   color: #e3fcef;
-  ;
 }
 
-nav>.navbar {
+nav > .navbar {
   margin-bottom: 0px;
 }
 
@@ -36,18 +35,17 @@ nav>.navbar {
   margin-bottom: 10px;
 }
 
-.breadcrumbs>.nav-link {
+.breadcrumbs > .nav-link {
   margin-top: 10px;
   color: silver;
   text-decoration: underline;
   font-family: Lato;
 }
 
-.breadcrumbs>.nav-link:hover {
+.breadcrumbs > .nav-link:hover {
   color: black;
   text-decoration: underline;
 }
-
 
 a:hover {
   color: #6ca388;
@@ -160,7 +158,7 @@ tr:hover .table-link {
   transition: background-color 0.3s;
 }
 
-.btn>* {
+.btn > * {
   position: relative;
 }
 
@@ -232,12 +230,12 @@ tr:hover .table-link {
   background-color: white;
 }
 
-.community-tabs>.nav-link {
+.community-tabs > .nav-link {
   background-color: white;
   color: gray;
 }
 
-.community-tabs>.nav-link:hover {
+.community-tabs > .nav-link:hover {
   color: black;
 }
 
@@ -251,12 +249,12 @@ tr:hover .table-link {
   padding-left: 0px;
 }
 
-.nav-item>.nav-link {
+.nav-item > .nav-link {
   color: #e3fcef;
 }
 
-.nav-item>.nav-link:hover {
-  color: black;
+.nav-item > .nav-link:hover {
+  color: white;
 }
 
 .discussion {
@@ -323,7 +321,7 @@ tr:hover .table-link {
   margin-left: 10px;
 }
 
-.discussion>.nav-link {
+.discussion > .nav-link {
   padding-left: 0px;
   margin-left: 0px;
 }
@@ -334,7 +332,7 @@ tr:hover .table-link {
   padding: 5px;
   margin-right: 3px;
   color: #538f72;
-  font-weight: normal
+  font-weight: normal;
 }
 
 .community-name-in-table {
@@ -432,7 +430,6 @@ tr:hover .table-link {
   font-weight: 400;
 }
 
-
 .rule-explanation {
   color: gray;
   font-weight: 300;
@@ -502,4 +499,8 @@ tr:hover .table-link {
 
 .delete-comment-button {
   cursor: pointer;
+}
+
+.indented {
+  margin-left: 20px;
 }
