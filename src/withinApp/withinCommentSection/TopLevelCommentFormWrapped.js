@@ -3,7 +3,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { createComment } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
+import Error from "../../utils/Error";
 
 // type Comment @model {
 //     id: ID
@@ -79,20 +79,10 @@ const formikWrapper = withFormik({
     content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
   })
 });
-class CreateTopLevelComment extends React.Component {
-  
-
+class TopLevelCommentForm extends React.Component {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   render() {
-    const {
-      values,
-      setFieldValue,
-      setFieldTouched,
-      isSubmitting,
-      errors,
-      touched,
-      communityData
-    } = this.props;
+    const { isSubmitting } = this.props;
 
     return (
       <Form>
@@ -117,5 +107,5 @@ class CreateTopLevelComment extends React.Component {
   }
 }
 
-const CreateTopLevelCommentWrapped = formikWrapper(CreateTopLevelComment);
-export default CreateTopLevelCommentWrapped;
+const TopLevelCommentFormWrapped = formikWrapper(TopLevelCommentForm);
+export default TopLevelCommentFormWrapped;

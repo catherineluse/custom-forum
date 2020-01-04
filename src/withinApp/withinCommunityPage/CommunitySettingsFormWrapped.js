@@ -3,10 +3,10 @@ import { API, graphqlOperation } from "aws-amplify";
 import { updateCommunity } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
-import ModerationLevelDropdown from "../CommunityForm/moderation-level";
-import DiscussionTags from "../CommunityForm/discussion-tags";
-import CommunityKeywords from "../CommunityForm/community-keywords";
+import Error from "../../utils/Error";
+import ModerationLevelDropdown from "./withinCommunitySettingsFormWrapped/ModerationLevelDropdown";
+import DiscussionTags from "./withinCommunitySettingsFormWrapped/DiscussionTags";
+import CommunityKeywords from "./withinCommunitySettingsFormWrapped/CommunityKeywords";
 
 // type Community {
 //   id: ID
@@ -60,14 +60,24 @@ const formikWrapper = withFormik({
   initialValues: props => {
     return { existingKeywords: props.existingKeywords };
   },
-  mapPropsToValues: ({ communityData }) => ({
-    name: communityData ? communityData.name : "",
-    description: communityData ? communityData.description : "",
-    moderation_level: communityData ? communityData.moderation_level : 1,
-    tags: communityData ? communityData.tags : [],
-    keywords: communityData ? communityData.keywords : [],
-    id: communityData ? communityData.id : ""
-  }),
+  mapPropsToValues: ({ communityData }) => {
+    const {
+      name,
+      description,
+      moderation_level,
+      tags,
+      keywords,
+      id
+    } = communityData;
+    return {
+      name: name ? name : "",
+      description: description ? description : "",
+      moderation_level: moderation_level ? moderation_level : 1,
+      tags: tags ? tags : [],
+      keywords: keywords ? keywords : [],
+      id: id ? id : ""
+    };
+  },
   handleSubmit: async (values, { setSubmitting }) => {
     const formData = {
       ...values
@@ -151,9 +161,6 @@ class CommunitySettingsForm extends React.Component {
                 <label>Moderation Level</label>
                 <ModerationLevelDropdown
                   id="moderationLevelDropdown"
-                  existingLevel={
-                    communityData ? communityData["moderation_level"] : []
-                  }
                   value={values.moderation_level}
                   onChange={setFieldValue}
                   onBlur={setFieldTouched}
@@ -161,16 +168,14 @@ class CommunitySettingsForm extends React.Component {
               </div>
               <CommunityKeywords
                 id="communityKeywordInput"
-                existingKeywords={
-                  communityData ? communityData["keywords"] : []
-                }
+                existingKeywords={communityData["keywords"]}
                 value={values.keywords}
                 onChange={setFieldValue}
                 onBlur={setFieldTouched}
               />
               <DiscussionTags
                 id="discussionTagsInput"
-                existingTags={communityData ? communityData["tags"] : []}
+                existingTags={communityData["tags"]}
                 value={values.tags}
                 onChange={setFieldValue}
                 onBlur={setFieldTouched}

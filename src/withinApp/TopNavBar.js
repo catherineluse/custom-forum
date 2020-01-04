@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 class TopNavBar extends Component {
   render() {
-    const { user, handleSignout } = this.props;
+    const { handleSignout } = this.props;
     return (
       <nav className="navbar navbar-expand-md no-gap">
         <div className="navbar-brand abs">

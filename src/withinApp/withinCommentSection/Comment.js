@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateChildCommentWrapped from "../../forms/CommentForm/create_reply_to_comment";
+import ChildCommentFormWrapped from "./withinComment/ChildCommentFormWrapped";
 
 class Comment extends Component {
   state = {
@@ -54,7 +54,7 @@ class Comment extends Component {
                 <span>&times; Delete</span>
               </span>
             </div>
-            <CreateChildCommentWrapped
+            <ChildCommentFormWrapped
               user={user}
               discussionId={discussionId}
               parentCommentId={id}

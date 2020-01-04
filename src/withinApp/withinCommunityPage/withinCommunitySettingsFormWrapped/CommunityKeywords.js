@@ -11,7 +11,7 @@ class CommunityKeywords extends React.Component {
 
   componentDidMount() {
     const { existingKeywords } = this.props;
-    this.setState({ keywords: existingKeywords });
+    this.setState({ keywords: existingKeywords ? existingKeywords : [] });
   }
 
   handleChange = () => {

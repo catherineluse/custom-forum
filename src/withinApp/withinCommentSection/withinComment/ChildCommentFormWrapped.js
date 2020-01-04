@@ -1,10 +1,10 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { createComment, updateComment } from "../../graphql/mutations";
-import { listComments } from "../../graphql/queries";
+import { createComment, updateComment } from "../../../graphql/mutations";
+import { listComments } from "../../../graphql/queries";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
+import Error from "../../../utils/Error";
 
 // type Comment @model {
 //     id: ID
@@ -134,7 +134,7 @@ const formikWrapper = withFormik({
     content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
   })
 });
-class CreateChildComment extends React.Component {
+class ChildCommentForm extends React.Component {
   addCommunityDataToDTO = input => {
     const { communityData } = this.props;
     return {
@@ -173,5 +173,5 @@ class CreateChildComment extends React.Component {
   }
 }
 
-const CreateChildCommentWrapped = formikWrapper(CreateChildComment);
-export default CreateChildCommentWrapped;
+const ChildCommentFormWrapped = formikWrapper(ChildCommentForm);
+export default ChildCommentFormWrapped;

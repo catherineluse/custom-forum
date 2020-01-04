@@ -1,9 +1,9 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { createCommunity } from "../../graphql/mutations";
+import { createCommunity } from "../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
+import Error from "../utils/Error";
 
 // type Community {
 //   id: ID
@@ -41,12 +41,6 @@ const addDateToDTO = input => {
     ...input,
     created_date: new Date()
   };
-};
-
-const urlIsTaken = (url, communities) => {
-  const isTaken =
-    communities.findIndex(community => community.url === url) > -1;
-  return isTaken ? true : false;
 };
 
 const turnModerationLevelIntoNumber = formData => {
@@ -112,16 +106,7 @@ class CommunityForm extends React.Component {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
 
   render() {
-    const {
-      values,
-      setFieldValue,
-      setFieldTouched,
-      isSubmitting,
-      errors,
-      touched,
-      creator,
-      handleSubmit
-    } = this.props;
+    const { isSubmitting, errors, touched, handleSubmit } = this.props;
 
     return (
       <div className="card shadow">

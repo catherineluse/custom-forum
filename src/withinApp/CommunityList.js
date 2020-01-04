@@ -3,14 +3,14 @@ import { NavLink } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteCommunity } from "../graphql/mutations";
 
-class AdminCommunityList extends Component {
+class CommunityList extends Component {
   state = {
-    communities: [],
+    communities: []
   };
 
   handleDeleteCommunity = async communityId => {
     const input = {
-      id: communityId,
+      id: communityId
     };
     await API.graphql(graphqlOperation(deleteCommunity, { input }));
   };
@@ -34,7 +34,7 @@ class AdminCommunityList extends Component {
     const levelWordMap = {
       1: "Low",
       2: "Medium",
-      3: "High",
+      3: "High"
     };
     return levelWordMap[intLevel];
   };
@@ -98,4 +98,4 @@ class AdminCommunityList extends Component {
     );
   }
 }
-export default AdminCommunityList;
+export default CommunityList;

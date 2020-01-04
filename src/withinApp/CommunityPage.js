@@ -1,13 +1,12 @@
 import React from "react";
-import DiscussionFormWrapped from "../forms/DiscussionForm/create_edit_discussion";
-import CommunitySettingsFormWrapped from "../forms/CommunitySettingsForm/community_settings";
-import ListOfDiscussions from "../components/community_components/list_of_discussions";
-import ListOfRules from "../components/community_components/list_of_rules";
+import DiscussionFormWrapped from "./withinCommunityPage/DiscussionFormWrapped";
+import ListOfDiscussions from "./withinCommunityPage/ListOfDiscussions";
+import ListOfRules from "./withinCommunityPage/ListOfRules";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
-import CommunityRuleFormWrapped from "../forms/CommunityRulesForm/rules_form";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import CommunityRuleFormWrapped from "./withinCommunityPage/CommunityRuleFormWrapped";
+import CommunitySettingsFormWrapped from "./withinCommunityPage/CommunitySettingsFormWrapped";
 
 class CommunityPage extends React.Component {
   state = {

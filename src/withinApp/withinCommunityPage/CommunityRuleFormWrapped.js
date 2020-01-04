@@ -3,7 +3,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { createRule } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../Error";
+import Error from "../../utils/Error";
 
 const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings

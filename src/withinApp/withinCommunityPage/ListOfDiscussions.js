@@ -152,13 +152,7 @@ class ListOfDiscussions extends Component {
   render() {
     const { communityData } = this.props;
 
-    return (
-      <>
-        {communityData
-          ? this.filterDiscussions(communityData)
-          : this.filterDiscussions([])}
-      </>
-    );
+    return <>{communityData ? this.filterDiscussions(communityData) : null}</>;
   }
 }
 

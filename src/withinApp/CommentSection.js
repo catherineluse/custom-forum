@@ -1,11 +1,11 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listComments, listDiscussions } from "../../graphql/queries";
-import { onCreateComment, onDeleteComment } from "../../graphql/subscriptions";
+import { listComments, listDiscussions } from "../graphql/queries";
+import { onCreateComment, onDeleteComment } from "../graphql/subscriptions";
+import { deleteComment } from "../graphql/mutations";
 import { NavLink } from "react-router-dom";
-import CreateTopLevelCommentWrapped from "../../forms/CommentForm/create_comment";
-import { deleteComment } from "../../graphql/mutations";
-import Comment from "./comment";
+import TopLevelCommentFormWrapped from "./withinCommentSection/TopLevelCommentFormWrapped";
+import Comment from "./withinCommentSection/Comment";
 
 // type Comment @model {
 //   id: ID
@@ -160,7 +160,6 @@ class CommentSection extends React.Component {
     parentCommentId,
     levelInHierarchy
   ) => {
-    
     const { user, discussionId } = this.props;
 
     const childComments = childIds.map(id => {
@@ -288,10 +287,7 @@ class CommentSection extends React.Component {
             <></>
           )}
 
-          <CreateTopLevelCommentWrapped
-            discussionId={discussionId}
-            user={user}
-          />
+          <TopLevelCommentFormWrapped discussionId={discussionId} user={user} />
           <hr></hr>
           {comments ? this.filterComments(comments) : null}
         </div>

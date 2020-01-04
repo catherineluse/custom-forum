@@ -9,35 +9,12 @@ import {
   onDeleteCommunity,
   onUpdateCommunity
 } from "./graphql/subscriptions";
-import { ThemeProvider } from "@material-ui/core/styles";
-import TopNavBar from "./components/top_nav_bar";
-import CommunityPage from "./pages/community_page";
-import CommentSection from "./components/discussion_components/comment_section";
-import ProfilePage from "./pages/profile_page";
-import AdminCommunityList from "./components/admin_community_list";
-import CommunityFormWrapped from "./forms/CommunityForm/create_edit_community";
-import { createMuiTheme } from "@material-ui/core/styles";
-
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: ["Zilla Slab", "cursive"].join(",")
-  },
-  palette: {
-    primary: {
-      // light: will be calculated from palette.primary.main,
-      main: "#000000"
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
-    },
-    secondary: {
-      light: "#98FB98",
-      main: "#98FB98",
-      // dark: will be calculated from palette.secondary.main,
-      contrastText: "#000000"
-    }
-    // error: will use the default color
-  }
-});
+import TopNavBar from "./withinApp/TopNavBar";
+import CommunityPage from "./withinApp/CommunityPage";
+import CommentSection from "./withinApp/CommentSection";
+import ProfilePage from "./stub/ProfilePage";
+import CommunityList from "./withinApp/CommunityList";
+import CommunityFormWrapped from "./withinApp/CommunityFormWrapped";
 
 class App extends Component {
   state = {
@@ -145,71 +122,69 @@ class App extends Component {
       <Authenticator />
     ) : (
       <div>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <>
-              <TopNavBar user={username} handleSignout={this.handleSignout} />
+        <Router>
+          <>
+            <TopNavBar handleSignout={this.handleSignout} />
 
-              <div className="no-gap">
-                <Route
-                  exact
-                  path="/"
-                  component={() => {
-                    return (
-                      <div className="container">
-                        <CommunityFormWrapped
-                          creator={username}
-                          communities={communities}
-                        />
-                      </div>
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/find"
-                  component={() => {
-                    return (
-                      <div className="container">
-                        <AdminCommunityList communities={communities} />
-                      </div>
-                    );
-                  }}
-                />
-                <Route
-                  path="/profile"
-                  component={() => {
-                    return (
-                      <div className="container">
-                        <ProfilePage user={this.state.username} />
-                      </div>
-                    );
-                  }}
-                />
-                <Route
-                  exact
-                  path="/c/:nameInUrl"
-                  component={({ match }) => (
-                    <CommunityPage
-                      nameInUrl={match.params.nameInUrl}
-                      communities={communities}
-                    />
-                  )}
-                />
-                <Route
-                  path="/c/:url/discussions/:discussionId"
-                  component={({ match }) => (
-                    <CommentSection
-                      communityUrl={match.params.url}
-                      discussionId={match.params.discussionId}
-                      user={this.state.username}
-                    />
-                  )}
-                />
-              </div>
-            </>
-          </Router>
-        </ThemeProvider>
+            <div className="no-gap">
+              <Route
+                exact
+                path="/"
+                component={() => {
+                  return (
+                    <div className="container">
+                      <CommunityFormWrapped
+                        creator={username}
+                        communities={communities}
+                      />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                exact
+                path="/find"
+                component={() => {
+                  return (
+                    <div className="container">
+                      <CommunityList communities={communities} />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                path="/profile"
+                component={() => {
+                  return (
+                    <div className="container">
+                      <ProfilePage user={username} />
+                    </div>
+                  );
+                }}
+              />
+              <Route
+                exact
+                path="/c/:nameInUrl"
+                component={({ match }) => (
+                  <CommunityPage
+                    nameInUrl={match.params.nameInUrl}
+                    communities={communities}
+                  />
+                )}
+              />
+              <Route
+                path="/c/:url/discussions/:discussionId"
+                component={({ match }) => (
+                  <CommentSection
+                    communityUrl={match.params.url}
+                    discussionId={match.params.discussionId}
+                    user={username}
+                  />
+                )}
+              />
+            </div>
+          </>
+        </Router>
       </div>
     );
   }
