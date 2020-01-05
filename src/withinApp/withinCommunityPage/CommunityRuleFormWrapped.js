@@ -4,17 +4,7 @@ import { createRule } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../../utils/Error";
-
-const removeEmptyStringsFromDTO = payload => {
-  // DynamoDB throws an error if you submit empty strings
-  let input = {};
-  for (let key in payload) {
-    if (payload.key !== "" && payload.key !== []) {
-      input.key = payload.key;
-    }
-  }
-  return input;
-};
+import removeEmptyDataFromDTO from "../../utils/removeEmptyData";
 
 const onKeyDown = keyEvent => {
   if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -33,7 +23,7 @@ const formikWrapper = withFormik({
     const formData = {
       ...values
     };
-    let input = removeEmptyStringsFromDTO(formData);
+    let input = removeEmptyDataFromDTO(formData);
 
     await API.graphql(graphqlOperation(createRule, { input }))
       .then(response => {})

@@ -8,23 +8,6 @@ import {
 } from "../../graphql/subscriptions";
 import { deleteDiscussion } from "../../graphql/mutations";
 
-// type Discussion @model {
-//   id: ID
-//   title: String!
-//   creator: String!
-//   communityUrl: String!
-//   createdDate: String
-//   content: String
-//   locked: Boolean
-//   hidden: Boolean
-//   sitewide_reasons_for_being_hidden: [String]
-//   community_reasons_for_being_hidden: [String]
-//   hidden_date: String
-//   upvotes: Int
-//   downvotes: Int
-//   tags: [String]
-// }
-
 class ListOfDiscussions extends Component {
   state = {
     discussions: []

@@ -5,30 +5,13 @@ import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../../utils/Error";
 import DiscussionTagsDropdown from "./withinDiscussionFormWrapped/DiscussionTagsDropdown";
-
-const removeEmptyStringsFromDTO = payload => {
-  // DynamoDB throws an error if you submit empty strings
-  let input = {};
-  for (let key in payload) {
-    if (payload.key !== "" && payload.key !== []) {
-      input.key = payload.key;
-    }
-  }
-  return input;
-};
+import removeEmptyDataFromDTO from "../../utils/removeEmptyData";
 
 const mapTagObjectsToStringsForDTO = input => {
   const tagObjects = input.tags;
   const tagStrings = tagObjects.map(tagObj => tagObj.label);
   input["tags"] = tagStrings;
   return input;
-};
-
-const addDateToDTO = input => {
-  return {
-    ...input,
-    createdDate: new Date()
-  };
 };
 
 const onKeyDown = keyEvent => {
@@ -48,10 +31,10 @@ const formikWrapper = withFormik({
   }),
   handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
-      ...values
+      ...values,
+      createdDate: new Date()
     };
-    let input = removeEmptyStringsFromDTO(formData);
-    input = addDateToDTO(input);
+    let input = removeEmptyDataFromDTO(formData);
     input = mapTagObjectsToStringsForDTO(input);
     await API.graphql(graphqlOperation(createDiscussion, { input }))
       .then(response => {})

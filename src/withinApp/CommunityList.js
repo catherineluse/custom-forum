@@ -31,12 +31,16 @@ class CommunityList extends Component {
   };
 
   mapModLevelToWord = intLevel => {
-    const levelWordMap = {
-      1: "Low",
-      2: "Medium",
-      3: "High"
-    };
-    return levelWordMap[intLevel];
+    switch(intLevel) {
+      case 1:
+        return "Low";
+      case 2:
+        return "Medium";
+      case 3:
+        return "High";
+      default:
+        return "Low";
+    }
   };
 
   render() {

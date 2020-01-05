@@ -4,51 +4,10 @@ import { createComment } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../../utils/Error";
-
-// type Comment @model {
-//     id: ID
-//     content: String!
-//     creator: String!
-//     discussionId: ID
-//     createdDate: String!
-//     parentCommentId: ID
-//     threadId: ID
-//     hidden: Boolean
-//     hiddenDate: String
-//     sitewideReasonsForBeingHidden: [String]
-//     communityReasonsForBeingHidden: [String]
-//     upvotes: Int
-//     downvotes: Int
-//     funny: Int
-//     disagree: Int
-//     dateLastModified: String
-// }
-
-const removeEmptyDataFromDTO = payload => {
-  // DynamoDB throws an error if you submit empty strings
-  // or arrays
-  let input = {};
-  for (let key in payload) {
-    if (payload.key !== "" && payload.key !== []) {
-      input.key = payload.key;
-    }
-  }
-  return input;
-};
-
-const addDateToDTO = input => {
-  return {
-    ...input,
-    createdDate: new Date()
-  };
-};
+import removeEmptyDataFromDTO from "../../utils/removeEmptyData";
 
 const formikWrapper = withFormik({
   enableReinitialize: true,
-  //   content: String!
-  //   creator: String!
-  //   discussionId: ID
-  //   createdDate: String!
   mapPropsToValues: ({ user, discussionId }) => ({
     content: "",
     creator: user,
@@ -56,10 +15,10 @@ const formikWrapper = withFormik({
   }),
   handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
-      ...values
+      ...values,
+      createdDate: new Date()
     };
     let input = removeEmptyDataFromDTO(formData);
-    input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(createComment, { input }))
       .then(response => {})

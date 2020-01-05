@@ -4,47 +4,10 @@ import { updateCommunity } from "../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
 import Error from "../../utils/Error";
+import removeEmptyDataFromDTO from "../../utils/removeEmptyData";
 import ModerationLevelDropdown from "./withinCommunitySettingsFormWrapped/ModerationLevelDropdown";
 import DiscussionTags from "./withinCommunitySettingsFormWrapped/DiscussionTags";
 import CommunityKeywords from "./withinCommunitySettingsFormWrapped/CommunityKeywords";
-
-// type Community {
-//   id: ID
-//   url: String
-//   name: String!
-//   description: String
-//   creator: ID
-//   created_date: AWSDate
-//   rules: [String]
-//   locations: [String]
-//   hidden: Boolean
-//   hidden_date: AWSDate
-//   sitewide_reasons_for_being_hidden: [String]
-//   keywords: [String]
-//   topics: [String]
-//   flagged_comments: [Comment]
-//   flagged_discussions: [Discussion]
-//   moderationLevel: Int
-//   number_of_users: Int
-// }
-
-const removeEmptyStringsFromDTO = payload => {
-  // DynamoDB throws an error if you submit empty strings
-  let input = {};
-  for (let key in payload) {
-    if (payload.key !== "") {
-      input.key = payload.key;
-    }
-  }
-  return input;
-};
-
-const addDateToDTO = input => {
-  return {
-    ...input,
-    createdDate: new Date()
-  };
-};
 
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
@@ -77,11 +40,11 @@ const formikWrapper = withFormik({
   },
   handleSubmit: async (values, { setSubmitting }) => {
     const formData = {
-      ...values
+      ...values,
+      createdDate: new Date()
     };
-    let input = removeEmptyStringsFromDTO(formData);
+    let input = removeEmptyDataFromDTO(formData);
     input = turnModerationLevelIntoNumber(input);
-    input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(updateCommunity, { input }))
       .then(response => {})

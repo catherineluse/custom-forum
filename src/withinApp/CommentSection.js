@@ -7,41 +7,6 @@ import { NavLink } from "react-router-dom";
 import TopLevelCommentFormWrapped from "./withinCommentSection/TopLevelCommentFormWrapped";
 import Comment from "./withinCommentSection/Comment";
 
-// type Comment @model {
-//   id: ID
-//   content: String!
-//   creator: String!
-//   discussionId: ID
-//   createdDate: String!
-//   parentCommentId: ID
-//   threadId: ID
-//   hidden: Boolean
-//   hiddenDate: String
-//   sitewideReasonsForBeingHidden: [String]
-//   communityReasonsForBeingHidden: [String]
-//   upvotes: Int
-//   downvotes: Int
-//   funny: Int
-//   disagree: Int
-//   dateLastModified: String
-// }
-
-// type Discussion @model {
-//   id: ID
-//   title: String!
-//   creator: String!
-//   communityUrl: String!
-//   createdDate: String
-//   content: String
-//   locked: Boolean
-//   hidden: Boolean
-//   sitewideReasonsForBeingHidden: [String]
-//   communityReasonsForBeingHidden: [String]
-//   hiddenDate: String
-//   upvotes: Int
-//   downvotes: Int
-//   tags: [String]
-// }
 class CommentSection extends React.Component {
   state = {
     discussionTitle: "",

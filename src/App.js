@@ -107,7 +107,7 @@ class App extends Component {
     try {
       await Auth.signOut();
     } catch (err) {
-      console.error("error signing out user", err);
+      alert("error signing out user", err);
     }
   };
 
