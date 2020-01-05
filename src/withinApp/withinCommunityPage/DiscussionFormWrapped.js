@@ -52,6 +52,14 @@ const formikWrapper = withFormik({
   })
 });
 class DiscussionForm extends React.Component {
+  state = {
+    formIsExpanded: false
+  };
+
+  toggleFormExpand = () => {
+    this.setState({ formIsExpanded: !this.state.formIsExpanded });
+  };
+
   addCommunityDataToDTO = input => {
     const { communityData } = this.props;
     return {
@@ -74,11 +82,12 @@ class DiscussionForm extends React.Component {
     } = this.props;
 
     return (
-      <div className="card shadow">
-        <div className="card-body">
+      <>
+        <button className="btn-create" onClick={this.toggleFormExpand}>
+          + Start Discussion
+        </button>
+        {this.state.formIsExpanded ? (
           <Form onKeyDown={onKeyDown}>
-            <h1>Start a Discussion</h1>
-
             <div className="form-group">
               <label htmlFor="title">Discussion Title</label>
               <Field name="title" type="text" className="form-control" />
@@ -108,15 +117,15 @@ class DiscussionForm extends React.Component {
             <span>
               <button
                 type="submit"
-                className="form-submit"
+                className="form-submit btn-create"
                 disabled={isSubmitting}
               >
-                + Create Discussion
+                Submit
               </button>
             </span>
           </Form>
-        </div>
-      </div>
+        ) : null}
+      </>
     );
   }
 }

@@ -57,49 +57,41 @@ class CommunityRuleForm extends React.Component {
     const { isSubmitting, errors, touched } = this.props;
 
     return (
-      <div className="card shadow">
-        <div className="card-body">
-          <Form onKeyDown={onKeyDown}>
-            <h1>Create a Rule</h1>
-
-            <div className="form-group">
-              <label htmlFor="title">Rule Summary</label>
-              <Field
-                name="summary"
-                type="text"
-                className="form-control"
-                placeholder="No cat pictures"
-              />
-              {errors.summary && touched.summary ? (
-                <div>{errors.summary}</div>
-              ) : null}
-              <ErrorMessage component={Error} name="RuleTitleError" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="RuleExplanation">Explanation (Optional)</label>
-              <Field
-                component="textarea"
-                rows="3"
-                type="explanation"
-                name="explanation"
-                placeholder="Because we are dog people."
-                className="form-control"
-              />
-              <ErrorMessage component={Error} name="RuleExplanationError" />
-            </div>
-            <span>
-              <button
-                type="submit"
-                className="form-submit"
-                disabled={isSubmitting}
-              >
-                + Create Rule
-              </button>
-            </span>
-          </Form>
+      <Form onKeyDown={onKeyDown}>
+        <h2>Create a Rule</h2>
+        <hr />
+        <div className="form-group">
+          <label htmlFor="title">Rule Summary</label>
+          <Field
+            name="summary"
+            type="text"
+            className="form-control"
+            placeholder="No cat pictures"
+          />
+          {errors.summary && touched.summary ? (
+            <div>{errors.summary}</div>
+          ) : null}
+          <ErrorMessage component={Error} name="RuleTitleError" />
         </div>
-      </div>
+
+        <div className="form-group">
+          <label htmlFor="RuleExplanation">Explanation (Optional)</label>
+          <Field
+            component="textarea"
+            rows="3"
+            type="explanation"
+            name="explanation"
+            placeholder="Because we are dog people."
+            className="form-control"
+          />
+          <ErrorMessage component={Error} name="RuleExplanationError" />
+        </div>
+        <span>
+          <button type="submit" className="form-submit" disabled={isSubmitting}>
+            + Create Rule
+          </button>
+        </span>
+      </Form>
     );
   }
 }

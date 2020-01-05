@@ -2,6 +2,7 @@ import React from "react";
 import DiscussionFormWrapped from "./withinCommunityPage/DiscussionFormWrapped";
 import ListOfDiscussions from "./withinCommunityPage/ListOfDiscussions";
 import ListOfRules from "./withinCommunityPage/ListOfRules";
+import Nav from "react-bootstrap/Nav";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,15 +11,8 @@ import CommunitySettingsFormWrapped from "./withinCommunityPage/CommunitySetting
 
 class CommunityPage extends React.Component {
   state = {
-    communityData: null
-  };
-
-  getCommunityData = () => {
-    const { communities, nameInUrl } = this.props;
-    const communityData = communities.find(
-      community => community.url === nameInUrl
-    );
-    this.setState({ communityData });
+    communityData: null,
+    sideNavExpanded: true
   };
 
   showCommunityKeywords = keywords => {
@@ -34,7 +28,10 @@ class CommunityPage extends React.Component {
 
   componentDidMount = () => {
     const { communities, nameInUrl } = this.props;
-    this.getCommunityData(communities, nameInUrl);
+    const communityData = communities.find(
+      community => community.url === nameInUrl
+    );
+    this.setState({ communityData });
   };
 
   render() {
@@ -45,117 +42,145 @@ class CommunityPage extends React.Component {
     }
     const { name, keywords, tags } = communityData;
     return (
-      <div>
-        <div className="community-header">
+      <>
+        <div className="community-column">
+          <div className="community-header">
+            <div className="container">
+              <h1>{communityData ? name : ""}</h1>
+            </div>
+          </div>
+
           <div className="container">
-            <h1>{communityData ? name : ""}</h1>
+            <Tabs
+              className="community-tabs justify-content-center"
+              defaultActiveKey="discussions"
+              id="uncontrolled-tab-example"
+            >
+              <Tab
+                eventKey="discussions"
+                title={
+                  <span>
+                    <i className="fas fa-comments" /> Discussions
+                  </span>
+                }
+              >
+                <div className="row">
+                  <div className="col-sm-3">
+                    <Nav defaultActiveKey="/home" className="flex-column">
+                      <Nav.Link href="/home">
+                        <i className="fas fa-comments" /> Discussions
+                      </Nav.Link>
+                      <Nav.Link eventKey="link-1">
+                        <i className="fas fa-chart-bar" /> Data
+                      </Nav.Link>
+                      <Nav.Link eventKey="link-2">
+                        <i className="fas fa-calendar-alt" /> Events
+                      </Nav.Link>
+                      <Nav.Link eventKey="link-3">
+                        <i className="fas fa-gavel" /> Rules
+                      </Nav.Link>
+                      <Nav.Link eventKey="link-4">
+                        <i className="fas fa-book-open" /> Wiki
+                      </Nav.Link>
+                      <Nav.Link eventKey="link-5">
+                        <i className="fas fa-cog" /> Settings
+                      </Nav.Link>
+                    </Nav>
+                  </div>
+                  <div className="col-sm-9">
+                    <DiscussionFormWrapped communityData={communityData} />
+                    <ListOfDiscussions communityData={communityData} />
+                  </div>
+                </div>
+              </Tab>
+              <Tab
+                eventKey="info"
+                title={
+                  <span>
+                    <i className="fas fa-chart-bar" /> Data
+                  </span>
+                }
+              >
+                {keywords.length > 0 ? (
+                  <div>
+                    <h3 className="header-within-tab">Community Keywords</h3>
+                    This community shows in searches for the following keywords:
+                    <br />
+                    <div className="community-keywords">
+                      {communityData
+                        ? this.showCommunityKeywords(communityData["keywords"])
+                        : ""}
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+
+                {tags.length > 0 ? (
+                  <div>
+                    <h3 className="header-within-tab">Discussion Tags</h3>
+                    You can add these tags to discussions:
+                    <br />
+                    <div className="community-keywords">
+                      {communityData
+                        ? this.showCommunityKeywords(communityData["tags"])
+                        : ""}
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+
+                <h3 className="header-within-tab">Creator</h3>
+                {communityData ? communityData["creator"] : ""}
+                <h3 className="header-within-tab">Created Date</h3>
+                {communityData ? communityData["createdDate"] : ""}
+              </Tab>
+              <Tab
+                eventKey="calendar"
+                title={
+                  <span>
+                    <i className="fas fa-calendar-alt" /> Events
+                  </span>
+                }
+              >
+                Calendar
+              </Tab>
+              <Tab
+                eventKey="rules"
+                title={
+                  <span>
+                    <i className="fas fa-gavel" /> Rules
+                  </span>
+                }
+              >
+                <ListOfRules communityData={communityData} />
+                <CommunityRuleFormWrapped communityData={communityData} />
+              </Tab>
+              <Tab
+                eventKey="wiki"
+                title={
+                  <span className="community-tab-name">
+                    <i className="fas fa-book-open" /> Wiki
+                  </span>
+                }
+              >
+                Wiki
+              </Tab>
+              <Tab
+                eventKey="settings"
+                title={
+                  <span className="community-tab-name">
+                    <i className="fas fa-cog" /> Settings
+                  </span>
+                }
+              >
+                <CommunitySettingsFormWrapped communityData={communityData} />
+              </Tab>
+            </Tabs>
           </div>
         </div>
-
-        <div className="container">
-          <Tabs
-            className="community-tabs justify-content-center"
-            defaultActiveKey="discussions"
-            id="uncontrolled-tab-example"
-          >
-            <Tab
-              eventKey="discussions"
-              title={
-                <span>
-                  <i className="fas fa-comments" /> Discussions
-                </span>
-              }
-            >
-              <ListOfDiscussions communityData={communityData} />
-              <DiscussionFormWrapped communityData={communityData} />
-            </Tab>
-            <Tab
-              eventKey="info"
-              title={
-                <span>
-                  <i className="fas fa-chart-bar" /> Data
-                </span>
-              }
-            >
-              {keywords.length > 0 ? (
-                <div>
-                  <h3 className="header-within-tab">Community Keywords</h3>
-                  This community shows in searches for the following keywords:
-                  <br />
-                  <div className="community-keywords">
-                    {communityData
-                      ? this.showCommunityKeywords(communityData["keywords"])
-                      : ""}
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-
-              {tags.length > 0 ? (
-                <div>
-                  <h3 className="header-within-tab">Discussion Tags</h3>
-                  You can add these tags to discussions:
-                  <br />
-                  <div className="community-keywords">
-                    {communityData
-                      ? this.showCommunityKeywords(communityData["tags"])
-                      : ""}
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )}
-
-              <h3 className="header-within-tab">Creator</h3>
-              {communityData ? communityData["creator"] : ""}
-              <h3 className="header-within-tab">Created Date</h3>
-              {communityData ? communityData["createdDate"] : ""}
-            </Tab>
-            <Tab
-              eventKey="calendar"
-              title={
-                <span>
-                  <i className="fas fa-calendar-alt" /> Events
-                </span>
-              }
-            >
-              Calendar
-            </Tab>
-            <Tab
-              eventKey="rules"
-              title={
-                <span>
-                  <i className="fas fa-gavel" /> Rules
-                </span>
-              }
-            >
-              <ListOfRules communityData={communityData} />
-              <CommunityRuleFormWrapped communityData={communityData} />
-            </Tab>
-            <Tab
-              eventKey="wiki"
-              title={
-                <span className="community-tab-name">
-                  <i className="fas fa-book-open" /> Wiki
-                </span>
-              }
-            >
-              Wiki
-            </Tab>
-            <Tab
-              eventKey="settings"
-              title={
-                <span className="community-tab-name">
-                  <i className="fas fa-cog" /> Settings
-                </span>
-              }
-            >
-              <CommunitySettingsFormWrapped communityData={communityData} />
-            </Tab>
-          </Tabs>
-        </div>
-      </div>
+      </>
     );
   }
 }

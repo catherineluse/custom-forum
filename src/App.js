@@ -19,7 +19,9 @@ import CommunityFormWrapped from "./withinApp/CommunityFormWrapped";
 class App extends Component {
   state = {
     username: "",
-    communities: []
+    communities: [],
+    currentCommunityUrl: "",
+    currentCommunityDescription: ""
   };
 
   componentDidMount = async () => {
@@ -111,19 +113,18 @@ class App extends Component {
     }
   };
 
-  getCommunityDescription = url => {
+  getCurrentCommunity = url => {
     const community = this.state.communities.filter(community => {
       return community.url === url;
     })[0];
     if (!community) {
       return null;
     }
-    return community.description;
+    return community;
   };
 
   render() {
-    const { communities } = this.state;
-    const { username } = this.state;
+    const { communities, username } = this.state;
 
     return !username ? (
       <Authenticator />
@@ -138,10 +139,7 @@ class App extends Component {
                 component={() => {
                   return (
                     <div>
-                      <TopNavBar
-                        communityName={null}
-                        handleSignout={this.handleSignout}
-                      />
+                      <TopNavBar handleSignout={this.handleSignout} />
                       <div className="container">
                         <CommunityFormWrapped
                           creator={username}
@@ -158,10 +156,7 @@ class App extends Component {
                 component={() => {
                   return (
                     <div>
-                      <TopNavBar
-                        communityName={null}
-                        handleSignout={this.handleSignout}
-                      />
+                      <TopNavBar handleSignout={this.handleSignout} />
                       <div className="container">
                         <CommunityList communities={communities} />
                       </div>
@@ -174,10 +169,7 @@ class App extends Component {
                 component={() => {
                   return (
                     <div>
-                      <TopNavBar
-                        communityName={null}
-                        handleSignout={this.handleSignout}
-                      />
+                      <TopNavBar handleSignout={this.handleSignout} />
                       <div className="container">
                         <ProfilePage user={username} />
                       </div>
@@ -190,20 +182,23 @@ class App extends Component {
                 path="/c/:url"
                 component={({ match }) => {
                   const url = match.params.url;
-                  const communityDescription = this.getCommunityDescription(
-                    url
-                  );
+                  const communityData = this.getCurrentCommunity(url);
                   return (
                     <div>
                       <TopNavBar
-                        communityName={url}
                         handleSignout={this.handleSignout}
-                        communityDescription={communityDescription}
+                        communityUrl={url}
+                        communityDescription={
+                          communityData ? communityData.description : null
+                        }
                       />
-                      <CommunityPage
-                        nameInUrl={url}
-                        communities={communities}
-                      />
+                      <div className="container">
+                        <CommunityPage
+                          nameInUrl={url}
+                          communities={communities}
+                          setCurrentCommunity={this.setCurrentCommunity}
+                        />
+                      </div>
                     </div>
                   );
                 }}
@@ -211,22 +206,23 @@ class App extends Component {
               <Route
                 path="/c/:url/discussions/:discussionId"
                 component={({ match }) => {
-                  const url = match.params.url;
-                  const communityDescription = this.getCommunityDescription(
-                    url
-                  );
+                  const { url, discussionId } = match.params;
+                  const communityData = this.getCurrentCommunity(url);
                   return (
                     <div>
                       <TopNavBar
-                        communityName={match.params.url}
                         handleSignout={this.handleSignout}
-                        communityDescription={communityDescription}
+                        communityUrl={url}
+                        communityDescription={
+                          communityData ? communityData.description : null
+                        }
                       />
                       <div className="container">
                         <CommentSection
-                          communityUrl={match.params.url}
-                          discussionId={match.params.discussionId}
+                          communityUrl={url}
+                          discussionId={discussionId}
                           user={username}
+                          setCurrentCommunity={this.setCurrentCommunity}
                         />
                       </div>
                     </div>

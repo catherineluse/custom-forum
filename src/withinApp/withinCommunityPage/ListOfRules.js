@@ -56,7 +56,16 @@ class ListOfRules extends Component {
     this.deleteRuleListener.unsubscribe();
   }
 
-  mapRulesToListView = rules => {
+  filterRules = communityId => {
+    const rules = this.state.rules;
+    const filteredRules = rules.filter(rule => {
+      return rule.communityId === communityId;
+    });
+    return filteredRules;
+  };
+
+  mapRulesToListView = communityId => {
+    let rules = this.filterRules(communityId);
     return rules.map(rule => {
       return (
         <li key={rule.id}>
@@ -66,23 +75,14 @@ class ListOfRules extends Component {
       );
     });
   };
-  filterRules = communityId => {
-    const rules = this.state.rules;
-    const filteredRules = rules.filter(rule => {
-      return rule.communityId === communityId;
-    });
-    return filteredRules;
-  };
 
   render() {
     const { communityData } = this.props;
-
+    if (!communityData) {
+      return <p>"There are no rules yet."</p>;
+    }
     return (
-      <ol className="rules">
-        {communityData
-          ? this.mapRulesToListView(this.filterRules(communityData.id))
-          : this.mapRulesToListView([])}
-      </ol>
+      <ol className="rules">{this.mapRulesToListView(communityData.id)}</ol>
     );
   }
 }

@@ -3,24 +3,20 @@ import { NavLink } from "react-router-dom";
 
 class TopNavBar extends Component {
   render() {
-    const { handleSignout, communityName, communityDescription } = this.props;
+    const { handleSignout, communityUrl, communityDescription } = this.props;
     return (
       <nav>
         <div className="navbar-brand">
           <i className="fas fa-bars menu-toggle"></i>
           <i className="fas fa-seedling"></i> gennit.net
-          {communityName ? (
+          {communityUrl ? (
             <span>
-              /c/<span className="name-in-topnav">{communityName}</span>
+              /c/<span className="name-in-topnav">{communityUrl}</span>
             </span>
-          ) : (
-            ""
-          )}
-          {communityDescription ? (
-            <small>{communityDescription}</small>
           ) : (
             <small> a site for meetups and discussions</small>
           )}
+          {communityDescription ? <small>{communityDescription}</small> : null}
         </div>
         <ul className="topnav-right-buttons">
           <li className="nav-item">
