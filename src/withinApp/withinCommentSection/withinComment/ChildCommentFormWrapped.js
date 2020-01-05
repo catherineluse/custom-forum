@@ -48,16 +48,11 @@ const createChildCommentWithParentCommentId = async input => {
     graphqlOperation(createComment, { input })
   )
     .then(response => {
-      console.log("CreateComment API call succeeded");
-      console.log("Response is ", response);
       const newChildId = response.data.createComment.id;
-      console.log("new child data is ", newChildId);
       return newChildId;
     })
     .catch(e => {
-      console.log("CreateComment API call failed");
-      console.log("input was ", input);
-      console.log(e);
+      alert("CreateComment API call failed, Input was ", input);
       return null;
     });
   return newChildId;
@@ -70,7 +65,7 @@ const updateParentCommentToAddChild = async (parentCommentId, newChildId) => {
     comment => comment.id === parentCommentId
   )[0];
   if (!parentCommentData) {
-    console.log("Could not get parent comment");
+    alert("Could not get parent comment");
     return;
   }
   const existingChildren = parentCommentData.children;
@@ -81,14 +76,9 @@ const updateParentCommentToAddChild = async (parentCommentId, newChildId) => {
       : [newChildId]
   };
   await API.graphql(graphqlOperation(updateComment, { input }))
-    .then(response => {
-      console.log("Update parent comment API call succeeded");
-      console.log("Response is ", response);
-    })
+    .then(response => {})
     .catch(e => {
-      console.log("Update parent comment API call failed");
-      console.log("input was ", input);
-      console.log(e);
+      alert("Update parent comment API call failed");
     });
 };
 
@@ -120,10 +110,6 @@ const formikWrapper = withFormik({
     const newChildId = await createChildCommentWithParentCommentId(
       input,
       values.parentCommentId
-    );
-    console.log(
-      "trying to add this child id to the parent comment ",
-      newChildId
     );
     await updateParentCommentToAddChild(values.parentCommentId, newChildId);
 

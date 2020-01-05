@@ -3,7 +3,6 @@ import Select from "react-select";
 
 class DiscussionTagsDropdown extends React.Component {
   handleChange = selectedTagObjects => {
-    console.log(" the selected options are ", selectedTagObjects);
     // it's getting a array of objects
     // like this: [{value: something, label: something}]
     // The data needs to be in this format to display
@@ -17,7 +16,7 @@ class DiscussionTagsDropdown extends React.Component {
     return tags.map(tag => {
       return {
         value: tag,
-        label: tag,
+        label: tag
       };
     });
   };
@@ -31,12 +30,6 @@ class DiscussionTagsDropdown extends React.Component {
     const options = availableTags
       ? this.mapTagsToDropdownOptions(availableTags)
       : [];
-
-    console.log(
-      "the props passed to ModerationLevelDropdown are " +
-        JSON.stringify(this.props)
-    );
-    console.log("the options are ", options);
     return (
       <div className="form-group">
         <label htmlFor="discussionTags">Tags (Optional)</label>

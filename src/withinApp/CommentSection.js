@@ -95,7 +95,7 @@ class CommentSection extends React.Component {
     this.deleteCommentListener.unsubscribe();
   }
 
-  getDiscussion = async id => {
+  getDiscussion = async () => {
     const { discussionId } = this.props;
     const result = await API.graphql(graphqlOperation(listDiscussions));
     const discussions = result.data.listDiscussions.items;
@@ -103,30 +103,21 @@ class CommentSection extends React.Component {
       discussion => discussion.id === discussionId
     );
     const discussionData = relevantDiscussion[0];
-    if (discussionData) {
-      const { id, title, content, creator, createdDate } = discussionData;
-      this.setState(
-        {
-          discussionId: id,
-          discussionTitle: title,
-          discussionContent: content,
-          discussionCreator: creator,
-          discussionCreatedDate: createdDate
-        },
-        () => {
-          console.log("relevantDiscussion is ", relevantDiscussion);
-        }
-      );
-    } else {
-      console.log("couldn't get discussion data");
-      console.log("all discussions are", discussions);
-      console.log("discussionId", discussionId);
+    if (!discussionData) {
+      return null;
     }
+    const { id, title, content, creator, createdDate } = discussionData;
+    this.setState({
+      discussionId: id,
+      discussionTitle: title,
+      discussionContent: content,
+      discussionCreator: creator,
+      discussionCreatedDate: createdDate
+    });
   };
 
   getComments = async () => {
     const result = await API.graphql(graphqlOperation(listComments));
-    console.log("result of listComments API call", result);
     if (result) {
       this.setState({ comments: result.data.listComments.items });
     }
@@ -168,7 +159,6 @@ class CommentSection extends React.Component {
 
     return childComments.map(commentData => {
       if (!commentData) {
-        console.log("could not find child comment");
         return null;
       }
 
@@ -241,7 +231,6 @@ class CommentSection extends React.Component {
     const filteredComments = comments.filter(comment => {
       return comment.discussionId === discussionId;
     });
-    console.log("filtered comments are ", filteredComments);
     if (filteredComments.length > 0) {
       return this.mapCommentsToTreeView(filteredComments);
     } else {

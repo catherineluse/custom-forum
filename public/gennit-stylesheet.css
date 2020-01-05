@@ -1,63 +1,72 @@
+/*Top navigation bar*/
 nav {
-  color: #e3fcef;
-  background-color: #6ca388;
+  color: #7cf8b8;
+  background-color: black;
   font-family: "Lato", sans-serif;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-h2 {
-  margin-top: 50px;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  margin: 0;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
 }
 
 .menu-toggle {
   margin-right: 10px;
 }
 
+.nav-link {
+  color: black;
+  padding-left: 0px;
+}
+
+.nav-item>.nav-link {
+  color: #7cf8b8;
+}
+
+.nav-item>.nav-link:hover {
+  color: white;
+}
+
+.name-in-topnav {
+  color: white;
+}
+
+.topnav-right-buttons {
+  float: right;
+}
+
+/* Headings */
+
 .header-within-tab {
   margin-top: 20px;
   color: black;
 }
 
-.navbar-brand {
-  color: #e3fcef;
-}
-
-nav > .navbar {
-  margin-bottom: 0px;
-}
-
-.no-gap {
-  margin-bottom: 0px;
-  margin-top: 0px;
-}
-
-.breadcrumbs {
-  margin-top: 0px;
-  margin-bottom: 10px;
-}
-
-.breadcrumbs > .nav-link {
-  margin-top: 10px;
-  color: silver;
-  text-decoration: underline;
-  font-family: Lato;
-}
-
-.breadcrumbs > .nav-link:hover {
-  color: black;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: #6ca388;
-}
-
 h1 {
+  margin-top: 450px;
   color: black;
-  font-family: "Zilla Slab", cursive;
+  font-family: "Lato", sans-serif;
 }
 
 h2 {
-  margin-top: 30px;
   font-size: 25px;
   color: green;
   font-family: "Zilla Slab", cursive;
@@ -70,45 +79,9 @@ h3 {
   font-family: "Lato", sans-serif;
 }
 
-label {
-  margin-top: 10px;
-  font-family: "Lato", sans-serif;
-}
-
-input {
-  margin-top: 1px;
-}
-
-small {
-  color: #6ca388;
-  margin-left: 5px;
-  margin-top: 1px;
-}
-
-table {
-  color: black;
-}
-
-th {
-  color: white;
-  background-color: black;
-}
-
 .page-name {
   color: black;
   font-size: 30px;
-}
-
-.nav-link {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-tr:hover {
-  background-color: honeydew;
-  color: white;
-  cursor: pointer;
-  color: #6ca388;
 }
 
 .community-url {
@@ -119,6 +92,127 @@ tr:hover {
   text-align: center;
   color: #538f72;
   padding-top: 15px;
+}
+
+/* Breadcrumbs */
+
+.breadcrumbs {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.breadcrumbs>.nav-link {
+  margin-top: 10px;
+  color: silver;
+  text-decoration: underline;
+  font-family: Lato;
+}
+
+.breadcrumbs>.nav-link:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+/* Links */
+
+a:hover {
+  color: #6ca388;
+}
+
+/* Forms */
+
+label {
+  margin-top: 10px;
+  font-family: "Lato", sans-serif;
+}
+
+input {
+  margin-top: 1px;
+}
+
+small {
+  color: silver;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.form-submit {
+  background-color: silver;
+  font-family: "Lato", sans-serif;
+  color: black;
+  width: 100%;
+  height: 35px;
+}
+
+.form-submit:hover {
+  color: white;
+  background-color: black;
+}
+
+.card {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.input-tag {
+  background: white;
+  border: 1px solid #d6d6d6;
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 5px 0;
+}
+
+.input-tag input {
+  border: none;
+  width: 100%;
+}
+
+.input-tag__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.input-tag__tags li {
+  align-items: center;
+  background: #e3fcef;
+  border-radius: 2px;
+  color: black;
+  display: flex;
+  font-weight: 300;
+  list-style: none;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+}
+
+.input-tag__tags li.input-tag__tags__input {
+  background: none;
+  flex-grow: 1;
+  padding: 0;
+}
+
+/* Tables */
+
+table {
+  color: black;
+}
+
+th {
+  color: white;
+  background-color: black;
+}
+
+tr:hover {
+  background-color: honeydew;
+  color: white;
+  cursor: pointer;
+  color: #6ca388;
 }
 
 tr:hover .community-description {
@@ -143,6 +237,8 @@ tr:hover .table-link {
   color: green;
 }
 
+/* Buttons */
+
 .btn {
   position: relative;
   display: block;
@@ -158,7 +254,7 @@ tr:hover .table-link {
   transition: background-color 0.3s;
 }
 
-.btn > * {
+.btn>* {
   position: relative;
 }
 
@@ -194,32 +290,32 @@ tr:hover .table-link {
   transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
 
-.form-submit {
-  background-color: silver;
-  font-family: "Lato", sans-serif;
+.delete-button {
+  background-color: white;
   color: black;
-  width: 100%;
-  height: 35px;
+  border: none;
+  margin-left: 5px;
 }
 
-.form-submit:hover {
-  color: white;
+.delete-button:hover {
   background-color: black;
-}
-
-.btn-rule {
-  background-color: black;
-  font-family: "Zilla Slab", cursive;
   color: white;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
-.btn-rule:hover {
-  cursor: pointer;
-  color: #6ca388;
+/* Communities */
+
+.community-name-in-table {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.community-rule-list {
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 8px;
+  background-color: #e3fcef;
+  color: black;
 }
 
 .community-description {
@@ -227,15 +323,16 @@ tr:hover .table-link {
 }
 
 .community-tabs {
+  margin-top: 20px;
   background-color: white;
 }
 
-.community-tabs > .nav-link {
+.community-tabs>.nav-link {
   background-color: white;
   color: gray;
 }
 
-.community-tabs > .nav-link:hover {
+.community-tabs>.nav-link:hover {
   color: black;
 }
 
@@ -244,18 +341,20 @@ tr:hover .table-link {
   margin-bottom: 5px;
 }
 
-.nav-link {
-  color: black;
-  padding-left: 0px;
+.rules {
+  margin: auto;
+  font-size: 20px;
+  width: 50%;
+  margin-top: 30px;
+  font-weight: 400;
 }
 
-.nav-item > .nav-link {
-  color: #e3fcef;
+.rule-explanation {
+  color: gray;
+  font-weight: 300;
 }
 
-.nav-item > .nav-link:hover {
-  color: white;
-}
+/* Discussions */
 
 .discussion {
   margin-top: 10px;
@@ -321,7 +420,7 @@ tr:hover .table-link {
   margin-left: 10px;
 }
 
-.discussion > .nav-link {
+.discussion>.nav-link {
   padding-left: 0px;
   margin-left: 0px;
 }
@@ -335,109 +434,7 @@ tr:hover .table-link {
   font-weight: normal;
 }
 
-.community-name-in-table {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.community-rule-list {
-  margin-left: 20px;
-  margin-top: 10px;
-  padding-top: 20px;
-  padding-bottom: 8px;
-  background-color: #e3fcef;
-  color: black;
-}
-
-.card {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-
-.add-rule-card {
-  margin-left: 20px;
-}
-
-.indented-info {
-  padding-left: 20px;
-  text-indent: -12px;
-}
-
-.info-icon {
-  margin-right: 10px;
-}
-
-.input-tag {
-  background: white;
-  border: 1px solid #d6d6d6;
-  border-radius: 2px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px 5px 0;
-}
-
-.input-tag input {
-  border: none;
-  width: 100%;
-}
-
-.input-tag__tags {
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.input-tag__tags li {
-  align-items: center;
-  background: #e3fcef;
-  border-radius: 2px;
-  color: black;
-  display: flex;
-  font-weight: 300;
-  list-style: none;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  padding: 5px 10px;
-}
-
-.delete-button {
-  background-color: white;
-  color: black;
-  border: none;
-  margin-left: 5px;
-}
-
-.delete-button:hover {
-  background-color: black;
-  color: white;
-}
-
-.input-tag__tags li.input-tag__tags__input {
-  background: none;
-  flex-grow: 1;
-  padding: 0;
-}
-
-.rules {
-  margin: auto;
-  font-size: 20px;
-  width: 50%;
-  margin-top: 30px;
-  font-weight: 400;
-}
-
-.rule-explanation {
-  color: gray;
-  font-weight: 300;
-}
-
-.placeholder {
-  margin-top: 20px;
-}
+/* Comments */
 
 .comment {
   margin-bottom: 10px;
@@ -470,7 +467,7 @@ tr:hover .table-link {
 
 .metadata-button {
   margin-left: 5px;
-  margin-right: 5spx;
+  margin-right: 5px;
 }
 
 .username-in-comment {

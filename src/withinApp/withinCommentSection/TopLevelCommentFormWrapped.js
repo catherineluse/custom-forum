@@ -62,15 +62,9 @@ const formikWrapper = withFormik({
     input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(createComment, { input }))
-      .then(response => {
-        console.log("CreateComment API call succeeded");
-        console.log("Response is ", response);
-      })
+      .then(response => {})
       .catch(e => {
-        console.log("CreateComment API call failed");
-        console.log("input was ", input);
-        console.log("values was ", values);
-        console.log(e);
+        alert("CreateComment API call failed. Input was ", input);
       });
     setSubmitting(false);
     resetForm();

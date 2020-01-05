@@ -31,14 +31,10 @@ class ListOfDiscussions extends Component {
   };
 
   getDiscussions = async discussions => {
-    const { communityData } = this.props;
-    console.log("community data is ", communityData);
-
     // This will be updated to only pull data for one community.
     // The way this is written now, all discussions for the entire
     // site are being loaded.
     const allDiscussions = await API.graphql(graphqlOperation(listDiscussions));
-    console.log("result of listDiscussions API call", allDiscussions);
     this.setState({ discussions: allDiscussions.data.listDiscussions.items });
   };
 
@@ -55,7 +51,6 @@ class ListOfDiscussions extends Component {
 
   showDiscussionTags = tags => {
     if (tags) {
-      console.log("the tags are ", tags);
       return tags.map(tag => (
         <span key={tag} className="keyword">
           {tag}
@@ -141,8 +136,6 @@ class ListOfDiscussions extends Component {
     const filteredDiscussions = discussions.filter(discussion => {
       return discussion.communityUrl === communityData.url;
     });
-    console.log("filtered discussions are ", filteredDiscussions);
-    console.log("community data is ", communityData);
     return this.mapDiscussionsToListView(
       filteredDiscussions,
       communityData.url

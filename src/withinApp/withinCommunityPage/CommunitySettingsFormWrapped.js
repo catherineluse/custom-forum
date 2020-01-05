@@ -49,9 +49,6 @@ const addDateToDTO = input => {
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
   payload.moderation_level = payload.moderation_level.value;
-  console.log(
-    "The moderation level is " + JSON.stringify(payload.moderation_level)
-  );
   return payload;
 };
 
@@ -87,14 +84,9 @@ const formikWrapper = withFormik({
     input = addDateToDTO(input);
 
     await API.graphql(graphqlOperation(updateCommunity, { input }))
-      .then(response => {
-        console.log("API call succeeded");
-        console.log("Response is ", response);
-      })
+      .then(response => {})
       .catch(e => {
-        console.log("API call failed");
-        console.log("input was ", input);
-        console.log(e);
+        alert("API call failed, input was ", input);
       });
     setSubmitting(false);
   },

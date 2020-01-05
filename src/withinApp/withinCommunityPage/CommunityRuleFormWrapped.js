@@ -36,14 +36,9 @@ const formikWrapper = withFormik({
     let input = removeEmptyStringsFromDTO(formData);
 
     await API.graphql(graphqlOperation(createRule, { input }))
-      .then(response => {
-        console.log("CreateRule API call succeeded");
-        console.log("Response is ", response);
-      })
+      .then(response => {})
       .catch(e => {
-        console.log("CreateRule API call failed");
-        console.log("input was ", input);
-        console.log(e);
+        alert("CreateRule API call failed, input was ", input);
       });
     setSubmitting(false);
     resetForm();

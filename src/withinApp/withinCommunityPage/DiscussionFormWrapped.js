@@ -18,7 +18,6 @@ const removeEmptyStringsFromDTO = payload => {
 };
 
 const mapTagObjectsToStringsForDTO = input => {
-  console.log("mapping input for DTO ", input);
   const tagObjects = input.tags;
   const tagStrings = tagObjects.map(tagObj => tagObj.label);
   input["tags"] = tagStrings;
@@ -54,17 +53,10 @@ const formikWrapper = withFormik({
     let input = removeEmptyStringsFromDTO(formData);
     input = addDateToDTO(input);
     input = mapTagObjectsToStringsForDTO(input);
-    console.log("trying to submit this create discussion DTO ", input);
-
     await API.graphql(graphqlOperation(createDiscussion, { input }))
-      .then(response => {
-        console.log("CreateDiscussion API call succeeded");
-        console.log("Response is ", response);
-      })
+      .then(response => {})
       .catch(e => {
-        console.log("CreateDiscussion API call failed");
-        console.log("input was ", input);
-        console.log(e);
+        alert("CreateDiscussion API call failed, input was ", input);
       });
     setSubmitting(false);
     resetForm();

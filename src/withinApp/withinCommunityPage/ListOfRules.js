@@ -9,15 +9,11 @@ class ListOfRules extends Component {
     rules: []
   };
 
-  getRules = async Rules => {
-    const { communityData } = this.props;
-    console.log("community data is ", communityData);
-
+  getRules = async () => {
     // This will be updated to only pull data for one community.
     // The way this is written now, all Rules for the entire
     // site are being loaded.
     const allRules = await API.graphql(graphqlOperation(listRules));
-    console.log("result of listRules API call", allRules);
     this.setState({ rules: allRules.data.listRules.items });
   };
 
@@ -73,11 +69,8 @@ class ListOfRules extends Component {
   filterRules = communityId => {
     const rules = this.state.rules;
     const filteredRules = rules.filter(rule => {
-      console.log("Rule.communityUrl is ", rule.community_id);
-      console.log("communityData.url is ", communityId);
       return rule.community_id === communityId;
     });
-    console.log("filtered Rules are ", filteredRules);
     return filteredRules;
   };
 

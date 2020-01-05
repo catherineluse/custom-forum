@@ -24,10 +24,6 @@ class ModerationLevelDropdown extends React.Component {
   };
   render() {
     const { value } = this.props;
-    // console.log(
-    //   "the props passed to ModerationLevelDropdown are " +
-    //     JSON.stringify(this.props)
-    // );
     return (
       <Select
         value={value}
