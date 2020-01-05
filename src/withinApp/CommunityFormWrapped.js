@@ -11,7 +11,7 @@ import Error from "../utils/Error";
 //   name: String!
 //   description: String
 //   creator: ID
-//   created_date: AWSDate
+//   createdDate: AWSDate
 //   rules: [String]
 //   locations: [String]
 //   hidden: Boolean
@@ -21,7 +21,7 @@ import Error from "../utils/Error";
 //   topics: [String]
 //   flagged_comments: [Comment]
 //   flagged_discussions: [Discussion]
-//   moderation_level: Int
+//   moderationLevel: Int
 //   number_of_users: Int
 // }
 
@@ -29,8 +29,8 @@ const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
   let input = {};
   for (let key in payload) {
-    if (payload[key] !== "") {
-      input[key] = payload[key];
+    if (payload.key !== "") {
+      input.key = payload.key;
     }
   }
   return input;
@@ -39,13 +39,13 @@ const removeEmptyStringsFromDTO = payload => {
 const addDateToDTO = input => {
   return {
     ...input,
-    created_date: new Date()
+    createdDate: new Date()
   };
 };
 
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
-  payload.moderation_level = payload.moderation_level.value | 1;
+  payload.moderationLevel = payload.moderationLevel.value | 1;
   return payload;
 };
 
@@ -55,7 +55,7 @@ const formikWrapper = withFormik({
     name: "",
     url: "",
     description: "",
-    moderation_level: 1,
+    moderationLevel: 1,
     tags: [],
     keywords: [],
     creator: creator || ""
@@ -89,7 +89,7 @@ const formikWrapper = withFormik({
       .max(70, "Can have a maximum of 70 characters.")
       .required("Please enter a unique name with no spaces."),
     description: Yup.string().max(140, "Can have a maximum of 140 characters."),
-    moderation_level: Yup.string().required("A moderation level is required."),
+    moderationLevel: Yup.string().required("A moderation level is required."),
     tags: Yup.array().of(Yup.string()),
     keywords: Yup.array().of(Yup.string())
   })

@@ -18,6 +18,6 @@
 //     broken_sitewide_rules: [String]
 //     broken_community_rules: [String]
 //     author: User
-//     created_date: AWSDate
+//     createdDate: AWSDate
 //     resolved: Boolean
 //   }

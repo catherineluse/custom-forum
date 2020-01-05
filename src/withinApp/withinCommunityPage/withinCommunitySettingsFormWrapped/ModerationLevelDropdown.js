@@ -8,19 +8,16 @@ const levels = [
 ];
 
 const turnNumberIntoModerationLevel = number => {
-  for (let i = 0; i < levels.length; i++) {
-    if (levels[i].value === number) {
-      return levels[i].label;
-    }
-  }
-  return "Low - Only the sitewide rules apply";
+  return levels.map(level => {
+    return level.value === number;
+  })[0];
 };
 class ModerationLevelDropdown extends React.Component {
   handleChange = value => {
-    this.props.onChange("moderation_level", value, false);
+    this.props.onChange("moderationLevel", value, false);
   };
   handleBlur = () => {
-    this.props.onBlur("moderation_level", true);
+    this.props.onBlur("moderationLevel", true);
   };
   render() {
     const { value } = this.props;

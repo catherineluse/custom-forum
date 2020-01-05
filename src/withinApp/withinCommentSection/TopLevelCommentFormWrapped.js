@@ -29,8 +29,8 @@ const removeEmptyDataFromDTO = payload => {
   // or arrays
   let input = {};
   for (let key in payload) {
-    if (payload[key] !== "" && payload[key] !== []) {
-      input[key] = payload[key];
+    if (payload.key !== "" && payload.key !== []) {
+      input.key = payload.key;
     }
   }
   return input;

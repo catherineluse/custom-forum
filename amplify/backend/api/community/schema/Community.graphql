@@ -4,23 +4,23 @@ type Community @model {
   name: String!
   description: String
   creator: String!
-  created_date: String!
+  createdDate: String!
   rules: [Rule]
   locations: [String]
   hidden: Boolean
-  hidden_date: String
-  sitewide_reasons_for_being_hidden: [String]
+  hiddenDate: String
+  sitewideReasonsForBeingHidden: [String]
   keywords: [String]
   tags: [String]
-  flagged_comments: [Comment]
-  flagged_discussions: [Discussion]
-  moderation_level: Int
-  number_of_users: Int
+  flaggedComments: [Comment]
+  flaggedDiscussions: [Discussion]
+  moderationLevel: Int
+  numberOfUsers: Int
 }
 
 type Rule @model {
   id: ID
-  community_id: String!
+  communityId: String!
   summary: String!
   explanation: String
 }

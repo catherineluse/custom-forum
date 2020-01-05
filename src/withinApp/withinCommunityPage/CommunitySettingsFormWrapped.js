@@ -24,7 +24,7 @@ import CommunityKeywords from "./withinCommunitySettingsFormWrapped/CommunityKey
 //   topics: [String]
 //   flagged_comments: [Comment]
 //   flagged_discussions: [Discussion]
-//   moderation_level: Int
+//   moderationLevel: Int
 //   number_of_users: Int
 // }
 
@@ -32,8 +32,8 @@ const removeEmptyStringsFromDTO = payload => {
   // DynamoDB throws an error if you submit empty strings
   let input = {};
   for (let key in payload) {
-    if (payload[key] !== "") {
-      input[key] = payload[key];
+    if (payload.key !== "") {
+      input.key = payload.key;
     }
   }
   return input;
@@ -42,13 +42,13 @@ const removeEmptyStringsFromDTO = payload => {
 const addDateToDTO = input => {
   return {
     ...input,
-    created_date: new Date()
+    createdDate: new Date()
   };
 };
 
 const turnModerationLevelIntoNumber = formData => {
   const payload = formData;
-  payload.moderation_level = payload.moderation_level.value;
+  payload.moderationLevel = payload.moderationLevel.value;
   return payload;
 };
 
@@ -61,7 +61,7 @@ const formikWrapper = withFormik({
     const {
       name,
       description,
-      moderation_level,
+      moderationLevel,
       tags,
       keywords,
       id
@@ -69,7 +69,7 @@ const formikWrapper = withFormik({
     return {
       name: name ? name : "",
       description: description ? description : "",
-      moderation_level: moderation_level ? moderation_level : 1,
+      moderationLevel: moderationLevel ? moderationLevel : 1,
       tags: tags ? tags : [],
       keywords: keywords ? keywords : [],
       id: id ? id : ""
@@ -95,7 +95,7 @@ const formikWrapper = withFormik({
       .min(2, "Must have at least two characters.")
       .max(140, "Can have a maximum of 140 characters."),
     description: Yup.string().max(140, "Can have a maximum of 140 characters."),
-    moderation_level: Yup.string().required("A moderation level is required."),
+    moderationLevel: Yup.string().required("A moderation level is required."),
     tags: Yup.array().of(Yup.string()),
     keywords: Yup.array().of(Yup.string())
   })
@@ -153,7 +153,7 @@ class CommunitySettingsForm extends React.Component {
                 <label>Moderation Level</label>
                 <ModerationLevelDropdown
                   id="moderationLevelDropdown"
-                  value={values.moderation_level}
+                  value={values.moderationLevel}
                   onChange={setFieldValue}
                   onBlur={setFieldTouched}
                 />

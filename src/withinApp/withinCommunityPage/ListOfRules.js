@@ -69,7 +69,7 @@ class ListOfRules extends Component {
   filterRules = communityId => {
     const rules = this.state.rules;
     const filteredRules = rules.filter(rule => {
-      return rule.community_id === communityId;
+      return rule.communityId === communityId;
     });
     return filteredRules;
   };

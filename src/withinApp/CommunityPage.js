@@ -110,7 +110,7 @@ class CommunityPage extends React.Component {
               <h3 className="header-within-tab">Creator</h3>
               {communityData ? communityData["creator"] : ""}
               <h3 className="header-within-tab">Created Date</h3>
-              {communityData ? communityData["created_date"] : ""}
+              {communityData ? communityData["createdDate"] : ""}
             </Tab>
             <Tab
               eventKey="calendar"
