@@ -16,7 +16,7 @@ const createChildCommentWithParentCommentId = async input => {
       return newChildId;
     })
     .catch(e => {
-      alert("CreateComment API call failed, Input was ", input);
+      alert("CreateComment API call failed, Input was ", JSON.stringify(input));
       return null;
     });
   return newChildId;

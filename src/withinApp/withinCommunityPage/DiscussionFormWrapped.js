@@ -39,7 +39,10 @@ const formikWrapper = withFormik({
     await API.graphql(graphqlOperation(createDiscussion, { input }))
       .then(response => {})
       .catch(e => {
-        alert("CreateDiscussion API call failed, input was ", input);
+        alert(
+          "CreateDiscussion API call failed, input was ",
+          JSON.stringify(input)
+        );
       });
     setSubmitting(false);
     resetForm();

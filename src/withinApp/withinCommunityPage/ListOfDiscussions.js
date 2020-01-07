@@ -43,6 +43,10 @@ class ListOfDiscussions extends Component {
     return null;
   };
 
+  getDiscussionPreview = discussionContent => {
+    return discussionContent.substring(0, 100);
+  };
+
   componentDidMount = async () => {
     this.getDiscussions();
     this.createDiscussionListener = API.graphql(
@@ -94,7 +98,9 @@ class ListOfDiscussions extends Component {
               </span>
             </NavLink>
             {content ? (
-              <div className="discussion-content-in-list">{content}</div>
+              <div className="discussion-content-in-list">
+                {this.getDiscussionPreview(content)}
+              </div>
             ) : (
               <></>
             )}

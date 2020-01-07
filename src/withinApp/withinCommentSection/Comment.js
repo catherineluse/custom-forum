@@ -27,7 +27,7 @@ class Comment extends Component {
       <div className="comment" key={id}>
         <div className="comment-header">
           <div className="username-in-comment">
-            {creator} &#8226; {getDateOfComment(createdDate)}
+            {`${creator} `}&#8226;{` ${getDateOfComment(createdDate)}`}
           </div>
         </div>
         <div className="comment-metadata">

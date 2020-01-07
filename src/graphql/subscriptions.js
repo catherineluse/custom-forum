@@ -8,20 +8,20 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -40,7 +40,7 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -56,8 +56,8 @@ export const onCreateCommunity = `subscription OnCreateCommunity {
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
@@ -68,20 +68,20 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -100,7 +100,7 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -116,8 +116,8 @@ export const onUpdateCommunity = `subscription OnUpdateCommunity {
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
@@ -128,20 +128,20 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -160,7 +160,7 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -176,15 +176,15 @@ export const onDeleteCommunity = `subscription OnDeleteCommunity {
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
 export const onCreateRule = `subscription OnCreateRule {
   onCreateRule {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -193,7 +193,7 @@ export const onCreateRule = `subscription OnCreateRule {
 export const onUpdateRule = `subscription OnUpdateRule {
   onUpdateRule {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -202,7 +202,7 @@ export const onUpdateRule = `subscription OnUpdateRule {
 export const onDeleteRule = `subscription OnDeleteRule {
   onDeleteRule {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -378,20 +378,20 @@ export const onCreateEvent = `subscription OnCreateEvent {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -410,7 +410,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -426,8 +426,8 @@ export const onCreateEvent = `subscription OnCreateEvent {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -472,20 +472,20 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -504,7 +504,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -520,8 +520,8 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -566,20 +566,20 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -598,7 +598,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -614,8 +614,8 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -765,20 +765,20 @@ export const onCreateReport = `subscription OnCreateReport {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -797,7 +797,7 @@ export const onCreateReport = `subscription OnCreateReport {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -813,8 +813,8 @@ export const onCreateReport = `subscription OnCreateReport {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules
@@ -837,20 +837,20 @@ export const onUpdateReport = `subscription OnUpdateReport {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -869,7 +869,7 @@ export const onUpdateReport = `subscription OnUpdateReport {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -885,8 +885,8 @@ export const onUpdateReport = `subscription OnUpdateReport {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules
@@ -909,20 +909,20 @@ export const onDeleteReport = `subscription OnDeleteReport {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -941,7 +941,7 @@ export const onDeleteReport = `subscription OnDeleteReport {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -957,8 +957,8 @@ export const onDeleteReport = `subscription OnDeleteReport {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules

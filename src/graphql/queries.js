@@ -8,20 +8,20 @@ export const getCommunity = `query GetCommunity($id: ID!) {
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -40,7 +40,7 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -56,8 +56,8 @@ export const getCommunity = `query GetCommunity($id: ID!) {
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
@@ -73,20 +73,20 @@ export const listCommunitys = `query ListCommunitys(
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -105,7 +105,7 @@ export const listCommunitys = `query ListCommunitys(
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -121,8 +121,8 @@ export const listCommunitys = `query ListCommunitys(
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     nextToken
   }
@@ -131,7 +131,7 @@ export const listCommunitys = `query ListCommunitys(
 export const getRule = `query GetRule($id: ID!) {
   getRule(id: $id) {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -145,7 +145,7 @@ export const listRules = `query ListRules(
   listRules(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      community_id
+      communityId
       summary
       explanation
     }
@@ -288,20 +288,20 @@ export const getEvent = `query GetEvent($id: ID!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -320,7 +320,7 @@ export const getEvent = `query GetEvent($id: ID!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -336,8 +336,8 @@ export const getEvent = `query GetEvent($id: ID!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -387,15 +387,15 @@ export const listEvents = `query ListEvents(
         name
         description
         creator
-        created_date
+        createdDate
         locations
         hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
+        hiddenDate
+        sitewideReasonsForBeingHidden
         keywords
         tags
-        moderation_level
-        number_of_users
+        moderationLevel
+        numberOfUsers
       }
       organizer {
         id
@@ -475,20 +475,20 @@ export const getReport = `query GetReport($id: ID!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -507,7 +507,7 @@ export const getReport = `query GetReport($id: ID!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -523,8 +523,8 @@ export const getReport = `query GetReport($id: ID!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules
@@ -552,15 +552,15 @@ export const listReports = `query ListReports(
         name
         description
         creator
-        created_date
+        createdDate
         locations
         hidden
-        hidden_date
-        sitewide_reasons_for_being_hidden
+        hiddenDate
+        sitewideReasonsForBeingHidden
         keywords
         tags
-        moderation_level
-        number_of_users
+        moderationLevel
+        numberOfUsers
       }
       brokenSitewideRules
       brokenCommunityRules

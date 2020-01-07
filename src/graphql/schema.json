@@ -711,7 +711,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -767,7 +767,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -778,7 +778,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -823,7 +823,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "flagged_comments",
+          "name" : "flaggedComments",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -838,7 +838,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "flagged_discussions",
+          "name" : "flaggedDiscussions",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -853,7 +853,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "moderation_level",
+          "name" : "moderationLevel",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -864,7 +864,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "number_of_users",
+          "name" : "numberOfUsers",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -913,7 +913,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "community_id",
+          "name" : "communityId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1473,7 +1473,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1500,7 +1500,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1509,7 +1509,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1536,7 +1536,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "moderation_level",
+          "name" : "moderationLevel",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1545,7 +1545,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "number_of_users",
+          "name" : "numberOfUsers",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1969,7 +1969,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_id",
+          "name" : "communityId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4621,7 +4621,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -4656,7 +4656,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4665,7 +4665,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -4704,7 +4704,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "moderation_level",
+          "name" : "moderationLevel",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4713,7 +4713,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "number_of_users",
+          "name" : "numberOfUsers",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4780,7 +4780,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "created_date",
+          "name" : "createdDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4811,7 +4811,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "hidden_date",
+          "name" : "hiddenDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4820,7 +4820,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "sitewide_reasons_for_being_hidden",
+          "name" : "sitewideReasonsForBeingHidden",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -4859,7 +4859,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "moderation_level",
+          "name" : "moderationLevel",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4868,7 +4868,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "number_of_users",
+          "name" : "numberOfUsers",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4913,7 +4913,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_id",
+          "name" : "communityId",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -4970,7 +4970,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "community_id",
+          "name" : "communityId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -7936,6 +7936,14 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "deprecated",
         "description" : null,
         "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
@@ -7949,14 +7957,6 @@
           },
           "defaultValue" : "\"No longer supported\""
         } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

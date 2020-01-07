@@ -28,7 +28,7 @@ const formikWrapper = withFormik({
     await API.graphql(graphqlOperation(createRule, { input }))
       .then(response => {})
       .catch(e => {
-        alert("CreateRule API call failed, input was ", input);
+        alert("CreateRule API call failed, input was ", JSON.stringify(input));
       });
     setSubmitting(false);
     resetForm();

@@ -8,20 +8,20 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -40,7 +40,7 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -56,8 +56,8 @@ export const createCommunity = `mutation CreateCommunity($input: CreateCommunity
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
@@ -68,20 +68,20 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -100,7 +100,7 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -116,8 +116,8 @@ export const updateCommunity = `mutation UpdateCommunity($input: UpdateCommunity
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
@@ -128,20 +128,20 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
     name
     description
     creator
-    created_date
+    createdDate
     rules {
       id
-      community_id
+      communityId
       summary
       explanation
     }
     locations
     hidden
-    hidden_date
-    sitewide_reasons_for_being_hidden
+    hiddenDate
+    sitewideReasonsForBeingHidden
     keywords
     tags
-    flagged_comments {
+    flaggedComments {
       id
       content
       creator
@@ -160,7 +160,7 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
       disagree
       dateLastModified
     }
-    flagged_discussions {
+    flaggedDiscussions {
       id
       title
       creator
@@ -176,15 +176,15 @@ export const deleteCommunity = `mutation DeleteCommunity($input: DeleteCommunity
       downvotes
       tags
     }
-    moderation_level
-    number_of_users
+    moderationLevel
+    numberOfUsers
   }
 }
 `;
 export const createRule = `mutation CreateRule($input: CreateRuleInput!) {
   createRule(input: $input) {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -193,7 +193,7 @@ export const createRule = `mutation CreateRule($input: CreateRuleInput!) {
 export const updateRule = `mutation UpdateRule($input: UpdateRuleInput!) {
   updateRule(input: $input) {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -202,7 +202,7 @@ export const updateRule = `mutation UpdateRule($input: UpdateRuleInput!) {
 export const deleteRule = `mutation DeleteRule($input: DeleteRuleInput!) {
   deleteRule(input: $input) {
     id
-    community_id
+    communityId
     summary
     explanation
   }
@@ -378,20 +378,20 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -410,7 +410,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -426,8 +426,8 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -472,20 +472,20 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -504,7 +504,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -520,8 +520,8 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -566,20 +566,20 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -598,7 +598,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -614,8 +614,8 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     organizer {
       id
@@ -765,20 +765,20 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -797,7 +797,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -813,8 +813,8 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules
@@ -837,20 +837,20 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -869,7 +869,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -885,8 +885,8 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules
@@ -909,20 +909,20 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       name
       description
       creator
-      created_date
+      createdDate
       rules {
         id
-        community_id
+        communityId
         summary
         explanation
       }
       locations
       hidden
-      hidden_date
-      sitewide_reasons_for_being_hidden
+      hiddenDate
+      sitewideReasonsForBeingHidden
       keywords
       tags
-      flagged_comments {
+      flaggedComments {
         id
         content
         creator
@@ -941,7 +941,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
         disagree
         dateLastModified
       }
-      flagged_discussions {
+      flaggedDiscussions {
         id
         title
         creator
@@ -957,8 +957,8 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
         downvotes
         tags
       }
-      moderation_level
-      number_of_users
+      moderationLevel
+      numberOfUsers
     }
     brokenSitewideRules
     brokenCommunityRules

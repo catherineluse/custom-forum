@@ -34,7 +34,7 @@ const formikWrapper = withFormik({
     await API.graphql(graphqlOperation(createCommunity, { input }))
       .then(response => {})
       .catch(e => {
-        alert("API call failed. Input was ", input);
+        alert("API call failed. Input was ", JSON.stringify(input));
       });
     setSubmitting(false);
   },
