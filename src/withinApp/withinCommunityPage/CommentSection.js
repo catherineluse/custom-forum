@@ -1,8 +1,8 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listComments, listDiscussions } from "../graphql/queries";
-import { onCreateComment, onDeleteComment } from "../graphql/subscriptions";
-import { deleteComment } from "../graphql/mutations";
+import { listComments, listDiscussions } from "../../graphql/queries";
+import { onCreateComment, onDeleteComment } from "../../graphql/subscriptions";
+import { deleteComment } from "../../graphql/mutations";
 import { NavLink } from "react-router-dom";
 import TopLevelCommentFormWrapped from "./withinCommentSection/TopLevelCommentFormWrapped";
 import Comment from "./withinCommentSection/Comment";
@@ -19,8 +19,20 @@ class CommentSection extends React.Component {
 
   componentDidMount = async () => {
     const { discussionId } = this.props;
-    this.getDiscussion(discussionId);
-    this.getComments();
+
+    const discussionData = await this.getDiscussion(discussionId);
+    const { id, title, content, creator, createdDate } = discussionData;
+    await this.setState({
+      discussionId: id,
+      discussionTitle: title,
+      discussionContent: content,
+      discussionCreator: creator,
+      discussionCreatedDate: createdDate
+    });
+
+    const topLevelDiscussionComments = await this.getComments(id);
+    await this.setState({ comments: topLevelDiscussionComments });
+
     this.createCommentListener = API.graphql(
       graphqlOperation(onCreateComment)
     ).subscribe({
@@ -78,23 +90,34 @@ class CommentSection extends React.Component {
     );
     const discussionData = relevantDiscussion[0];
     if (!discussionData) {
-      return <p>Could not find the discussion.</p>;
+      return null;
     }
-    const { id, title, content, creator, createdDate } = discussionData;
-    this.setState({
-      discussionId: id,
-      discussionTitle: title,
-      discussionContent: content,
-      discussionCreator: creator,
-      discussionCreatedDate: createdDate
-    });
+    return discussionData;
   };
 
-  getComments = async () => {
+  getComments = async id => {
     const result = await API.graphql(graphqlOperation(listComments));
-    if (result) {
-      this.setState({ comments: result.data.listComments.items });
+    if (!result) {
+      return [];
     }
+    const comments = result.data.listComments.items;
+    if (comments) {
+      const topLevelDiscussionComments = comments.filter(
+        comment =>
+          comment.discussionId === id && comment.parentCommentId === null
+      );
+      return topLevelDiscussionComments;
+    }
+    return [];
+  };
+
+  addCommentToState = newComment => {
+    const prevComments = this.state.comments.filter(comment => {
+      return comment.id !== newComment.id;
+    });
+    const updatedComments = [newComment, ...prevComments];
+
+    this.setState({ comments: updatedComments });
   };
 
   handleDeleteComment = async commentId => {

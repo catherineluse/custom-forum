@@ -1,10 +1,10 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { createComment } from "../../graphql/mutations";
+import { createComment } from "../../../graphql/mutations";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../../utils/Error";
-import removeEmptyDataFromDTO from "../../utils/removeEmptyData";
+import Error from "../../../utils/Error";
+import removeEmptyDataFromDTO from "../../../utils/removeEmptyData";
 
 const formikWrapper = withFormik({
   enableReinitialize: true,

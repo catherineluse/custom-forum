@@ -11,7 +11,7 @@ import {
 } from "./graphql/subscriptions";
 import TopNavBar from "./withinApp/TopNavBar";
 import CommunityPage from "./withinApp/CommunityPage";
-import CommentSection from "./withinApp/CommentSection";
+import CommentSection from "./withinApp/withinCommunityPage/CommentSection";
 import ProfilePage from "./stub/ProfilePage";
 import CommunityList from "./withinApp/CommunityList";
 import CommunityFormWrapped from "./withinApp/CommunityFormWrapped";

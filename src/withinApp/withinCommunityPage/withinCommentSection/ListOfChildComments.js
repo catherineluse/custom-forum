@@ -1,6 +1,9 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { onCreateComment, onDeleteComment } from "../../graphql/subscriptions";
+import {
+  onCreateComment,
+  onDeleteComment
+} from "../../../graphql/subscriptions";
 import Comment from "./Comment";
 
 class ListOfChildComments extends React.Component {
@@ -22,11 +25,15 @@ class ListOfChildComments extends React.Component {
           // do nothing.
           return;
         }
+
         const prevComments = this.state.childComments.filter(comment => {
           return comment.id !== newComment.id;
         });
         const updatedComments = [newComment, ...prevComments];
-        this.setState({ childComments: updatedComments });
+        this.setState(
+          { childComments: updatedComments },
+          console.log("updated list of child comments")
+        );
       }
     });
     this.deleteCommentListener = API.graphql(
@@ -50,24 +57,17 @@ class ListOfChildComments extends React.Component {
     this.deleteCommentListener.unsubscribe();
   }
 
-  render() {
-    const {
-      childIds,
-      topLevelCommentId,
-      parentCommentId,
-      levelInHierarchy,
-      getCommentById
-    } = this.props;
-
-    if (!childIds) {
-      return null;
-    }
-
-    const childComments = childIds.map(id => {
+  getChildCommentDataByIds = childIds => {
+    const { getCommentById } = this.props;
+    return childIds.map(id => {
       return getCommentById(id);
     });
+  };
 
-    return childComments.map(commentData => {
+  mapCommentIdsToDisplayedComments = childIds => {
+    const { topLevelCommentId, parentCommentId, levelInHierarchy } = this.props;
+    const commentDataList = this.getChildCommentDataByIds(childIds);
+    return commentDataList.map(commentData => {
       if (!commentData) {
         return null;
       }
@@ -102,6 +102,16 @@ class ListOfChildComments extends React.Component {
         </div>
       );
     });
+  };
+
+  render() {
+    const { childIds } = this.props;
+
+    if (!childIds) {
+      return null;
+    }
+
+    return this.mapCommentIdsToDisplayedComments(childIds);
   }
 }
 

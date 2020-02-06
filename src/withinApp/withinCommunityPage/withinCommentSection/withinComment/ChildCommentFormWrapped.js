@@ -1,11 +1,11 @@
 import React from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { createComment, updateComment } from "../../../graphql/mutations";
-import { listComments } from "../../../graphql/queries";
+import { createComment, updateComment } from "../../../../graphql/mutations";
+import { listComments } from "../../../../graphql/queries";
 import { withFormik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import Error from "../../../utils/Error";
-import removeEmptyDataFromDTO from "../../../utils/removeEmptyData";
+import Error from "../../../../utils/Error";
+import removeEmptyDataFromDTO from "../../../../utils/removeEmptyData";
 
 const createChildCommentWithParentCommentId = async input => {
   const newChildId = await API.graphql(
