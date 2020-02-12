@@ -21,7 +21,9 @@ const formikWrapper = withFormik({
     let input = removeEmptyDataFromDTO(formData);
 
     await API.graphql(graphqlOperation(createComment, { input }))
-      .then(response => {})
+      .then(response => {
+        console.log("successfully created comment ", JSON.stringify(response));
+      })
       .catch(e => {
         alert(
           "CreateComment API call failed. Input was ",

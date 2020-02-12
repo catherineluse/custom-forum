@@ -8,7 +8,8 @@ import Tab from "react-bootstrap/Tab";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CommunityRuleFormWrapped from "./withinCommunityPage/CommunityRuleFormWrapped";
 import CommunitySettingsFormWrapped from "./withinCommunityPage/CommunitySettingsFormWrapped";
-
+import { listCommunitys } from "../graphql/queries";
+import { API, graphqlOperation } from "aws-amplify";
 class CommunityPage extends React.Component {
   state = {
     communityData: null,
@@ -27,11 +28,28 @@ class CommunityPage extends React.Component {
   };
 
   componentDidMount = () => {
-    const { communities, nameInUrl } = this.props;
-    const communityData = communities.find(
-      community => community.url === nameInUrl
-    );
-    this.setState({ communityData });
+    this.getCurrentCommunity();
+  };
+
+  getCurrentCommunity = async () => {
+    const { url } = this.props;
+    await API.graphql(graphqlOperation(listCommunitys))
+      .then(result => {
+        const communities = result.data.listCommunitys.items;
+
+        const community = communities.filter(community => {
+          console.log("url is ", url);
+          console.log("community url is ", community.url);
+          return community.url === url;
+        })[0];
+        console.log("result in get current community", communities);
+        if (!community) {
+          console.log("couldn't find the community");
+          return null;
+        }
+        this.setState({ communityData: community });
+      })
+      .catch(err => alert(err));
   };
 
   render() {

@@ -19,6 +19,7 @@ class Comment extends Component {
       discussionId,
       topLevelCommentId
     } = this.props;
+    console.log("props in child comment are ", this.props);
 
     const { id, content, creator, createdDate } = commentData;
     const { buttonsExpanded } = this.state;

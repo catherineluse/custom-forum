@@ -22,7 +22,7 @@ const createChildCommentWithParentCommentId = async input => {
   return newChildId;
 };
 
-const updateParentCommentToAddChild = async (parentCommentId, newChildId) => {
+const addChildToParentComment = async (parentCommentId, newChildId) => {
   const result = await API.graphql(graphqlOperation(listComments));
   const comments = result.data.listComments.items;
   const parentCommentData = comments.filter(
@@ -75,7 +75,7 @@ const formikWrapper = withFormik({
       input,
       values.parentCommentId
     );
-    await updateParentCommentToAddChild(values.parentCommentId, newChildId);
+    await addChildToParentComment(values.parentCommentId, newChildId);
 
     setSubmitting(false);
     resetForm();
@@ -97,6 +97,7 @@ class ChildCommentForm extends React.Component {
   // values, setFieldValue, and setFieldTouched are needed for custom fields, not Formik fields
   render() {
     const { isSubmitting, errors } = this.props;
+    console.log("props in childCommentFormWrapped", this.props);
 
     return (
       <Form>

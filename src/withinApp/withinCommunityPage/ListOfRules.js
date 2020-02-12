@@ -13,8 +13,18 @@ class ListOfRules extends Component {
     // This will be updated to only pull data for one community.
     // The way this is written now, all Rules for the entire
     // site are being loaded.
-    const allRules = await API.graphql(graphqlOperation(listRules));
-    this.setState({ rules: allRules.data.listRules.items });
+    const { communityData } = this.props;
+    const { communityId } = communityData;
+    const allRules = await API.graphql(graphqlOperation(listRules))
+      .then(result => {
+        const allRules = result.data.listRules.items;
+        const filteredRules = allRules.filter(rule => {
+          return rule.communityId === communityId;
+        });
+        this.setState({ rules: filteredRules });
+      })
+      .catch(err => console.log(err));
+    this.setState({ rules: allRules });
   };
 
   handleDeleteRule = async RuleId => {
@@ -56,17 +66,8 @@ class ListOfRules extends Component {
     this.deleteRuleListener.unsubscribe();
   }
 
-  filterRules = communityId => {
-    const rules = this.state.rules;
-    const filteredRules = rules.filter(rule => {
-      return rule.communityId === communityId;
-    });
-    return filteredRules;
-  };
-
-  mapRulesToListView = communityId => {
-    let rules = this.filterRules(communityId);
-    return rules.map(rule => {
+  mapRulesToListView = () => {
+    return this.state.rules.map(rule => {
       return (
         <li key={rule.id}>
           <b>{rule.summary}</b> {rule.explanation}
@@ -77,13 +78,10 @@ class ListOfRules extends Component {
   };
 
   render() {
-    const { communityData } = this.props;
-    if (!communityData) {
+    if (!this.state.rules) {
       return <p>"There are no rules yet."</p>;
     }
-    return (
-      <ol className="rules">{this.mapRulesToListView(communityData.id)}</ol>
-    );
+    return <ol className="rules">{this.mapRulesToListView()}</ol>;
   }
 }
 

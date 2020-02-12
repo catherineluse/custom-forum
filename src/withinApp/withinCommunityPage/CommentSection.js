@@ -17,47 +17,57 @@ class CommentSection extends React.Component {
     comments: []
   };
 
-  componentDidMount = async () => {
+  getDiscussion = async () => {
     const { discussionId } = this.props;
+    await API.graphql(graphqlOperation(listDiscussions))
+      .then(result => {
+        const discussions = result.data.listDiscussions.items;
+        const relevantDiscussion = discussions.filter(
+          discussion => discussion.id === discussionId
+        );
+        const discussionData = relevantDiscussion[0];
+        if (!discussionData) {
+          console.log("Could not find discussion");
+        }
+        const { id, title, content, creator, createdDate } = discussionData;
+        this.setState({
+          discussionId: id,
+          discussionTitle: title,
+          discussionContent: content,
+          discussionCreator: creator,
+          discussionCreatedDate: createdDate
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
-    const discussionData = await this.getDiscussion(discussionId);
-    const { id, title, content, creator, createdDate } = discussionData;
-    await this.setState({
-      discussionId: id,
-      discussionTitle: title,
-      discussionContent: content,
-      discussionCreator: creator,
-      discussionCreatedDate: createdDate
-    });
+  getComments = async () => {
+    const { discussionId } = this.props;
+    await API.graphql(graphqlOperation(listComments))
+      .then(result => {
+        const comments = result.data.listComments.items;
+        console.log("all comments are ", comments);
+        if (comments.length > 0) {
+          const topLevelDiscussionComments = comments.filter(
+            comment =>
+              comment.discussionId === discussionId &&
+              comment.parentCommentId === null
+          );
+          this.setState({ comments: topLevelDiscussionComments });
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
-    const topLevelDiscussionComments = await this.getComments(id);
-    await this.setState({ comments: topLevelDiscussionComments });
+  componentDidMount = async () => {
+    await this.getComments();
+    await this.getDiscussion();
 
     this.createCommentListener = API.graphql(
       graphqlOperation(onCreateComment)
     ).subscribe({
       next: commentData => {
-        const newComment = commentData.value.data.onCreateComment;
-        if (newComment.parentCommentId !== null) {
-          // The comment section state should only be updated
-          // if a top-level comment is added.
-          return;
-        }
-
-        if (!discussionId) {
-          return <p>Cannot find the discussion.</p>;
-        }
-
-        const prevComments = this.state.comments.filter(comment => {
-          return comment.id !== newComment.id;
-        });
-        const updatedComments = [...prevComments, newComment];
-
-        const discussionComments = updatedComments.filter(comment => {
-          return comment.discussionId === discussionId;
-        });
-
-        this.setState({ comments: discussionComments });
+        this.getComments();
       }
     });
     this.deleteCommentListener = API.graphql(
@@ -65,51 +75,43 @@ class CommentSection extends React.Component {
     ).subscribe({
       next: commentData => {
         const deletedComment = commentData.value.data.onDeleteComment;
-        if (deletedComment.parentCommentId !== null) {
-          return;
+        if (
+          deletedComment.parentCommentId === null &&
+          deletedComment.discussionId === this.props.discussionId
+        ) {
+          const updatedComments = this.state.comments.filter(
+            comment => comment.id !== deletedComment.id
+          );
+          this.setState({ comments: updatedComments });
         }
-        const updatedComments = this.state.comments.filter(
-          comment => comment.id !== deletedComment.id
-        );
-        this.setState({ comments: updatedComments });
       }
     });
+  };
+
+  updateTopLevelComments = commentData => {
+    const newComment = commentData.value.data.onCreateComment;
+    if (!newComment) {
+      return;
+    }
+
+    if (
+      newComment.discussionId === this.props.discussionId &&
+      newComment.parentCommentId === null
+    ) {
+      // The comment section state should only be updated
+      // if a top-level comment is added.
+      const prevComments = this.state.comments.filter(comment => {
+        return comment.id !== newComment.id;
+      });
+      const updatedTopLevelComments = [...prevComments, newComment];
+      this.setState({ comments: updatedTopLevelComments });
+    }
   };
 
   componentWillUnmount() {
     this.createCommentListener.unsubscribe();
     this.deleteCommentListener.unsubscribe();
   }
-
-  getDiscussion = async () => {
-    const { discussionId } = this.props;
-    const result = await API.graphql(graphqlOperation(listDiscussions));
-    const discussions = result.data.listDiscussions.items;
-    const relevantDiscussion = discussions.filter(
-      discussion => discussion.id === discussionId
-    );
-    const discussionData = relevantDiscussion[0];
-    if (!discussionData) {
-      return null;
-    }
-    return discussionData;
-  };
-
-  getComments = async id => {
-    const result = await API.graphql(graphqlOperation(listComments));
-    if (!result) {
-      return [];
-    }
-    const comments = result.data.listComments.items;
-    if (comments) {
-      const topLevelDiscussionComments = comments.filter(
-        comment =>
-          comment.discussionId === id && comment.parentCommentId === null
-      );
-      return topLevelDiscussionComments;
-    }
-    return [];
-  };
 
   addCommentToState = newComment => {
     const prevComments = this.state.comments.filter(comment => {
@@ -128,6 +130,9 @@ class CommentSection extends React.Component {
   };
 
   getDateOfComment = commentDate => {
+    if (!commentDate) {
+      return null;
+    }
     return commentDate.substring(5, 10);
   };
 
@@ -140,19 +145,19 @@ class CommentSection extends React.Component {
 
   filterComments = () => {
     // Limit state to only comments in this discussion
-    const comments = this.state.comments;
+    const { comments } = this.state;
     const { discussionId } = this.props;
     const filteredComments = comments.filter(comment => {
-      return comment.discussionId === discussionId;
+      return (
+        comment.discussionId === discussionId &&
+        comment.parentCommentId === null
+      );
     });
-    if (filteredComments.length > 0) {
-      return this.mapCommentsToTreeView(filteredComments);
-    } else {
-      return <p>There are no replies yet.</p>;
-    }
+    this.setState({ comments: filteredComments });
   };
 
-  mapCommentsToTreeView = comments => {
+  mapCommentsToTreeView = () => {
+    const { comments } = this.state;
     return comments.map(commentData => {
       const { children, id } = commentData;
       const { discussionId } = this.state;
@@ -185,7 +190,9 @@ class CommentSection extends React.Component {
               getDateOfComment={this.getDateOfComment}
               getCommentById={this.getCommentById}
             />
-          ) : null}
+          ) : (
+            <p>There are no replies yet.</p>
+          )}
         </div>
       );
     });
@@ -201,6 +208,7 @@ class CommentSection extends React.Component {
       discussionCreatedDate,
       comments
     } = this.state;
+    console.log("comments", comments);
 
     const createdDate = this.getDateOfComment(discussionCreatedDate);
 
@@ -231,7 +239,7 @@ class CommentSection extends React.Component {
 
           <TopLevelCommentFormWrapped discussionId={discussionId} user={user} />
           <hr></hr>
-          {comments ? this.filterComments(comments) : null}
+          {comments ? this.mapCommentsToTreeView() : null}
         </div>
       </>
     );

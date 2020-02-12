@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteCommunity } from "../graphql/mutations";
+import { listCommunitys } from "../graphql/queries";
 
 class CommunityList extends Component {
   state = {
     communities: []
   };
+
+  async componentDidMount() {
+    this.getCommunities();
+  }
 
   handleDeleteCommunity = async communityId => {
     const input = {
@@ -31,7 +36,7 @@ class CommunityList extends Component {
   };
 
   mapModLevelToWord = intLevel => {
-    switch(intLevel) {
+    switch (intLevel) {
       case 1:
         return "Low";
       case 2:
@@ -43,8 +48,18 @@ class CommunityList extends Component {
     }
   };
 
+  getCommunities = async () => {
+    await API.graphql(graphqlOperation(listCommunitys))
+      .then(result => {
+        const communities = result.data.listCommunitys.items;
+        this.setState({ communities });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
-    const { communities } = this.props;
+    const { communities } = this.state;
+    console.log("communities are ", communities);
     return (
       <div>
         <div className="card">

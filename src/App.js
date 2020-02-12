@@ -16,6 +16,7 @@ import ProfilePage from "./stub/ProfilePage";
 import CommunityList from "./withinApp/CommunityList";
 import CommunityFormWrapped from "./withinApp/CommunityFormWrapped";
 
+export const UserContext = React.createContext();
 class App extends Component {
   state = {
     username: "",
@@ -27,7 +28,6 @@ class App extends Component {
   componentDidMount = async () => {
     this.getUserData();
     Hub.listen("auth", this, "onHubCapsule");
-    this.getCommunities();
     this.createCommunityListener = API.graphql(
       graphqlOperation(onCreateCommunity)
     ).subscribe({
@@ -65,18 +65,25 @@ class App extends Component {
     });
   };
 
+  getCurrentCommunityByUrl = async url => {
+    await API.graphql(graphqlOperation(listCommunitys))
+      .then(result => {
+        const communities = result.data.listCommunitys.items;
+        const communityData = communities.filter(community => {
+          return community.url === url;
+        })[0];
+        if (!communityData) {
+          return null;
+        }
+        return communityData;
+      })
+      .catch(err => alert(err));
+  };
+
   componentWillUnmount() {
     this.createCommunityListener.unsubscribe();
     this.deleteCommunityListener.unsubscribe();
   }
-
-  getCommunities = async () => {
-    const result = await API.graphql(graphqlOperation(listCommunitys));
-
-    if (result) {
-      this.setState({ communities: result.data.listCommunitys.items });
-    }
-  };
 
   getUserData = async () => {
     const user = await Auth.currentAuthenticatedUser();
@@ -113,23 +120,13 @@ class App extends Component {
     }
   };
 
-  getCurrentCommunity = url => {
-    const community = this.state.communities.filter(community => {
-      return community.url === url;
-    })[0];
-    if (!community) {
-      return null;
-    }
-    return community;
-  };
-
   render() {
     const { communities, username } = this.state;
 
     return !username ? (
       <Authenticator />
     ) : (
-      <div>
+      <UserContext.Provider value={{ username }}>
         <Router>
           <>
             <div>
@@ -182,19 +179,16 @@ class App extends Component {
                 path="/c/:url"
                 component={({ match }) => {
                   const url = match.params.url;
-                  const communityData = this.getCurrentCommunity(url);
                   return (
                     <div>
                       <TopNavBar
                         handleSignout={this.handleSignout}
                         communityUrl={url}
-                        communityDescription={
-                          communityData ? communityData.description : null
-                        }
+                        communityDescription={null}
                       />
                       <div className="container">
                         <CommunityPage
-                          nameInUrl={url}
+                          url={url}
                           communities={communities}
                           setCurrentCommunity={this.setCurrentCommunity}
                         />
@@ -207,7 +201,7 @@ class App extends Component {
                 path="/c/:url/discussions/:discussionId"
                 component={({ match }) => {
                   const { url, discussionId } = match.params;
-                  const communityData = this.getCurrentCommunity(url);
+                  const communityData = this.getCurrentCommunityByUrl(url);
                   return (
                     <div>
                       <TopNavBar
@@ -232,7 +226,7 @@ class App extends Component {
             </div>
           </>
         </Router>
-      </div>
+      </UserContext.Provider>
     );
   }
 }
