@@ -6,7 +6,7 @@ class Comment extends Component {
     buttonsExpanded: false
   };
 
-  toggleCommentButtons = () => {
+  toggleCommentForm = () => {
     this.setState({ buttonsExpanded: !this.state.buttonsExpanded });
   };
 
@@ -37,7 +37,7 @@ class Comment extends Component {
           <i className="fas fa-sitemap metadata-button"></i>
           {" 0 "}
         </div>
-        <div className="comment-content" onClick={this.toggleCommentButtons}>
+        <div className="comment-content" onClick={this.toggleCommentForm}>
           {content}
         </div>
 
@@ -60,6 +60,7 @@ class Comment extends Component {
               discussionId={discussionId}
               parentCommentId={id}
               topLevelCommentId={topLevelCommentId}
+              toggleCommentForm={this.toggleCommentForm}
             />
           </div>
         ) : null}

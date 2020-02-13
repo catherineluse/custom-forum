@@ -43,7 +43,7 @@ class CommentSection extends React.Component {
 
   getComments = async () => {
     const { discussionId } = this.props;
-    await API.graphql(graphqlOperation(listComments))
+    await API.graphql(graphqlOperation(listComments, { limit: 500 }))
       .then(result => {
         const comments = result.data.listComments.items;
         console.log("all comments are ", comments);

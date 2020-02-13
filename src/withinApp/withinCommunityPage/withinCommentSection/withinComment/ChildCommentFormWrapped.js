@@ -56,13 +56,15 @@ const formikWrapper = withFormik({
     user,
     discussionId,
     parentCommentId,
-    topLevelCommentId
+    topLevelCommentId,
+    toggleCommentForm
   }) => ({
     content: "",
     creator: user,
     discussionId,
     parentCommentId,
-    threadId: topLevelCommentId
+    threadId: topLevelCommentId,
+    toggleCommentForm
   }),
   handleSubmit: async (values, { setSubmitting, resetForm }) => {
     const formData = {
@@ -79,6 +81,7 @@ const formikWrapper = withFormik({
 
     setSubmitting(false);
     resetForm();
+    values.toggleCommentForm();
   },
   validationSchema: Yup.object().shape({
     content: Yup.string().max(3000, "Can have a maximum of 3,000 characters.")
