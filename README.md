@@ -2,10 +2,11 @@
 
 This project is called Gennit. It is supposed to be a desktop site for meetups and discussions.
 
-The project is based on two what-ifs:
+The project is based on what-ifs:
 
 1. What if Reddit had been designed for small, niche communities from the ground up, instead of being designed for content aggregation with community features being added as an afterthought?
 2. What if Reddit communities had built-in features for hosting meetups, similar to meetup.com? In other words, what if Reddit was built to comfortably bridge the divide between real-world and online communities?
+3. What if social media was decentralized? What if you could have the independence of a small community, while having the discoverability of being part of a larger community?
 
 ## Technology
 
