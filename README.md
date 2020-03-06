@@ -73,3 +73,13 @@ I'm working on this project very slowly, but here are the features that I have p
 - Users can score reputation for upvoted comments and discussions
 - Reasons for upvotes are broken down and displayed on profile
 - Users can opt in to showing their activity on their profile
+
+**Distributed Social Media**
+
+- An instance of gennit can start a gennit network
+- The network may require permission to join or not
+- Other instances of gennit can join the network
+- Search results on one gennit can show results from an entire network
+- Gennit instances can become organizers of multiple networks, and can join multiple networks
+- The content of one gennit server is easily discoverable from other servers in the same network
+- The first time you post in a different gennit server, you have to sign off that you have read the rules of the server
