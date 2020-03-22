@@ -8,6 +8,13 @@ The project is based on what-ifs:
 2. What if Reddit communities had built-in features for hosting meetups, similar to meetup.com? In other words, what if Reddit was built to comfortably bridge the divide between real-world and online communities?
 3. What if social media was decentralized? What if you could have the independence of a small community, while having the discoverability of being part of a larger community?
 
+## Why should social media be decentralized?
+
+1. It would not be possible for a top-down authority like Mark Zuckerberg to say what is allowed on the site. Instead of top-down rules, which can be heavy-handed and difficult to enforce fairly, greater control over content would be given to individual communities and larger networks of communities that could include or exclude communities in a network based on their adherence to the rules.
+2. It would not be possible for a top-down authority to sell everyone's user data.
+3. Moderation could be improved and customized for individual communities, which would each have their own niche topic, like subreddits.
+4. It would be impossible to use the platform to spread disinformation across the entire world, because not all instances of the decentralized system would be connected. A network of related communities could share a user base, and make their content discoverable within the network, but in order to share the user base, each community would have to follow the rules of the network. And if it didn't want to become part of the network, it would have to form its own network or be disconnected from all of the other communities.
+
 ## Technology
 
 - AWS Amplify & AppSync
