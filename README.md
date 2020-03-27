@@ -48,6 +48,7 @@ I'm working on this project very slowly, but here are the features that I have p
 - Can filter discussions by tag
 - Organizer can change the default comment ranking that is used in discussions
 - The title of the discussion can be edited and the revisions are shown in a changelog
+- To encourage comments that generate more discussion, each comment gets two scores: upvotes, and the sum of all the upvotes of the replies.
 
 **Community Features**
 
